@@ -54,76 +54,123 @@ def _panel_label(ax, s, x=-0.18, y=1.04):
 
 # ================================================================ Figure 1: schematic
 def fig_schematic():
-    """The pipeline and the exposure-specific proxy sets it produces.
+    """Data representation, network construction and exposure-specific estimation.
 
-    Row A: data preparation. Row B: the descriptive dynamic network (curve
-    based). Row C: the proximal branch (patient level). Colours match every
-    other figure. All lettering 8 pt at the 6.9 in canvas."""
+    ODE fitting uses both power curves and selected supports. Linear and Cox
+    outcome stages share fitted, reduced-rank proxies, with distinct targets.
+    All lettering is at least 8 pt at the 6.9 in publication width.
+    """
     set_style()
-    fig, ax = plt.subplots(figsize=(DOUBLE, 3.9))
-    ax.set_xlim(0, 100); ax.set_ylim(0, 55); ax.axis('off')
-    BW, BH = 17.5, 11.0          # box width / height
+    fig, ax = plt.subplots(figsize=(DOUBLE, 7.0))
+    ax.set_xlim(0, 104); ax.set_ylim(-10, 104); ax.axis('off')
 
-    def box(x, y, title, sub=None, fc=PAPER, ec=INK2, w=BW, h=BH, tcolor=INK, title_top=False):
-        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle='round,pad=0.3,rounding_size=1.0', fc=fc, ec=ec, lw=0.7))
-        if sub is None:
-            ax.text(x + w / 2, y + (h * 0.8 if title_top else h / 2), title, ha='center', va='center', fontsize=8, color=tcolor)
-        else:
-            ax.text(x + w / 2, y + h * 0.74, title, ha='center', va='center', fontsize=8, color=tcolor)
-            ax.text(x + w / 2, y + h * 0.33, sub, ha='center', va='center', fontsize=8, color=INK2, linespacing=1.15)
-        return (x, y, w, h)
+    def frame(x, y, w, h, fc=PAPER, ec=INK2):
+        ax.add_patch(FancyBboxPatch((x, y), w, h,
+                     boxstyle='round,pad=0.3,rounding_size=0.8',
+                     fc=fc, ec=ec, lw=0.7))
 
-    def arrow(p, q, side_p, side_q, color=INK2, lw=0.8, rad=0.0):
-        pts = {'r': lambda b: (b[0] + b[2], b[1] + b[3] / 2), 'l': lambda b: (b[0], b[1] + b[3] / 2),
-               't': lambda b: (b[0] + b[2] / 2, b[1] + b[3]), 'b': lambda b: (b[0] + b[2] / 2, b[1])}
-        ax.add_patch(FancyArrowPatch(pts[side_p](p), pts[side_q](q), arrowstyle='-|>', mutation_scale=8,
-                                     color=color, lw=lw, shrinkA=2, shrinkB=2,
-                                     connectionstyle=f'arc3,rad={rad}'))
+    def label(x, y, value, color=INK2, bold=False, ha='center'):
+        return ax.text(x, y, value, ha=ha, va='center', fontsize=8,
+                       color=color, fontweight='bold' if bold else 'normal')
 
-    # ---- row A: data preparation
-    yA = 40
-    bX = box(1, yA, 'Molecular panel', '$X$: $n$ patients\n$\\times$ $p$ variables')
-    bS = box(21.5, yA, 'Niche index', '$s_k=\\Sigma_j X_{kj}$\npatients sorted')
-    bC = box(42, yA, 'Power curves', '$c_j(s)=a_j\\,s^{\\,b_j}$')
-    bU = box(62.5, yA, 'Deviations', '$U = X - C(s)$')
-    bF = box(82.5, yA, 'Latent state', '$U\\approx F\\Lambda^{\\prime}$; $r$, $\\rho_i$', w=16.5)
-    for a_, b_ in ((bX, bS), (bS, bC), (bC, bU), (bU, bF)):
-        arrow(a_, b_, 'r', 'l')
+    def arrow(start, end, color=INK2):
+        ax.add_patch(FancyArrowPatch(start, end, arrowstyle='-|>',
+                     mutation_scale=9, color=color, lw=0.8,
+                     shrinkA=2, shrinkB=2))
 
-    # ---- row B: descriptive dynamic network, fed by the curves
-    yB = 22
-    bO = box(36, yB, 'Weak-form ODE', '$\\dot x_j=Q_{jj}(x_j)+\\sum_k Q_{jk}(x_k)$', fc='#f3f3f1', w=24)
-    bN = box(61.5, yB, 'Dynamic network', 'signed, weighted,\ndirected', fc='#f3f3f1', w=17)
-    arrow(bC, bO, 'b', 't'); arrow(bO, bN, 'r', 'l')
-    ax.text(70, yB - 2.3, 'quasi-dynamic context', ha='center', fontsize=8, color=MUTED, style='italic')
+    def routed(points, color=INK2):
+        ax.plot(*zip(*points[:-1]), color=color, lw=0.8,
+                solid_joinstyle='round', solid_capstyle='round')
+        arrow(points[-2], points[-1], color)
 
-    # ---- row C: proximal branch
-    yC = 4
-    bG = box(1, yC, 'Support graph', 'nodewise LASSO\n$k$ niche windows', w=18)
-    bR = box(20.5, yC, 'Proxy construction', None, w=25, title_top=True)
-    ax.text(33, yC + 5.3, '$Z$: adjacent to $A$', ha='center', fontsize=8, color=BLUE)
-    ax.text(33, yC + 2.4, '$W$: outside $A$ component', ha='center', fontsize=8, color=AQUA)
-    bB = box(47, yC, 'Proximal bridge', '$E[Y\\,|\\,A,Z]$\n$= E[h(W,A)\\,|\\,A,Z]$', w=21)
-    bE = box(69.5, yC, 'Effect estimation', '$\\hat\\beta$; $\\nu$ (proxy strength)\nlinear bridge / Cox extension', w=29.5)
-    arrow(bX, bG, 'b', 't')
-    arrow(bG, bR, 'r', 'l'); arrow(bR, bB, 'r', 'l'); arrow(bB, bE, 'r', 'l')
-    # loadings and rank from the latent state to the roles (curved, avoids the ODE row)
-    ax.plot([90.5, 90.5, 33], [yA, 37, 37], color=MUTED, lw=0.6)
-    ax.add_patch(FancyArrowPatch((33, 37), (33, yC + BH), arrowstyle='-|>', mutation_scale=8,
-                                 color=MUTED, lw=0.6, shrinkA=0, shrinkB=2))
-    ax.text(30, 19.5, '$\\Lambda,\\ r$', fontsize=8, color=MUTED, ha='center')
+    def step(x, title, lines):
+        frame(x, 81, 18, 11)
+        label(x + 9, 89.5, title, color=INK, bold=True)
+        for y, line in zip((86, 83), lines):
+            label(x + 9, y, line)
 
-    # exposure and outcome enter the bridge from the row above
-    bA = box(80.5, yB, 'Exposure, outcome', '$A$: a column of $X$\n$Y$: clinical outcome', fc='#fdeee8', ec=ORANGE, w=18.5)
-    ax.add_patch(FancyArrowPatch((bA[0] + 2, bA[1]), (bB[0] + bB[2] * 0.7, bB[1] + bB[3]), arrowstyle='-|>',
-                                 mutation_scale=8, color=ORANGE, lw=0.8, shrinkA=2, shrinkB=2,
-                                 connectionstyle='arc3,rad=-0.18'))
+    # A: transformed patient levels, curves and estimated latent representation.
+    label(1, 96, 'A  Data representation', color=INK, bold=True, ha='left')
+    for x0, lab, color in ((1, 'exposure $A$', ORANGE),
+                           (27, 'treatment proxy $Z$', BLUE),
+                           (63, 'outcome proxy $W$', AQUA)):
+        ax.add_patch(plt.Rectangle((x0, 101), 1.4, 1.4, fc=color, ec='none'))
+        label(x0 + 2.3, 101.7, lab, ha='left')
+    step(1, 'Protein panel', ['$X$: standardised', 'and shifted levels'])
+    step(21, 'Niche ordering', ['$s_k=\\sum_j X_{kj}$', 'sort patient rows'])
+    step(41, 'Power curves', ['$c_j(s)=a_j s^{b_j}$'])
+    step(61, 'Deviations', ['$U=X-C(s)$', 'centre columns: $U_c$'])
+    step(81, 'Latent space', ['$U_c\\approx\\widehat F\\widehat\\Lambda^\\top$', '$\\widehat r$; residual $\\rho_i$'])
+    for x in (19, 39, 59, 79):
+        arrow((x, 86.5), (x + 2, 86.5))
 
-    # role legend
-    for x0, lab, col in ((1, 'exposure', ORANGE), (15, 'treatment proxy $Z$', BLUE),
-                         (46, 'outcome proxy $W$', AQUA)):
-        ax.add_patch(plt.Rectangle((x0, 52.6), 1.5, 1.5, fc=col, ec='none'))
-        ax.text(x0 + 2.1, 53.35, lab, fontsize=8, va='center', color=INK2)
+    # B: niche-ordered levels determine supports; supports and curves feed ODE.
+    label(1, 76, 'B  Networks', color=INK, bold=True, ha='left')
+    frame(21, 58, 20, 13)
+    label(31, 68, 'Selected support', color=INK, bold=True)
+    label(31, 64, 'nodewise LASSO')
+    label(31, 60.5, '$k$ niche windows')
+    arrow((30, 81), (30, 71))
+    frame(46, 58, 29, 13, fc='#f3f3f1')
+    label(60.5, 68, 'Weak-form ODE', color=INK, bold=True)
+    label(60.5, 64.2, '$\\dot x_j=Q_{jj}(x_j)$')
+    label(60.5, 61, '$+\\sum_{k\\in\\mathrm{pa}(j)} Q_{jk}(x_k)$')
+    arrow((50, 81), (60.5, 71))
+    arrow((41, 64.5), (46, 64.5))
+    frame(81, 58, 18, 13, fc='#f3f3f1')
+    label(90, 68, 'ODE network', color=INK, bold=True)
+    label(90, 64, 'signed, weighted,')
+    label(90, 60.5, 'directed context')
+    arrow((75, 64.5), (81, 64.5))
+
+    # C: exposure, symmetrised support and latent loading/rank nominate proxies.
+    label(1, 53, 'C  Estimation', color=INK, bold=True, ha='left')
+    frame(1, 29, 15, 14, fc='#fdeee8', ec=ORANGE)
+    label(8.5, 39, 'Select exposure', color=INK, bold=True)
+    label(8.5, 33.5, '$A=X_a$', color=ORANGE)
+    frame(20, 29, 29, 14)
+    label(34.5, 40, 'Exposure-specific proxies', color=INK, bold=True)
+    label(34.5, 35.8, '$Z_A$: neighbours of $A$', color=BLUE)
+    label(34.5, 31.5, '$W_A$: separate components', color=AQUA)
+    arrow((16, 36), (20, 36), ORANGE)
+    arrow((31, 58), (31, 43))
+    label(29.5, 49, '$G$: undirected', ha='right')
+    routed([(90, 81), (90, 77.5), (101.5, 77.5),
+            (101.5, 48), (42, 48), (42, 43)], MUTED)
+    label(70, 49.5, '$\\widehat\\Lambda,\\widehat r$: loading and dimension screen', color=MUTED)
+
+    frame(55, 29, 44, 14)
+    label(77, 40, 'Common first stage', color=INK, bold=True)
+    label(77, 35.8, '$\\widehat W=\\widehat E[W_A\\mid A,Z_A,C]$')
+    label(77, 31.5, 'reduced-rank projection: $R=\\widehat W P$')
+    arrow((49, 36), (55, 36))
+    label(77, 45.5, 'Measured covariates $C$')
+    arrow((77, 44.2), (77, 43))
+
+    # First-stage output branches to distinct linear and survival outcome fits.
+    ax.plot([77, 77, 43, 83], [29, 25.5, 25.5, 25.5], color=INK2, lw=0.8)
+    arrow((43, 25.5), (43, 22))
+    arrow((83, 25.5), (83, 22))
+    frame(25, 1, 36, 21)
+    label(43, 19, 'Linear outcome bridge', color=INK, bold=True)
+    label(43, 14.8, '$E[Y\\mid A,Z_A,C]$')
+    label(43, 11, '$=E[h(W_A,A,C)\\mid A,Z_A,C]$')
+    label(43, 6.8, '$Y$ on $(A,R,C)$')
+    label(43, 3, 'Total effect $\\widehat\\tau_A$', color=ORANGE, bold=True)
+    frame(66, 1, 34, 21)
+    label(83, 19, 'Cox second stage', color=INK, bold=True)
+    label(83, 14.8, 'time $T$, event indicator $D$')
+    label(83, 10.6, 'Cox regression on $(A,R,C)$')
+    label(83, 5.3, 'Cox score parameter $\\widehat\\beta_A$', color=ORANGE, bold=True)
+    frame(1, 5, 19, 16)
+    label(10.5, 18, 'Clinical outcomes', color=INK, bold=True)
+    label(10.5, 13.5, '$Y$ (linear)')
+    label(10.5, 9, '$(T,D)$ (survival)')
+    arrow((20, 14), (25, 14))
+    routed([(10.5, 5), (10.5, -3), (83, -3), (83, 1)])
+    label(46.5, -1.2, 'survival outcome $(T,D)$')
+    label(50.5, -8, 'Report estimates and intervals when proxy dimensions and $\\nu\\geq0.05$ pass.')
+    fig.subplots_adjust(left=0.01, right=0.99, bottom=0.01, top=0.99)
     return fig
 
 
