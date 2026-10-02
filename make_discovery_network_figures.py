@@ -61,11 +61,11 @@ def discovery_networks():
                      np.flatnonzero(selected['A'][:, j])) + '}')
                 for j in range(len(names))])
             assert np.array_equal(adjacency_from_supports(supports, names), selected['A'])
-            dec = solve_niche_ode(cohort['qd'], supports, degree=5, ridge=1., n_grid=50)
+            dec = solve_niche_ode(cohort['qd'], supports, degree=1, ridge=1., n_grid=50)
             edges = decomposition_edges(dec)
             cache[design_key] = dict(supports=supports, decomposition=dec, edgelist=edges)
         res = dict(selected, qd=cohort['qd'], estimates=pd.DataFrame([row]),
-                   ode_degree=5, ode_ridge=1., **cache[design_key])
+                   ode_degree=1, ode_ridge=1., **cache[design_key])
         mapped[exposure] = res
         provenance.append(dict(exposure=exposure, n_discovery=info['n_discovery'],
                                n_proteins=len(info['names']), Z=row['Z'], W=row['W'],
@@ -128,7 +128,7 @@ def reference_network_figures():
     reference = ROOT / 'results/joint_readout_application_20261001'
     cohort = load_cohort('ov', 'OS', p_keep=140, survival=True)
     res = analyse_cohort(cohort, alpha=.15, k=5, estimate_legacy=False, solve_ode=False)
-    dec = solve_niche_ode(cohort['qd'], res['supports'], degree=5, ridge=1.)
+    dec = solve_niche_ode(cohort['qd'], res['supports'], degree=1, ridge=1.)
     res['edgelist'] = decomposition_edges(dec)
     figure = F.fig_full_network(res)
     for text in figure.texts:
@@ -158,7 +158,7 @@ def reference_network_figures():
     assert ';'.join(names[i] for i in w) == saved.W
     supports = pd.DataFrame([dict(target=names[j], source='{' + ','.join(
         names[i] for i in np.flatnonzero(res['A'][:, j])) + '}') for j in range(len(names))])
-    dec = solve_niche_ode(cohort['qd'], supports, degree=5, ridge=1.)
+    dec = solve_niche_ode(cohort['qd'], supports, degree=1, ridge=1.)
     res.update(estimates=pd.DataFrame([row]), edgelist=decomposition_edges(dec))
     figure = F.fig_network(res, 'LCK')
     for label in figure.axes[0].texts:

@@ -34,6 +34,7 @@ def main():
                              {'target': 'B', 'source': '{}'},
                              {'target': 'C', 'source': '{}'}])
     dec = solve_niche_ode(data, supports)
+    assert dec['settings']['degree'] == 1
     transformed = data.copy()
     transformed.index = 17+400*time
     other = solve_niche_ode(transformed, supports)

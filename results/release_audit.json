@@ -2,7 +2,7 @@
   "passed": true,
   "checks": 142,
   "canonical_source": "manuscript.md",
-  "manuscript_sha256": "331c1cc823d8451fd2dcb978c87408ec235c516d7171717da0a80b39f3de8cbd",
+  "manuscript_sha256": "cbd21229123e01bee422952f5631fd030985d50bc91630948f410cc349553e62",
   "builder_idempotent": true,
   "final_analysis_sources_unchanged": true,
   "complete_comparisons_retained": true

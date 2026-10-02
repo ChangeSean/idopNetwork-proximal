@@ -48,7 +48,7 @@ def ridge_refit(X, y, ridge):
     return intercept, beta
 
 
-def solve_niche_ode(data, supports, degree=5, ridge=1., n_grid=50):
+def solve_niche_ode(data, supports, degree=1, ridge=1., n_grid=50):
     """Smooth raw states, fit fixed source groups, and return additive curves.
 
     Each target has a baseline time column plus its own and supported sources'

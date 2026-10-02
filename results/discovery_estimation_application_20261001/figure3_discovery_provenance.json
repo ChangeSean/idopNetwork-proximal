@@ -23,26 +23,18 @@
       "support_edges": 75,
       "signed_ode_edges": 118,
       "decomposition_diagnostics": {
-        "rmse": 0.971692927354533,
-        "r_squared": 0.0558128549291782,
-        "mean_residual": -7.065055611250996e-17,
+        "rmse": 0.9809508387181249,
+        "r_squared": 0.03773545201820727,
+        "mean_residual": 1.6091024616645127e-15,
         "closure_error": 8.881784197001252e-16,
-        "intrinsic_rms": 4.7796112194652265,
-        "max_cross_rms": 0.308438988383959,
-        "max_cross_to_intrinsic_rms": 0.06453223373646469,
+        "intrinsic_rms": 4.958524763782606,
+        "max_cross_rms": 0.09859954399214034,
+        "max_cross_to_intrinsic_rms": 0.019884854606821357,
         "source_groups": 1,
         "coefficients": [
-          -0.425757132027612,
-          0.3896844822251852,
-          -4.728210010447303,
-          2.5572394786070527,
-          -5.561395142480793,
-          3.7722732611628755,
-          0.38991984262839463,
-          -4.731711775615432,
-          2.5481537730141595,
-          -5.580562609923309,
-          3.790435331429311
+          1.1947282480777066,
+          0.43545044063871885,
+          0.5456858973126519
         ]
       }
     },
@@ -60,31 +52,19 @@
       "support_edges": 75,
       "signed_ode_edges": 118,
       "decomposition_diagnostics": {
-        "rmse": 0.9683530618726269,
-        "r_squared": 0.06229234756190827,
-        "mean_residual": -4.585076906893504e-16,
+        "rmse": 0.9845924880129714,
+        "r_squared": 0.030577632548426825,
+        "mean_residual": -8.997132043715553e-16,
         "closure_error": 8.881784197001252e-16,
-        "intrinsic_rms": 2.7576363321124946,
-        "max_cross_rms": 0.4742727357311688,
-        "max_cross_to_intrinsic_rms": 0.17198523612714767,
+        "intrinsic_rms": 3.522430313098171,
+        "max_cross_rms": 0.18046943195749687,
+        "max_cross_to_intrinsic_rms": 0.05123435126208759,
         "source_groups": 2,
         "coefficients": [
-          0.26625516879053157,
-          2.171260061744044,
-          4.274066283571392,
-          7.213965038349179,
-          3.7343573939645838,
-          3.6197994561578746,
-          2.1660871730049944,
-          4.284862306370245,
-          7.177198642543498,
-          3.7028363310533745,
-          3.5864926555034553,
-          -2.175828695319441,
-          4.266765054752868,
-          -7.225789029473844,
-          3.7531757765872347,
-          -3.6680668881119045
+          -1.5640719249097745,
+          -0.8674449694123351,
+          -0.507996629603205,
+          0.9991492146872998
         ]
       }
     },
@@ -102,31 +82,19 @@
       "support_edges": 75,
       "signed_ode_edges": 118,
       "decomposition_diagnostics": {
-        "rmse": 0.9744780843479102,
-        "r_squared": 0.050392463125627285,
-        "mean_residual": 1.5103358679153914e-15,
-        "closure_error": 8.881784197001252e-16,
-        "intrinsic_rms": 2.3268906126715496,
-        "max_cross_rms": 0.3629290156209333,
-        "max_cross_to_intrinsic_rms": 0.15597167036754137,
+        "rmse": 0.9778783137666922,
+        "r_squared": 0.04375400346481062,
+        "mean_residual": 1.3322676295501878e-15,
+        "closure_error": 4.440892098500626e-16,
+        "intrinsic_rms": 2.7110653316967483,
+        "max_cross_rms": 0.18674229458947036,
+        "max_cross_to_intrinsic_rms": 0.06888151768463498,
         "source_groups": 2,
         "coefficients": [
-          1.8415503888354359,
-          -2.0272812685157833,
-          -0.5821021066334856,
-          -1.0470002282514734,
-          -1.6030275895812947,
-          0.3512331061275761,
-          -2.044494468507614,
-          -0.5806507317533366,
-          -1.030325866763723,
-          -1.578343193794214,
-          -0.26494556659955926,
-          -2.05860835615221,
-          -0.5786008074535532,
-          -1.0222255999491634,
-          -1.576735655000856,
-          -0.7825975547300519
+          1.8869924435523684,
+          -1.0967719091242263,
+          -1.034634279746669,
+          -1.0032644392970078
         ]
       }
     }
@@ -156,7 +124,7 @@
   "ode_settings": {
     "smoothing": "GCV cubic smoothing spline",
     "basis": "shifted Legendre",
-    "degree": 5,
+    "degree": 1,
     "ridge": 1.0,
     "integration": "normalised niche time",
     "grid_points": 50,
@@ -165,13 +133,13 @@
   },
   "edge_interpretation": "Mean cumulative source contributions to molecular niche curves",
   "figures": {
-    "pdf": "08a686e6ab710ead84fb1cfb229a580df492ca9f4cc90a4f0c2aac5a6e2842da",
-    "png": "ba345f0136583f8ca4e48175ae0a05b881d0a51b866588395c9cf368d27ba313"
+    "pdf": "6779a74f04cfd7c96e144525476f0e1934d2aba9b1e26b8113225b9d681948b9",
+    "png": "80889e3ceed4253178ab3dbdf314a5a3bc700e9ec7fa670c2661175d81233614"
   },
   "reference_figures": {
-    "figS1_full_network.pdf": "66d37f0dbddbd83c8bb92c3a13a9f9cd26420a98115e7b56cb4ccd08af09885b",
-    "figS1_full_network.png": "4ebe61be4fcfff930eb35cc9949f708ba2f1f8d6450fc28a2bee5ba9713e7cf5",
-    "figS2_network.pdf": "b32cd88f1db937c236b5c4985dfb197f63d24cb575c4ca326ad93b9627a5234b",
-    "figS2_network.png": "3fa4334b320ba2a587240d99bd2fe7171d263a7c322380111918e09bd382ee55"
+    "figS1_full_network.pdf": "bcf36d8aa88a595e1b171fa35048674744a867a11f4201d8b5fefc4bfad5df82",
+    "figS1_full_network.png": "f3b54750cdd28a0c8ce9dc9b9fdd193aa1a62118101b350b0c8446f995755ea2",
+    "figS2_network.pdf": "fc8b6cdb93345fd962403e8e078734dff6f8f8059b38052f20732bd68c65f35b",
+    "figS2_network.png": "d6024f602cb621140c38145f1b70d447623e7ecdba9f2da56d93b0a2c3ab021d"
   }
 }
