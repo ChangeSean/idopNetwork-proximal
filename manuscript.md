@@ -138,7 +138,7 @@ Each exposure record contains its proxy sets, spectrum and bridge dimensions, se
 
 ### 3.10 Quasi-dynamic network interpretation
 
-The weak-form ODE decomposition of idopNetwork describes molecular variation along the niche index: $\dot x_j=Q_{jj}(x_j)+\sum_{k\in\operatorname{pa}(j)}Q_{jk}(x_k)$. On the support graph, the $Q$'s are expanded in an integral Legendre basis of order zero and fitted to the power-curve samples by least squares. The signed weights describe self and cross-protein contributions to the niche curves (Figure 3b,d,f; Figures S1–S2). Bridge estimation uses the observed protein levels and reduced readouts defined in Section 3.5.
+The weak-form ODE decomposition of idopNetwork describes molecular variation along the niche index: $\dot x_j=Q_{jj}(x_j)+\sum_{k\in\operatorname{pa}(j)}Q_{jk}(x_k)$. On the fixed support graph, protein states are pre-smoothed by cubic smoothing splines with generalised cross-validation. Shifted Legendre terms of degrees one to five are integrated by the trapezoidal rule along the niche coordinate normalised to the unit interval. Each target includes a linear niche baseline, its own state group and the supported source groups. Centred, standardised design columns receive ridge regression with penalty one; coefficients are returned to the protein scale. Intrinsic contributions combine the intercept, linear baseline and own group; adding the cross-protein contributions reconstructs the fitted curve (Figure 3b,d,f). Edge weights are mean cumulative source contributions (Figures S1–S2). Bridge estimation uses the observed protein levels and reduced readouts defined in Section 3.5.
 
 ## 4 Identification and estimation
 
@@ -558,7 +558,7 @@ The manuscript, analysis code, study protocols, aggregate results and reproducti
 
 **Figure 2.** TCGA-OV niche-index power curves for LCK, CDH2, four local treatment proxies and two separated readouts. Points are patient measurements; curve exponents and network roles are annotated.
 
-**Figure 3.** Ovarian discovery networks and niche-curve decompositions for PTEN, SERPINE1 and CCNE1. Panels a,c,e show exposure, proxy and remaining-protein planes for the 60-protein panel learned from 308 discovery patients. Each uses its frozen selected design at window width 0.4 and penalty 0.20, with joint/conditional ranks 1/1, 2/2 and 2/2. Arrows show signed ODE contributions along the niche index. Panels b,d,f show observed protein levels, reconstructed curves, self contributions with baseline, and cross-protein contributions labelled by source.
+**Figure 3.** Ovarian discovery networks and niche-curve decompositions for PTEN, SERPINE1 and CCNE1. Panels a,c,e show exposure, proxy and remaining-protein planes for the 60-protein panel learned from 308 discovery patients. Each uses its frozen selected design at window width 0.4 and penalty 0.20, with joint/conditional ranks 1/1, 2/2 and 2/2. Arrow colours give the signs of mean cumulative ODE contributions. Panels b,d,f show observed levels, reconstructed curves, intrinsic contributions including baseline, and cross-protein contributions labelled by source. Curves use smoothing splines, five time-integrated Legendre terms per source and standardised ridge penalty one; the components sum to the reconstructed curve.
 
 **Figure 4.** Independent-sample validation across seven systems, each with 200 fresh datasets. Point error uses available estimates; coverage uses all 200 sets. Bars give 1.96 Monte Carlo standard errors.
 

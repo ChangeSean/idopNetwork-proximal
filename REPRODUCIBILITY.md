@@ -17,7 +17,7 @@ Main-text examples from systems III, IV and VII were selected after component re
 
 ## Commands
 
-`python workflow.py verify` runs bridge algebra checks, final-record/source verification, all component paired comparisons and publication consistency checks. It requires no downloaded patient tables. Source files are stored without Git line-ending conversion so recorded byte-level hashes remain reproducible across platforms.
+`python workflow.py verify` runs bridge and niche-decomposition algebra checks, final-record/source verification, all component paired comparisons and publication consistency checks. It requires no downloaded patient tables. Source files are stored without Git line-ending conversion so recorded byte-level hashes remain reproducible across platforms.
 
 The representation study can be recomputed with:
 
@@ -33,6 +33,8 @@ python select_method_evidence.py
 For PowerShell, use `0..6 | ForEach-Object { python validate_joint_readout_bridge.py --scenario $_ --reps 200 --boot 100 --offset 30000 }` for the loop. Recompute the independent simulation with `python workflow.py simulate`. For the primary application, run `python fetch_tcga.py ov` followed by `python workflow.py clinical --cohort ov`. Download all ten cohorts with `python fetch_tcga.py blca brca coadread kirc lgg luad ov skcm stad ucec`, then run `python workflow.py clinical --cohort all`; `--cohort remaining` recomputes the eight-cohort extension. Set `OPENBLAS_NUM_THREADS`, `OMP_NUM_THREADS` and `MKL_NUM_THREADS` to 1 for consistent resource use. The workflow supplies these defaults to its subprocesses.
 
 `python workflow.py tables` preserves editorial text and regenerates Tables 2–5 and S1. It also exports all completed clinical point estimates with their original confidence sets. `python workflow.py figures` includes Figure 3, which uses downloaded OV inputs to replay the saved discovery split, preprocessing, proxy roles and readout coordinates before drawing the selected networks and ODE curve contributions. Its provenance JSON records the discovery and design fingerprints and confirms that analysis CSVs are unchanged. `python workflow.py word` builds native Word equations and checks all fifteen tables and source equations. Word page rendering is an additional visual check; its latest status is recorded in `results/causal_revision_document_audit.json`. `python workflow.py package` assembles the publication inventory with file hashes.
+
+`niche_ode.py` implements the descriptive molecular curves in Figure 3 and the edge weights in Figures S1–S2. It uses GCV cubic smoothing splines, shifted Legendre terms of degrees 1–5 integrated along the normalised niche coordinate, and centred, standardised ridge regression with penalty 1 under the sum-of-squares convention. The intrinsic curve combines the intercept, linear niche baseline and own-state group; the supported source contributions sum with it to reconstruct the fitted curve. Network edge signs describe mean cumulative source contributions. Source groups come from the fixed molecular support. The supplied MTODE code guides smoothing, integration and ridge refitting; its separate ADSIHT screening is not used. S1–S2 retain their full-cohort reference supports and proxy roles. The provenance JSON records the ODE settings, reconstruction errors and fingerprints for all three figures. These curve fits do not enter clinical bridge estimation.
 
 ## Supporting studies
 

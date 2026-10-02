@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "checks": 12,
+  "invariants": [
+    "time integral of linear Legendre basis",
+    "unpenalised polynomial recovery",
+    "ridge invariance to column units",
+    "affine niche-coordinate invariance",
+    "constant target",
+    "additive closure A",
+    "centred residuals A",
+    "additive closure B",
+    "centred residuals B",
+    "additive closure C",
+    "centred residuals C",
+    "fixed-support contributions"
+  ]
+}

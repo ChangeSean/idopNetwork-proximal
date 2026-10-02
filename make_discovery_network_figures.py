@@ -3,6 +3,8 @@ import hashlib
 import json
 from pathlib import Path
 
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -10,7 +12,7 @@ from matplotlib.lines import Line2D
 
 import figures as F
 import independent_design_bridge as ID
-from idop_core import get_power_function_samples, _solve_ode_decomposition, ode_solver
+from niche_ode import solve_niche_ode, decomposition_edges
 from multiscale_bridge import design_grid
 from proximal import adjacency_from_supports
 from run_discovery_estimation_application import prepare
@@ -59,14 +61,11 @@ def discovery_networks():
                      np.flatnonzero(selected['A'][:, j])) + '}')
                 for j in range(len(names))])
             assert np.array_equal(adjacency_from_supports(supports, names), selected['A'])
-            samples = get_power_function_samples(selected['params'], cohort['qd'].index, n_samples=100)
-            dec = _solve_ode_decomposition(cohort['qd'], samples, supports,
-                                           basis_order=0, ridge=1e-6)
-            edges = ode_solver(cohort['qd'], samples, supports, basis_order=0, ridge=1e-6)
-            cache[design_key] = dict(supports=supports, samples=samples,
-                                    decomposition=dec, edgelist=edges)
+            dec = solve_niche_ode(cohort['qd'], supports, degree=5, ridge=1., n_grid=50)
+            edges = decomposition_edges(dec)
+            cache[design_key] = dict(supports=supports, decomposition=dec, edgelist=edges)
         res = dict(selected, qd=cohort['qd'], estimates=pd.DataFrame([row]),
-                   basis_order=0, ode_ridge=1e-6, **cache[design_key])
+                   ode_degree=5, ode_ridge=1., **cache[design_key])
         mapped[exposure] = res
         provenance.append(dict(exposure=exposure, n_discovery=info['n_discovery'],
                                n_proteins=len(info['names']), Z=row['Z'], W=row['W'],
@@ -74,7 +73,8 @@ def discovery_networks():
                                conditional_root=row['conditional_root'],
                                window_fraction=row['window_fraction'], alpha=row['alpha'],
                                support_edges=int(np.triu(selected['Und'], 1).sum()),
-                               signed_ode_edges=len(res['edgelist'])))
+                               signed_ode_edges=len(res['edgelist']),
+                               decomposition_diagnostics=res['decomposition']['diagnostics'][exposure]))
     return mapped, provenance, info
 
 
@@ -121,6 +121,63 @@ def draw_decomposition(ax, res, exposure):
     ax.tick_params(labelsize=8)
 
 
+def reference_network_figures():
+    """Use the same ODE refit for the full-cohort network reference panels."""
+    from run_application import load_cohort, analyse_cohort
+    from proximal import components, proxy_roles
+    reference = ROOT / 'results/joint_readout_application_20261001'
+    cohort = load_cohort('ov', 'OS', p_keep=140, survival=True)
+    res = analyse_cohort(cohort, alpha=.15, k=5, estimate_legacy=False, solve_ode=False)
+    dec = solve_niche_ode(cohort['qd'], res['supports'], degree=5, ridge=1.)
+    res['edgelist'] = decomposition_edges(dec)
+    figure = F.fig_full_network(res)
+    for text in figure.texts:
+        if 'signed edges' in text.get_text():
+            text.set_text(f'Full ovarian reference: {len(res["names"])} proteins; '
+                          f'{len(res["edgelist"])} signed ODE edges; {res["ncomp"]} components\n'
+                          'Edge weights: mean cumulative niche contributions')
+            text.set_position((.5, .99)); text.set_ha('center'); text.set_fontsize(9)
+    for legend in figure.legends:
+        for text in legend.get_texts():
+            text.set_text(text.get_text().replace('positive effect', 'positive contribution')
+                          .replace('negative effect', 'negative contribution'))
+    F.save(figure, 'figS1_full_network')
+    provenance = [dict(figure='figS1_full_network', n=len(cohort['qd']),
+                       n_proteins=len(res['names']), support_edges=int(res['A'].sum()),
+                       ode_edges=len(res['edgelist']), components=res['ncomp'])]
+    cohort = load_cohort('ov', 'OS', survival=True)
+    grid = design_grid(cohort)
+    saved = pd.read_csv(reference/'figure_network_provenance.csv').set_index('exposure').loc['LCK']
+    row = dict(saved, exposure='LCK')
+    res = dict(next(r for r in grid if r['alpha'] == saved.alpha and
+                    r.get('window_fraction', .2) == saved.window_fraction))
+    names = res['names']
+    z, w = proxy_roles(res['Und'], names.index('LCK'), np.ones(len(names), bool),
+                       np.linalg.norm(res['latent']['Lam'], axis=1), 1, limit_to_treatment=False)
+    assert ';'.join(names[i] for i in z) == saved.Z
+    assert ';'.join(names[i] for i in w) == saved.W
+    supports = pd.DataFrame([dict(target=names[j], source='{' + ','.join(
+        names[i] for i in np.flatnonzero(res['A'][:, j])) + '}') for j in range(len(names))])
+    dec = solve_niche_ode(cohort['qd'], supports, degree=5, ridge=1.)
+    res.update(estimates=pd.DataFrame([row]), edgelist=decomposition_edges(dec))
+    figure = F.fig_network(res, 'LCK')
+    for label in figure.axes[0].texts:
+        if label.get_text() == 'IGFBP2':
+            label.set_position((-10, 10))
+            label.set_ha('right')
+            label.set_va('bottom')
+    for legend in figure.legends:
+        for text in legend.get_texts():
+            text.set_text(text.get_text().replace('positive effect', 'positive contribution')
+                          .replace('negative effect', 'negative contribution'))
+    F.save(figure, 'figS2_network')
+    provenance.append(dict(figure='figS2_network', n=len(cohort['qd']), n_proteins=len(names),
+                           Z=saved.Z, W=saved.W, alpha=saved.alpha,
+                           window_fraction=saved.window_fraction, ode_edges=len(res['edgelist']),
+                           components=res['ncomp'], selection='saved full-cohort reference roles'))
+    return provenance
+
+
 def main():
     before = result_hashes()
     mapped, provenance, info = discovery_networks()
@@ -165,21 +222,26 @@ def main():
         Line2D([], [], color=F.ORANGE, lw=1, label='Negative ODE contribution'),
         Line2D([], [], color=F.INK, lw=1.3, label='Reconstructed curve'),
         Line2D([], [], color=F.MUTED, marker='o', ls='none', ms=3, label='Observed discovery protein'),
-        Line2D([], [], color=F.INK2, lw=1, ls='--', label='Self contribution and baseline'),
+        Line2D([], [], color=F.INK2, lw=1, ls='--', label='Intrinsic contribution with baseline'),
         Line2D([], [], color='#7859a8', lw=1, label='Source contributions labelled by protein')]
     fig.legend(handles=handles, loc='lower center', ncol=3, fontsize=7.5,
                bbox_to_anchor=(.52, .019), columnspacing=1.1, handlelength=1.7)
     F.save(fig, 'fig3_causal')
+    references = reference_network_figures()
     assert before == result_hashes(), 'Plotting changed an analysis CSV'
     document = dict(figure='fig3_causal', cohort='ov', source='frozen discovery sample',
                     split_seed=info['split_seed'], discovery_id_sha256=info['discovery_id_sha256'],
                     design_file_sha256=hashlib.sha256((APP/'ov_discovery_designs.json').read_bytes()).hexdigest(),
                     clinical_records_sha256=hashlib.sha256((APP/'ov_all_exposures.csv').read_bytes()).hexdigest(),
                     analysis_csv_files_unchanged=len(before), all_frozen_designs_replayed=True,
-                    panels=provenance, ode_basis_order=0, ode_ridge=1e-6,
-                    edge_interpretation='Signed contributions to molecular niche curves',
+                    panels=provenance, reference_panels=references,
+                    ode_settings=mapped[EXPOSURES[0]]['decomposition']['settings'],
+                    edge_interpretation='Mean cumulative source contributions to molecular niche curves',
                     figures={suffix: hashlib.sha256((ROOT/f'figures/fig3_causal.{suffix}').read_bytes()).hexdigest()
-                             for suffix in ('pdf', 'png')})
+                             for suffix in ('pdf', 'png')},
+                    reference_figures={f'{name}.{suffix}': hashlib.sha256(
+                        (ROOT/f'figures/{name}.{suffix}').read_bytes()).hexdigest()
+                        for name in ('figS1_full_network', 'figS2_network') for suffix in ('pdf', 'png')})
     (APP/'figure3_discovery_provenance.json').write_text(json.dumps(document, indent=2), encoding='utf-8')
     print(json.dumps(document, indent=2))
 

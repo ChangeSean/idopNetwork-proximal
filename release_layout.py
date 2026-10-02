@@ -11,6 +11,7 @@ RESULT_DIRS = ('joint_readout_validation_20261001', 'conditional_design_validati
 ENTRY_POINTS = ('workflow.py', 'build_current_manuscript.py', 'build_docx.py', 'audit_causal_revision.py',
                 'audit_current_work.py', 'audit_release.py', 'package_current_work.py', 'release_layout.py',
                 'select_method_evidence.py', 'make_independent_design_figures.py', 'check_independent_design.py',
+                'check_niche_ode.py',
                 'validate_discovery_estimation.py', 'summarize_discovery_estimation.py',
                 'run_discovery_estimation_application.py', 'run_independent_structured_cases.py',
                 'audit_discovery_estimation_application.py', 'fetch_tcga.py',
@@ -49,6 +50,7 @@ def source_dependencies(seeds):
 def publication_files():
     files = {ROOT / name for name in DOCUMENTS}
     files.add(ROOT / 'results/additional_cohorts_application_20261002/EXTENSION_PROTOCOL.md')
+    files.add(ROOT / 'results/joint_readout_application_20261001/figure_network_provenance.csv')
     seeds = set(ENTRY_POINTS)
     for folder in RESULT_DIRS:
         for path in (ROOT / 'results' / folder).iterdir():
@@ -71,7 +73,8 @@ def publication_files():
                 files.add(path)
     for name in ('all_paired_comparisons.csv', 'comparison_overview.csv', 'evidence_audit.json'):
         files.add(ROOT / 'results' / 'method_evidence_selection_20261001' / name)
-    for name in ('release_audit.json', 'causal_revision_document_audit.json', 'work_completion_audit_20261001.json'):
+    for name in ('release_audit.json', 'niche_ode_audit.json', 'causal_revision_document_audit.json',
+                 'work_completion_audit_20261001.json'):
         files.add(ROOT / 'results' / name)
     for path in files:
         assert path.is_file(), path

@@ -12,6 +12,7 @@ def main():
     paths = {'simulation': 'discovery_estimation_validation_20261001/validation_audit.json',
              'clinical': 'discovery_estimation_application_20261001/application_audit.json',
              'algebra': 'independent_design_validation_20261001/algebra_audit.json',
+             'niche_decomposition': 'niche_ode_audit.json',
              'document': 'causal_revision_document_audit.json',
              'evidence': 'method_evidence_selection_20261001/evidence_audit.json',
              'release': 'release_audit.json',

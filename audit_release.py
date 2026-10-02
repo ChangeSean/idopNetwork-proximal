@@ -78,8 +78,27 @@ def main():
         check(f'Figure 3 {protein} patient count', panel['n_discovery'] == ov_manifest['n_discovery'])
         for key in ('Z', 'W', 'r_grid', 'r_signal', 'window_fraction', 'alpha'):
             check(f'Figure 3 {protein} {key}', panel[key] == row[key])
+        diagnostics = panel['decomposition_diagnostics']
+        check(f'Figure 3 {protein} additive closure', diagnostics['closure_error'] < 1e-9)
+        check(f'Figure 3 {protein} centred residuals', abs(diagnostics['mean_residual']) < 1e-9)
+    settings = figure['ode_settings']
+    for key, expected in dict(smoothing='GCV cubic smoothing spline', basis='shifted Legendre',
+                             degree=5, ridge=1., integration='normalised niche time',
+                             grid_points=50, selection='fixed molecular support').items():
+        check('Figure 3 ODE ' + key, settings[key] == expected)
     for suffix, expected in figure['figures'].items():
         check('Figure 3 ' + suffix + ' fingerprint', hashlib.sha256((ROOT / f'figures/fig3_causal.{suffix}').read_bytes()).hexdigest() == expected)
+    for name, expected in figure['reference_figures'].items():
+        check(name + ' fingerprint', hashlib.sha256((ROOT / 'figures' / name).read_bytes()).hexdigest() == expected)
+    s1, s2 = figure['reference_panels']
+    check('S1 full-cohort support retained', s1['n'] == 411 and s1['n_proteins'] == 140 and
+          s1['support_edges'] == 261 and s1['components'] == 18)
+    reference = ROOT / 'results/joint_readout_application_20261001/figure_network_provenance.csv'
+    lck = next(x for x in read(reference) if x['exposure'] == 'LCK')
+    check('S2 full-cohort reference roles retained', s2['n'] == 411 and s2['n_proteins'] == 60 and
+          s2['Z'] == lck['Z'] and s2['W'] == lck['W'])
+    check('Molecular curve settings documented', 'five time-integrated Legendre terms' in text and
+          'standardised ridge penalty one' in text)
     check('Figure 3 caption matches current panels', 'Panels a,c,e' in text and 'Panels b,d,f' in text)
     result = {'passed': True, 'checks': len(checks), 'canonical_source': 'manuscript.md',
               'manuscript_sha256': hashlib.sha256(before).hexdigest(), 'builder_idempotent': True,

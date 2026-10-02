@@ -20,6 +20,7 @@ def main():
     for key in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS'):
         os.environ.setdefault(key, '1')
     if args.stage == 'verify':
+        run('check_niche_ode.py')
         run('check_independent_design.py')
         run('summarize_discovery_estimation.py')
         run('select_method_evidence.py')
