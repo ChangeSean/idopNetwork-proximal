@@ -51,6 +51,7 @@ def publication_files():
     files = {ROOT / name for name in DOCUMENTS}
     files.add(ROOT / 'results/additional_cohorts_application_20261002/EXTENSION_PROTOCOL.md')
     files.add(ROOT / 'results/joint_readout_application_20261001/figure_network_provenance.csv')
+    files.add(ROOT / 'results/niche_ode_ridge_trial/ridge_diagnostics.json')
     seeds = set(ENTRY_POINTS)
     for folder in RESULT_DIRS:
         for path in (ROOT / 'results' / folder).iterdir():

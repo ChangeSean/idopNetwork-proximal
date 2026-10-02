@@ -23,18 +23,23 @@
       "support_edges": 75,
       "signed_ode_edges": 118,
       "decomposition_diagnostics": {
-        "rmse": 0.9809508387181249,
-        "r_squared": 0.03773545201820727,
-        "mean_residual": 1.6091024616645127e-15,
-        "closure_error": 8.881784197001252e-16,
-        "intrinsic_rms": 4.958524763782606,
-        "max_cross_rms": 0.09859954399214034,
-        "max_cross_to_intrinsic_rms": 0.019884854606821357,
+        "rmse": 0.9809503411993503,
+        "r_squared": 0.037736428100878294,
+        "mean_residual": 1.4072437299144842e-15,
+        "closure_error": 1.7763568394002505e-15,
+        "intrinsic_rms": 5.033547204293692,
+        "max_cross_rms": 0.18308544153836848,
+        "max_cross_to_intrinsic_rms": 0.036373045509972335,
+        "intrinsic_variation_rms": 0.35333022251339075,
+        "max_cross_variation_rms": 0.07855951543855118,
+        "cancellation_index": 1.1953538476231909,
+        "ridge_effective_df": 2.9992968425180386,
+        "fixed_design_gcv": 0.9812819197716912,
         "source_groups": 1,
         "coefficients": [
-          1.1947282480777066,
-          0.43545044063871885,
-          0.5456858973126519
+          1.1996724030593136,
+          -0.0409737623378254,
+          1.013261719128352
         ]
       }
     },
@@ -52,19 +57,24 @@
       "support_edges": 75,
       "signed_ode_edges": 118,
       "decomposition_diagnostics": {
-        "rmse": 0.9845924880129714,
-        "r_squared": 0.030577632548426825,
-        "mean_residual": -8.997132043715553e-16,
+        "rmse": 0.9845858627976579,
+        "r_squared": 0.030590678778991465,
+        "mean_residual": -1.325058389130544e-15,
         "closure_error": 8.881784197001252e-16,
-        "intrinsic_rms": 3.522430313098171,
-        "max_cross_rms": 0.18046943195749687,
-        "max_cross_to_intrinsic_rms": 0.05123435126208759,
+        "intrinsic_rms": 3.423828912054619,
+        "max_cross_rms": 0.49754997157048314,
+        "max_cross_to_intrinsic_rms": 0.14531975292886537,
+        "intrinsic_variation_rms": 0.4765978922730817,
+        "max_cross_variation_rms": 0.2135799820715,
+        "cancellation_index": 1.6790678824929524,
+        "ridge_effective_df": 3.0000762637059872,
+        "fixed_design_gcv": 0.9885739514927713,
         "source_groups": 2,
         "coefficients": [
-          -1.5640719249097745,
-          -0.8674449694123351,
-          -0.507996629603205,
-          0.9991492146872998
+          -1.5688347338965198,
+          -1.523990000385137,
+          1.8860166335488908,
+          2.754630842299193
         ]
       }
     },
@@ -82,19 +92,24 @@
       "support_edges": 75,
       "signed_ode_edges": 118,
       "decomposition_diagnostics": {
-        "rmse": 0.9778783137666922,
-        "r_squared": 0.04375400346481062,
-        "mean_residual": 1.3322676295501878e-15,
-        "closure_error": 4.440892098500626e-16,
-        "intrinsic_rms": 2.7110653316967483,
-        "max_cross_rms": 0.18674229458947036,
-        "max_cross_to_intrinsic_rms": 0.06888151768463498,
+        "rmse": 0.9778771372936749,
+        "r_squared": 0.043756304358327336,
+        "mean_residual": 1.2688263138573218e-15,
+        "closure_error": 8.881784197001252e-16,
+        "intrinsic_rms": 2.808289757884851,
+        "max_cross_rms": 0.16957957466571238,
+        "max_cross_to_intrinsic_rms": 0.060385355246759295,
+        "intrinsic_variation_rms": 0.5740260161554793,
+        "max_cross_variation_rms": 0.07284754495050616,
+        "cancellation_index": 1.1240502151924976,
+        "ridge_effective_df": 2.9998359171655578,
+        "fixed_design_gcv": 0.9751465126621345,
         "source_groups": 2,
         "coefficients": [
-          1.8869924435523684,
-          -1.0967719091242263,
-          -1.034634279746669,
-          -1.0032644392970078
+          1.8976114461592557,
+          -1.7274674325249857,
+          -0.9395452780513218,
+          -0.49059045041895033
         ]
       }
     }
@@ -125,7 +140,7 @@
     "smoothing": "GCV cubic smoothing spline",
     "basis": "shifted Legendre",
     "degree": 1,
-    "ridge": 1.0,
+    "ridge": 0.1,
     "integration": "normalised niche time",
     "grid_points": 50,
     "selection": "fixed molecular support",
@@ -133,13 +148,13 @@
   },
   "edge_interpretation": "Mean cumulative source contributions to molecular niche curves",
   "figures": {
-    "pdf": "6779a74f04cfd7c96e144525476f0e1934d2aba9b1e26b8113225b9d681948b9",
-    "png": "80889e3ceed4253178ab3dbdf314a5a3bc700e9ec7fa670c2661175d81233614"
+    "pdf": "17d1e2fdb4111c2dfd03e09f2e63ccb4760c242ef12dde96d1d67262d03104ad",
+    "png": "4bcea70c2135716f670582ee3e99e5ccce5471fbbe99633a56c7f262cc103df8"
   },
   "reference_figures": {
-    "figS1_full_network.pdf": "bcf36d8aa88a595e1b171fa35048674744a867a11f4201d8b5fefc4bfad5df82",
-    "figS1_full_network.png": "f3b54750cdd28a0c8ce9dc9b9fdd193aa1a62118101b350b0c8446f995755ea2",
-    "figS2_network.pdf": "fc8b6cdb93345fd962403e8e078734dff6f8f8059b38052f20732bd68c65f35b",
-    "figS2_network.png": "d6024f602cb621140c38145f1b70d447623e7ecdba9f2da56d93b0a2c3ab021d"
+    "figS1_full_network.pdf": "1f638c19fbfcb909fe6be6b135cf9c7accaad495aceebd7c35e65bed41a981d0",
+    "figS1_full_network.png": "1850aea6296288ca036ebdf621f831d3a8bb5fa5fcd1864423fd8f1e434e5da2",
+    "figS2_network.pdf": "44390deea90831a5023643efe550a03bd212fcddbc12f411481499307b97af13",
+    "figS2_network.png": "acbb8679c5fa14c92637165e988ff0ffcafae2e91d8436b8294ba6d8e4aa1577"
   }
 }

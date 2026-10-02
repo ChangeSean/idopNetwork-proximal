@@ -82,8 +82,13 @@ def main():
         check(f'Figure 3 {protein} additive closure', diagnostics['closure_error'] < 1e-9)
         check(f'Figure 3 {protein} centred residuals', abs(diagnostics['mean_residual']) < 1e-9)
     settings = figure['ode_settings']
+    ridge_trial = json.loads((ROOT / 'results/niche_ode_ridge_trial/ridge_diagnostics.json').read_text(encoding='utf-8'))
+    check('ODE ridge comparison retained', len(ridge_trial['records']) == 9 and
+          all(set(row['cases']) == {'PTEN', 'SERPINE1', 'CCNE1'} for row in ridge_trial['records']))
+    check('ODE adopted ridge recorded', ridge_trial['degree'] == 1 and
+          ridge_trial['adopted_ridge'] == settings['ridge'] == .1)
     for key, expected in dict(smoothing='GCV cubic smoothing spline', basis='shifted Legendre',
-                             degree=1, ridge=1., integration='normalised niche time',
+                             degree=1, ridge=.1, integration='normalised niche time',
                              grid_points=50, selection='fixed molecular support').items():
         check('Figure 3 ODE ' + key, settings[key] == expected)
     for suffix, expected in figure['figures'].items():
@@ -98,7 +103,7 @@ def main():
     check('S2 full-cohort reference roles retained', s2['n'] == 411 and s2['n_proteins'] == 60 and
           s2['Z'] == lck['Z'] and s2['W'] == lck['W'])
     check('Molecular curve settings documented', 'first-degree time-integrated Legendre term' in text and
-          'standardised ridge penalty one' in text)
+          'standardised ridge penalty 0.1' in text)
     check('Figure 3 caption matches current panels', 'Panels a,c,e' in text and 'Panels b,d,f' in text)
     result = {'passed': True, 'checks': len(checks), 'canonical_source': 'manuscript.md',
               'manuscript_sha256': hashlib.sha256(before).hexdigest(), 'builder_idempotent': True,

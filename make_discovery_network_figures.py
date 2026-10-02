@@ -13,7 +13,7 @@ from matplotlib.lines import Line2D
 
 import figures as F
 import independent_design_bridge as ID
-from niche_ode import solve_niche_ode, decomposition_edges
+from niche_ode import DEFAULT_RIDGE, solve_niche_ode, decomposition_edges
 from multiscale_bridge import design_grid
 from proximal import adjacency_from_supports
 from run_discovery_estimation_application import prepare
@@ -29,7 +29,7 @@ def result_hashes():
             for p in (ROOT / 'results').rglob('*.csv')}
 
 
-def discovery_networks(degree=1):
+def discovery_networks(degree=1, ridge=DEFAULT_RIDGE):
     cohort, _, _, _, _, info = prepare('ov')
     manifest = json.loads((APP / 'ov_manifest.json').read_text(encoding='utf-8'))
     frozen = json.loads((APP / 'ov_discovery_designs.json').read_text(encoding='utf-8'))
@@ -62,11 +62,11 @@ def discovery_networks(degree=1):
                      np.flatnonzero(selected['A'][:, j])) + '}')
                 for j in range(len(names))])
             assert np.array_equal(adjacency_from_supports(supports, names), selected['A'])
-            dec = solve_niche_ode(cohort['qd'], supports, degree=degree, ridge=1., n_grid=50)
+            dec = solve_niche_ode(cohort['qd'], supports, degree=degree, ridge=ridge, n_grid=50)
             edges = decomposition_edges(dec)
             cache[design_key] = dict(supports=supports, decomposition=dec, edgelist=edges)
         res = dict(selected, qd=cohort['qd'], estimates=pd.DataFrame([row]),
-                   ode_degree=degree, ode_ridge=1., **cache[design_key])
+                   ode_degree=degree, ode_ridge=ridge, **cache[design_key])
         mapped[exposure] = res
         provenance.append(dict(exposure=exposure, n_discovery=info['n_discovery'],
                                n_proteins=len(info['names']), Z=row['Z'], W=row['W'],
@@ -129,7 +129,7 @@ def reference_network_figures():
     reference = ROOT / 'results/joint_readout_application_20261001'
     cohort = load_cohort('ov', 'OS', p_keep=140, survival=True)
     res = analyse_cohort(cohort, alpha=.15, k=5, estimate_legacy=False, solve_ode=False)
-    dec = solve_niche_ode(cohort['qd'], res['supports'], degree=1, ridge=1.)
+    dec = solve_niche_ode(cohort['qd'], res['supports'], degree=1, ridge=DEFAULT_RIDGE)
     res['edgelist'] = decomposition_edges(dec)
     figure = F.fig_full_network(res)
     for text in figure.texts:
@@ -159,14 +159,14 @@ def reference_network_figures():
     assert ';'.join(names[i] for i in w) == saved.W
     supports = pd.DataFrame([dict(target=names[j], source='{' + ','.join(
         names[i] for i in np.flatnonzero(res['A'][:, j])) + '}') for j in range(len(names))])
-    dec = solve_niche_ode(cohort['qd'], supports, degree=1, ridge=1.)
+    dec = solve_niche_ode(cohort['qd'], supports, degree=1, ridge=DEFAULT_RIDGE)
     res.update(estimates=pd.DataFrame([row]), edgelist=decomposition_edges(dec))
     figure = F.fig_network(res, 'LCK')
     for label in figure.axes[0].texts:
         if label.get_text() == 'IGFBP2':
-            label.set_position((-10, 10))
+            label.set_position((-10, -12))
             label.set_ha('right')
-            label.set_va('bottom')
+            label.set_va('top')
     for legend in figure.legends:
         for text in legend.get_texts():
             text.set_text(text.get_text().replace('positive effect', 'positive contribution')
@@ -179,8 +179,8 @@ def reference_network_figures():
     return provenance
 
 
-def trial(degree):
-    """Compare an alternative degree without replacing publication figures."""
+def trial(degree, ridge=DEFAULT_RIDGE):
+    """Compare an alternative degree or ridge without replacing paper figures."""
     canonical = [ROOT/'manuscript.md', ROOT/'manuscript_SiM.docx']
     canonical += [p for p in (ROOT/'figures').iterdir() if p.is_file()]
     before = result_hashes()
@@ -195,14 +195,14 @@ def trial(degree):
         res = mapped[exposure]
         design = (res.get('window_fraction', .2), res['alpha'])
         if design not in cache:
-            cache[design] = solve_niche_ode(res['qd'], res['supports'], degree=degree, ridge=1.)
+            cache[design] = solve_niche_ode(res['qd'], res['supports'], degree=degree, ridge=ridge)
         alternative = cache[design]
         display = dict(alternative)
         if degree == 0:
             display['support_sets'] = {name: [] for name in alternative['features']}
         for j, item in enumerate((res, dict(res, decomposition=display))):
             draw_decomposition(axes[i, j], item, exposure)
-            axes[i, j].set_title(exposure + f'   degree {1 if j == 0 else degree}',
+            axes[i, j].set_title(exposure + f'   degree {1 if j == 0 else degree}, ridge {DEFAULT_RIDGE if j == 0 else ridge:g}',
                                  fontsize=9, loc='left', pad=9)
             if j == 1 and degree == 0:
                 axes[i, j].axhline(0, color=F.BLUE, lw=1)
@@ -210,8 +210,9 @@ def trial(degree):
                                 transform=axes[i, j].transAxes, ha='right', fontsize=7, color=F.INK2)
         comparisons.append(dict(exposure=exposure, degree_one=res['decomposition']['diagnostics'][exposure],
                                 trial=alternative['diagnostics'][exposure]))
-    fig.suptitle(f'Legendre degree 1 versus {degree}: ovarian discovery curves', fontsize=10, y=.98)
-    subtitle = 'Degree 0: constant basis merged into the linear niche baseline' if degree == 0 else 'Same discovery support; ridge penalty 1'
+    comparison = f'Legendre degree 1 versus {degree}' if degree != 1 else f'Ridge {DEFAULT_RIDGE:g} versus {ridge:g}'
+    fig.suptitle(f'{comparison}: ovarian discovery curves', fontsize=10, y=.98)
+    subtitle = 'Degree 0: constant basis merged into the linear niche baseline' if degree == 0 else 'Same discovery support and first-degree basis'
     fig.text(.5, .944, subtitle, ha='center', fontsize=8, color=F.INK2)
     handles = [Line2D([], [], color=F.INK, lw=1.3, label='Reconstructed curve'),
                Line2D([], [], color=F.INK2, lw=1, ls='--', label='Intrinsic contribution with baseline'),
@@ -219,28 +220,35 @@ def trial(degree):
                Line2D([], [], color=F.BLUE, lw=1, label='Source contributions labelled by protein')]
     fig.legend(handles=handles, loc='lower center', ncol=2, fontsize=7.5,
                bbox_to_anchor=(.5, .025), columnspacing=1.2)
-    output = ROOT/'results/niche_ode_degree_trial'
+    output = ROOT/('results/niche_ode_degree_trial' if degree != 1 else 'results/niche_ode_ridge_trial')
     output.mkdir(parents=True, exist_ok=True)
+    filename = f'degree_1_vs_{degree}' if degree != 1 else f'ridge_{DEFAULT_RIDGE:g}_vs_{ridge:g}'
     for suffix in ('pdf', 'png'):
-        fig.savefig(output/f'degree_1_vs_{degree}.{suffix}', bbox_inches='tight', pad_inches=.02)
+        fig.savefig(output/f'{filename}.{suffix}', bbox_inches='tight', pad_inches=.02)
     plt.close(fig)
     assert before == result_hashes(), 'Trial changed an analysis CSV'
     assert all(hashlib.sha256(p.read_bytes()).hexdigest() == sha for p, sha in artifacts.items())
-    document = dict(settings=next(iter(cache.values()))['settings'], panels=comparisons,
+    document = dict(baseline_settings=mapped[EXPOSURES[0]]['decomposition']['settings'],
+                    settings=next(iter(cache.values()))['settings'], panels=comparisons,
                     analysis_csv_files_unchanged=len(before), publication_artifacts_unchanged=True,
                     zero_degree_interpretation='Constant basis shared by all sources, represented once as baseline; zero source contributions are a parameterisation convention' if degree == 0 else None)
-    (output/f'degree_{degree}_diagnostics.json').write_text(json.dumps(document, indent=2), encoding='utf-8')
+    (output/f'{filename}_diagnostics.json').write_text(json.dumps(document, indent=2), encoding='utf-8')
     print(json.dumps(dict(output=str(output), **document), indent=2))
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--trial-degree', type=int, help='Compare a nonnegative degree with the published degree 1')
+    parser.add_argument('--trial-ridge', type=float, help='Compare a ridge penalty with the published value')
     args = parser.parse_args()
-    if args.trial_degree is not None:
-        if args.trial_degree < 0:
+    if args.trial_degree is not None or args.trial_ridge is not None:
+        degree = 1 if args.trial_degree is None else args.trial_degree
+        ridge = DEFAULT_RIDGE if args.trial_ridge is None else args.trial_ridge
+        if degree < 0:
             parser.error('Trial degree must be nonnegative')
-        trial(args.trial_degree)
+        if not np.isfinite(ridge) or ridge < 0:
+            parser.error('Trial ridge must be finite and nonnegative')
+        trial(degree, ridge)
         return
     before = result_hashes()
     mapped, provenance, info = discovery_networks()
@@ -275,8 +283,8 @@ def main():
         draw_decomposition(curve, res, exposure)
         F._panel_label(curve, 'bdf'[i], x=-.17, y=1.04)
     fig.suptitle('Ovarian discovery networks and molecular curve contributions', fontsize=10, y=.982)
-    fig.text(.5, .954, f'{info["n_discovery"]} discovery patients; 60 proteins; '
-             'selected width 0.4 and penalty 0.20', ha='center', fontsize=8, color=F.INK2)
+    fig.text(.5, .954, f'{info["n_discovery"]} discovery patients; graph width 0.4, LASSO 0.20; '
+             f'ODE degree 1, ridge {DEFAULT_RIDGE:g}', ha='center', fontsize=8, color=F.INK2)
     handles = [
         Line2D([], [], ls='none', marker='o', color=F.ORANGE, mec=F.INK, ms=5, label='Exposure $A$'),
         Line2D([], [], ls='none', marker='o', color=F.BLUE, mec=F.INK, ms=5, label='Treatment proxy $Z$'),

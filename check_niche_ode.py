@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from niche_ode import integrated_state_basis, ridge_refit, solve_niche_ode, decomposition_edges
+from niche_ode import DEFAULT_RIDGE, integrated_state_basis, ridge_refit, solve_niche_ode, decomposition_edges
 
 
 def main():
@@ -35,8 +35,9 @@ def main():
                              {'target': 'C', 'source': '{}'}])
     dec = solve_niche_ode(data, supports)
     assert dec['settings']['degree'] == 1
+    assert dec['settings']['ridge'] == DEFAULT_RIDGE == .1
     zero = solve_niche_ode(data, supports, degree=0)
-    base_zero, slope_zero = ridge_refit(time[:, None], data['A'].to_numpy(), 1.)
+    base_zero, slope_zero = ridge_refit(time[:, None], data['A'].to_numpy(), DEFAULT_RIDGE)
     check('zero degree retains the common baseline', zero['predicted_states'][:, 0],
           base_zero+slope_zero[0]*np.linspace(0., 1., 50), atol=1e-12)
     check('zero degree source convention', zero['interaction_functions'][('A', 'B')], 0., atol=1e-12)

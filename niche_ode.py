@@ -10,6 +10,8 @@ from scipy.integrate import cumulative_trapezoid
 from scipy.interpolate import make_smoothing_spline
 from scipy.special import eval_legendre
 
+DEFAULT_RIDGE = .1
+
 
 def integrated_state_basis(states, time, degree):
     """Integrate state basis functions along time, rather than state changes."""
@@ -50,7 +52,7 @@ def ridge_refit(X, y, ridge):
     return intercept, beta
 
 
-def solve_niche_ode(data, supports, degree=1, ridge=1., n_grid=50):
+def solve_niche_ode(data, supports, degree=1, ridge=DEFAULT_RIDGE, n_grid=50):
     """Smooth raw states, fit fixed source groups, and return additive curves.
 
     Each target has a baseline time column plus its own and supported sources'
@@ -58,7 +60,7 @@ def solve_niche_ode(data, supports, degree=1, ridge=1., n_grid=50):
     once by time. Intercept and time baseline belong to the intrinsic component.
     Degree zero retains only that shared constant-derivative baseline; source
     groups have no additional columns and their reported contributions are zero.
-    The unnormalised sum-of-squares ridge convention matches MTODE's ridge=1.
+    The ridge penalty uses the unnormalised sum-of-squares convention.
     """
     if degree < 0 or int(degree) != degree or ridge < 0 or not np.isfinite(ridge):
         raise ValueError('Use nonnegative integer degree and finite nonnegative ridge')
@@ -140,11 +142,27 @@ def solve_niche_ode(data, supports, degree=1, ridge=1., n_grid=50):
         total_ss = np.sum((values[:, j]-values[:, j].mean())**2)
         intrinsic_rms = float(np.sqrt(np.mean(intrinsic**2)))
         cross_rms = [float(np.sqrt(np.mean(c**2))) for c in cross]
+        # Variation measures remove the arbitrary abundance offset from comparison.
+        variation_rms = lambda curve: float(np.sqrt(np.mean((curve-curve.mean())**2)))
+        intrinsic_variation = variation_rms(intrinsic)
+        cross_variation = [variation_rms(c) for c in cross]
+        predicted_variation = variation_rms(reconstructed)
+        scale = X.std(axis=0, ddof=1)
+        active = scale > 1e-12 * np.maximum(np.max(np.abs(X), axis=0), 1.)
+        singular = np.linalg.svd((X[:, active]-X[:, active].mean(axis=0))/scale[active],
+                                 compute_uv=False) if active.any() else np.array([])
+        effective_df = 1 + (float(np.sum(singular**2/(singular**2+ridge))) if ridge else
+                            float(np.sum(singular > (singular[0]*1e-12 if len(singular) else 0))))
+        gcv = float(np.mean(residual**2)/(1-effective_df/len(values))**2)
         diagnostics[target] = dict(rmse=float(np.sqrt(np.mean(residual**2))),
                                    r_squared=float(1-np.sum(residual**2)/total_ss) if total_ss else None,
                                    mean_residual=float(residual.mean()), closure_error=closure_error,
                                    intrinsic_rms=intrinsic_rms, max_cross_rms=max(cross_rms, default=0.),
                                    max_cross_to_intrinsic_rms=max(cross_rms, default=0.)/max(intrinsic_rms, 1e-12),
+                                   intrinsic_variation_rms=intrinsic_variation,
+                                   max_cross_variation_rms=max(cross_variation, default=0.),
+                                   cancellation_index=(intrinsic_variation+sum(cross_variation))/max(predicted_variation, 1e-12),
+                                   ridge_effective_df=effective_df, fixed_design_gcv=gcv,
                                    source_groups=len(cross), coefficients=beta.tolist())
     return dict(features=features, sample_tau=unique[0]+time_grid*duration,
                 intercepts=intercepts, predicted_states=prediction,
