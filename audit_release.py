@@ -111,6 +111,15 @@ def main():
     check('Network captions match regression supports', '261 directed LASSO support edges' in text and
           'Arrows indicate directed LASSO supports' in text and
           all(p['displayed_support_edges'] == 118 for p in figure['panels']))
+    check('Network colours define cumulative contribution signs',
+          'blue and orange indicate positive and negative mean cumulative source contributions' in text and
+          'blue/orange' in figure['edge_interpretation'])
+    for panel in figure['panels'] + figure['reference_panels']:
+        counts = panel['edge_sign_counts']
+        expected = panel.get('displayed_support_edges', panel['support_edges'])
+        check(panel.get('exposure', panel.get('figure')) + ' signed support counts',
+              counts['positive'] > 0 and counts['negative'] > 0 and
+              sum(counts.values()) == expected)
     check('Figure 3 caption matches current panels', 'Panels a,c,e' in text and 'Panels b,d,f' in text)
     result = {'passed': True, 'checks': len(checks), 'canonical_source': 'manuscript.md',
               'manuscript_sha256': hashlib.sha256(before).hexdigest(), 'builder_idempotent': True,

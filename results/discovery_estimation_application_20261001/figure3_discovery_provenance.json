@@ -22,6 +22,11 @@
       "alpha": 0.2,
       "support_edges": 75,
       "displayed_support_edges": 118,
+      "edge_sign_counts": {
+        "positive": 59,
+        "negative": 59,
+        "zero": 0
+      },
       "signed_ode_edges": 118,
       "decomposition_diagnostics": {
         "rmse": 0.9809506513921427,
@@ -63,6 +68,11 @@
       "alpha": 0.2,
       "support_edges": 75,
       "displayed_support_edges": 118,
+      "edge_sign_counts": {
+        "positive": 59,
+        "negative": 59,
+        "zero": 0
+      },
       "signed_ode_edges": 118,
       "decomposition_diagnostics": {
         "rmse": 0.9845928376661962,
@@ -106,6 +116,11 @@
       "alpha": 0.2,
       "support_edges": 75,
       "displayed_support_edges": 118,
+      "edge_sign_counts": {
+        "positive": 59,
+        "negative": 59,
+        "zero": 0
+      },
       "signed_ode_edges": 118,
       "decomposition_diagnostics": {
         "rmse": 0.9778786076821733,
@@ -143,6 +158,11 @@
       "n": 411,
       "n_proteins": 140,
       "support_edges": 261,
+      "edge_sign_counts": {
+        "positive": 126,
+        "negative": 135,
+        "zero": 0
+      },
       "ode_edges": 261,
       "components": 18
     },
@@ -155,6 +175,11 @@
       "alpha": 0.2,
       "window_fraction": 0.2,
       "support_edges": 71,
+      "edge_sign_counts": {
+        "positive": 33,
+        "negative": 38,
+        "zero": 0
+      },
       "ode_edges": 71,
       "components": 19,
       "selection": "saved full-cohort reference roles"
@@ -171,15 +196,15 @@
     "intrinsic": "intercept + linear time baseline + own state group",
     "shape": "monotone individual contributions; unrestricted additive reconstruction"
   },
-  "edge_interpretation": "Directed LASSO regression supports; monotone state-integrated contributions fitted separately",
+  "edge_interpretation": "Directed LASSO supports; blue/orange denote positive/negative mean cumulative source contributions",
   "figures": {
-    "pdf": "d1146672e70b39215382dc70b89e1ed66aa270b4c712ed1394c7486fa3ef4d65",
-    "png": "46552d8048376f6c4dae132bb424634047f94045c90530c33a7ea536c249340b"
+    "pdf": "ff966230177da5c1feae81c5873cf051338ed9bfbb445b95e9938e1866dc5743",
+    "png": "d67eab2d542a1def1d16b622d0e12132779507a4bd4a743d3e73adfaec662f00"
   },
   "reference_figures": {
-    "figS1_full_network.pdf": "fe0431b909a27cad44c68eb5c4740ef945045b38b6d9784c38e61dde9ced6f69",
-    "figS1_full_network.png": "be7a688ce67cf3f998cf17df89a63b9f609df976113c95bce6bea7d02f238ef7",
-    "figS2_network.pdf": "a9a1a708ae965b7c8c3298dc332a19068454bd292d5ba58ec4b17b001f9ba6b8",
-    "figS2_network.png": "40a2872e9bc79d4236b10437415d9557aea316993de436b1d3d146ed845b3baf"
+    "figS1_full_network.pdf": "2d6e72d74ef0596a18fbc14baceed3e2b55f4961abdc18df8d9163112a1eb104",
+    "figS1_full_network.png": "93416432d2f24497c7d28bf09d719a6afa9fd79ddc14f3d33edcbc7cb4063371",
+    "figS2_network.pdf": "98b64036d2db8f28a2b2219d45eb89d0b5725063345668840ae96e8d0ec8e76d",
+    "figS2_network.png": "1582af07912cb5335289130b05a1f9c9ac79a3c399467fc65b565200b5fe99d9"
   }
 }

@@ -30,24 +30,45 @@ def result_hashes():
 
 
 def network_edges(selected, decomposition):
-    """Display the frozen regression supports independently of curve weights."""
+    """Keep all support edges; colour by their fitted cumulative contribution.
+
+    Unit layout weights preserve support-degree node sizes and the embedding.
+    Signs and mean contributions are separate display attributes.
+    """
     source, target = np.nonzero(selected['A'])
     names = selected['names']
+    mean = np.array([np.mean(decomposition['interaction_functions'][(names[j], names[i])])
+                     for i, j in zip(source, target)])
+    sign = np.where(np.abs(mean) > 1e-10, np.sign(mean), 0).astype(int)
     return pd.DataFrame(dict(source=[names[i] for i in source],
-                             target=[names[j] for j in target], weight=np.ones(len(source))))
+                             target=[names[j] for j in target], weight=np.ones(len(source)),
+                             sign=sign, mean_contribution=mean))
 
 
-def neutral_support_arrows(figure):
+def support_arrow_style(figure):
     for ax in figure.axes:
         for annotation in ax.texts:
             arrow = getattr(annotation, 'arrow_patch', None)
             if arrow is not None:
-                arrow.set_color(F.MUTED)
                 arrow.set_linewidth(.6)
         for location in ('left', 'center', 'right'):
             title = ax.get_title(loc=location)
             if 'signed edges' in title:
                 ax.set_title(title.replace('signed edges', 'support edges'), loc=location, fontsize=8)
+
+
+def edge_signs(edges):
+    return {(r.source, r.target): int(r.sign) for r in edges.itertuples()}
+
+
+def sign_counts(edges):
+    return {name: int((edges.sign == sign).sum())
+            for name, sign in [('positive', 1), ('negative', -1), ('zero', 0)]}
+
+
+def sign_legend():
+    return [Line2D([], [], color=F.BLUE, lw=.8, label='Positive network edge'),
+            Line2D([], [], color=F.ORANGE, lw=.8, label='Negative network edge')]
 
 
 def discovery_networks(degree=DEFAULT_DEGREE, ridge=DEFAULT_RIDGE):
@@ -85,7 +106,8 @@ def discovery_networks(degree=DEFAULT_DEGREE, ridge=DEFAULT_RIDGE):
             assert np.array_equal(adjacency_from_supports(supports, names), selected['A'])
             dec = solve_niche_ode(cohort['qd'], supports, degree=degree, ridge=ridge, n_grid=50)
             edges = network_edges(selected, dec)
-            cache[design_key] = dict(supports=supports, decomposition=dec, edgelist=edges)
+            cache[design_key] = dict(supports=supports, decomposition=dec, edgelist=edges,
+                                     edge_signs=edge_signs(edges))
         res = dict(selected, qd=cohort['qd'], estimates=pd.DataFrame([row]),
                    ode_degree=degree, ode_ridge=ridge, **cache[design_key])
         mapped[exposure] = res
@@ -96,6 +118,7 @@ def discovery_networks(degree=DEFAULT_DEGREE, ridge=DEFAULT_RIDGE):
                                window_fraction=row['window_fraction'], alpha=row['alpha'],
                                support_edges=int(np.triu(selected['Und'], 1).sum()),
                                displayed_support_edges=len(res['edgelist']),
+                               edge_sign_counts=sign_counts(res['edgelist']),
                                signed_ode_edges=len(decomposition_edges(res['decomposition'])),
                                decomposition_diagnostics=res['decomposition']['diagnostics'][exposure]))
     return mapped, provenance, info
@@ -161,8 +184,9 @@ def reference_network_figures():
     res = analyse_cohort(cohort, alpha=.15, k=5, estimate_legacy=False, solve_ode=False)
     dec = solve_niche_ode(cohort['qd'], res['supports'], degree=DEFAULT_DEGREE, ridge=DEFAULT_RIDGE)
     res['edgelist'] = network_edges(res, dec)
+    res['edge_signs'] = edge_signs(res['edgelist'])
     figure = F.fig_full_network(res)
-    neutral_support_arrows(figure)
+    support_arrow_style(figure)
     for text in figure.texts:
         if 'signed edges' in text.get_text():
             text.set_text(f'Full ovarian reference: {len(res["names"])} proteins; '
@@ -174,11 +198,12 @@ def reference_network_figures():
     figure.legend(handles=[
         Line2D([], [], marker='o', ls='', color=F.YELLOW, mec=F.INK, ms=6, label='Top 10 hubs by degree'),
         Line2D([], [], marker='o', ls='', color='#e3d9b8', ms=4, label='Protein (size ~ degree)'),
-        Line2D([], [], color=F.MUTED, lw=.6, label='Directed LASSO support')],
-        loc='lower center', ncol=3, fontsize=8, bbox_to_anchor=(.5, -.01))
+        *sign_legend()],
+        loc='lower center', ncol=2, fontsize=8, bbox_to_anchor=(.5, -.025))
     F.save(figure, 'figS1_full_network')
     provenance = [dict(figure='figS1_full_network', n=len(cohort['qd']),
                        n_proteins=len(res['names']), support_edges=int(res['A'].sum()),
+                       edge_sign_counts=sign_counts(res['edgelist']),
                        ode_edges=len(decomposition_edges(dec)), components=res['ncomp'])]
     cohort = load_cohort('ov', 'OS', survival=True)
     grid = design_grid(cohort)
@@ -195,8 +220,9 @@ def reference_network_figures():
         names[i] for i in np.flatnonzero(res['A'][:, j])) + '}') for j in range(len(names))])
     dec = solve_niche_ode(cohort['qd'], supports, degree=DEFAULT_DEGREE, ridge=DEFAULT_RIDGE)
     res.update(estimates=pd.DataFrame([row]), edgelist=network_edges(res, dec))
+    res['edge_signs'] = edge_signs(res['edgelist'])
     figure = F.fig_network(res, 'LCK')
-    neutral_support_arrows(figure)
+    support_arrow_style(figure)
     for text in figure.texts:
         if 'signed edges' in text.get_text():
             text.set_text(f'{len(res["edgelist"])} directed LASSO support edges; {res["ncomp"]} components in total')
@@ -211,12 +237,13 @@ def reference_network_figures():
         Line2D([], [], marker='o', ls='', color=F.ORANGE, mec=F.INK, ms=6, label='Exposure $A$ = LCK'),
         Line2D([], [], marker='o', ls='', color=F.BLUE, mec=F.INK, ms=6, label='Treatment proxy $Z$'),
         Line2D([], [], marker='o', ls='', color=F.AQUA, mec=F.INK, ms=6, label='Outcome proxy $W$'),
-        Line2D([], [], color=F.MUTED, lw=.6, label='Directed LASSO support')],
-        loc='lower center', ncol=4, fontsize=8, bbox_to_anchor=(.5, -.02))
+        *sign_legend()],
+        loc='lower center', ncol=3, fontsize=8, bbox_to_anchor=(.5, -.025))
     F.save(figure, 'figS2_network')
     provenance.append(dict(figure='figS2_network', n=len(cohort['qd']), n_proteins=len(names),
                            Z=saved.Z, W=saved.W, alpha=saved.alpha,
                            window_fraction=saved.window_fraction, support_edges=len(res['edgelist']),
+                           edge_sign_counts=sign_counts(res['edgelist']),
                            ode_edges=len(decomposition_edges(dec)),
                            components=res['ncomp'], selection='saved full-cohort reference roles'))
     return provenance
@@ -321,14 +348,14 @@ def main():
         draw_decomposition(curve, res, exposure)
         F._panel_label(curve, 'bdf'[i], x=-.17, y=1.04)
     fig.suptitle('Ovarian discovery supports and monotone curve contributions', fontsize=10, y=.982)
-    neutral_support_arrows(fig)
+    support_arrow_style(fig)
     fig.text(.5, .954, f'{info["n_discovery"]} discovery patients; graph width 0.4, LASSO 0.20; '
              f'ODE degree {DEFAULT_DEGREE}, ridge {DEFAULT_RIDGE:g}', ha='center', fontsize=8, color=F.INK2)
     handles = [
         Line2D([], [], ls='none', marker='o', color=F.ORANGE, mec=F.INK, ms=5, label='Exposure $A$'),
         Line2D([], [], ls='none', marker='o', color=F.BLUE, mec=F.INK, ms=5, label='Treatment proxy $Z$'),
         Line2D([], [], ls='none', marker='o', color=F.AQUA, mec=F.INK, ms=5, label='Outcome proxy $W$'),
-        Line2D([], [], color=F.MUTED, lw=.6, label='Directed LASSO support'),
+        *sign_legend(),
         Line2D([], [], color=F.INK, lw=1.3, label='Reconstructed curve'),
         Line2D([], [], color=F.INK2, lw=1, ls='--', label='Intrinsic contribution'),
         Line2D([], [], color=F.BLUE, lw=1, label='Source contributions (labelled)'),
@@ -345,7 +372,7 @@ def main():
                     analysis_csv_files_unchanged=len(before), all_frozen_designs_replayed=True,
                     panels=provenance, reference_panels=references,
                     ode_settings=mapped[EXPOSURES[0]]['decomposition']['settings'],
-                    edge_interpretation='Directed LASSO regression supports; monotone state-integrated contributions fitted separately',
+                    edge_interpretation='Directed LASSO supports; blue/orange denote positive/negative mean cumulative source contributions',
                     figures={suffix: hashlib.sha256((ROOT/f'figures/fig3_causal.{suffix}').read_bytes()).hexdigest()
                              for suffix in ('pdf', 'png')},
                     reference_figures={f'{name}.{suffix}': hashlib.sha256(

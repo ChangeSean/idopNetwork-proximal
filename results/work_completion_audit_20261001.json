@@ -7,11 +7,11 @@
     "niche_decomposition": 24,
     "document": 2398,
     "evidence": 270,
-    "release": 146,
+    "release": 152,
     "clinical_extension": 4441,
     "clinical_reporting": 619
   },
-  "total_checks": 16875,
+  "total_checks": 16881,
   "final_datasets": 1400,
   "final_outcome_records": 2800,
   "main_tables": 5,

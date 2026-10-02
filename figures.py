@@ -201,6 +201,11 @@ def fig_powerfit(res, features=None, ncol=3, nrow=2):
 
 
 # ================================================================ Figure 3: network with roles
+def _edge_colour(res, source, target, weight):
+    sign = res.get('edge_signs', {}).get((source, target), np.sign(weight))
+    return BLUE if sign > 0 else ORANGE if sign < 0 else MUTED
+
+
 def fig_network(res, exposure, seed=7):
     """Signed weighted dynamic network with the proxy roles for one exposure.
 
@@ -231,7 +236,7 @@ def fig_network(res, exposure, seed=7):
 
     def draw(ax, nodes, pos, label_roles=True, node_scale=1.0):
         for u, v, d in G.subgraph(nodes).edges(data=True):
-            w = d['weight']; col = BLUE if w > 0 else ORANGE
+            w = d['weight']; col = _edge_colour(res, u, v, w)
             ax.annotate('', xy=pos[v], xytext=pos[u], zorder=1,
                         arrowprops=dict(arrowstyle='-|>', color=col, alpha=0.55, lw=0.35 + 1.4 * abs(w) / wmax,
                                         shrinkA=4, shrinkB=4, mutation_scale=6, connectionstyle='arc3,rad=0.12'))
@@ -360,7 +365,7 @@ def fig_full_network(res, seed=7, top_hubs=10):
 
     def draw(ax, nodes, pos, scale=1.0):
         for u, v, d in G.subgraph(nodes).edges(data=True):
-            w = d['weight']; col = BLUE if w > 0 else ORANGE
+            w = d['weight']; col = _edge_colour(res, u, v, w)
             ax.annotate('', xy=pos[v], xytext=pos[u], zorder=1,
                         arrowprops=dict(arrowstyle='-|>', color=col, alpha=0.5, lw=0.3 + 1.2 * abs(w) / wmax,
                                         shrinkA=3, shrinkB=3, mutation_scale=5, connectionstyle='arc3,rad=0.12'))
@@ -603,7 +608,7 @@ def _draw_planes(ax, res, exposure, seed=7, label_others='connected', w_in=DOUBL
 
     plane_of = {exposure: 'A', **{n: 'P' for n in Z + W}, **{n: 'O' for n in others}}
     for u, v, d in G.edges(data=True):
-        w = d['weight']; col = BLUE if w > 0 else ORANGE
+        w = d['weight']; col = _edge_colour(res, u, v, w)
         same = plane_of[u] == plane_of[v]
         role_edge = (u in Z or u == exposure or v in Z or v == exposure)
         ax.annotate('', xy=pos[v], xytext=pos[u], zorder=2 if role_edge else 1,

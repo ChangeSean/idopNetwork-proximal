@@ -1,8 +1,8 @@
 {
   "passed": true,
-  "checks": 146,
+  "checks": 152,
   "canonical_source": "manuscript.md",
-  "manuscript_sha256": "45a4e1dfcabb7615d380db9530236a91fe2de8dd8cfdc0767bf541f66011ce57",
+  "manuscript_sha256": "ce7f4d51cc40054ce5c7d7ab6f236d17e1155703166fe9a4ee2d73c59609eba0",
   "builder_idempotent": true,
   "final_analysis_sources_unchanged": true,
   "complete_comparisons_retained": true
