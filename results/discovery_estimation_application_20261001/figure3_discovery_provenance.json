@@ -1,0 +1,62 @@
+{
+  "figure": "fig3_causal",
+  "cohort": "ov",
+  "source": "frozen discovery sample",
+  "split_seed": 20261201,
+  "discovery_id_sha256": "a0474c66d40421a34b3b8d354f2713deddb75d2d679860eec6c0f33e8e1a47fa",
+  "design_file_sha256": "b7e1c801f420502712cec8d43de6aabf27a914bdbdf5c63e38f59e7d7f69382d",
+  "clinical_records_sha256": "042dec86c0947adb2eb110537856dfe6ede38c59f6fe08922d0540595f124358",
+  "analysis_csv_files_unchanged": 260,
+  "all_frozen_designs_replayed": true,
+  "panels": [
+    {
+      "exposure": "PTEN",
+      "n_discovery": 308,
+      "n_proteins": 60,
+      "Z": "CHEK2",
+      "W": "VHL;GAPDH;IGFBP2;RAB25;GAB2;EEF2K;TP53;MAP2K1",
+      "r_grid": 1,
+      "r_signal": 1,
+      "conditional_root": 0.3361047608128719,
+      "window_fraction": 0.4,
+      "alpha": 0.2,
+      "support_edges": 75,
+      "signed_ode_edges": 118
+    },
+    {
+      "exposure": "SERPINE1",
+      "n_discovery": 308,
+      "n_proteins": 60,
+      "Z": "FN1;RBM15",
+      "W": "VHL;GAPDH;IGFBP2;RAB25;GAB2;EEF2K;TP53;MAP2K1",
+      "r_grid": 2,
+      "r_signal": 2,
+      "conditional_root": 0.1347342225197482,
+      "window_fraction": 0.4,
+      "alpha": 0.2,
+      "support_edges": 75,
+      "signed_ode_edges": 118
+    },
+    {
+      "exposure": "CCNE1",
+      "n_discovery": 308,
+      "n_proteins": 60,
+      "Z": "CCNB1;BCL2L11;CHEK2",
+      "W": "VHL;GAPDH;IGFBP2;RAB25;GAB2;EEF2K;TP53;MAP2K1",
+      "r_grid": 2,
+      "r_signal": 2,
+      "conditional_root": 0.24446047622011588,
+      "window_fraction": 0.4,
+      "alpha": 0.2,
+      "support_edges": 75,
+      "signed_ode_edges": 118
+    }
+  ],
+  "ode_basis_order": 0,
+  "ode_ridge": 1e-06,
+  "edge_interpretation": "Signed contributions to molecular niche curves",
+  "figures": {
+    "pdf": "3322acf24614e644d63867b01c9681670ceefcb2812300ec0f5611d575dd2a37",
+    "png": "3bcc9d3e9e18d131b8dbbd7a5e984a60a0f7f1f65850abe2d62e96357d2a7ef5"
+  }
+}

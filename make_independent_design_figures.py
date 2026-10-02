@@ -223,6 +223,8 @@ def clinical_cases():
 def main():
     schematic();simulation();ovarian_designs()
     points=cohort_overview();ovarian=ovarian_points();clinical_cases()
+    from make_discovery_network_figures import main as discovery_networks
+    discovery_networks()
     provenance=dict(cohorts=10,attempted_exposures=600,point_estimates_per_panel=len(points),
                     main_cohort='ov',main_attempted_exposures=60,main_point_estimates_per_panel=len(ovarian),
                     main_point_figure='fig6_application',supplementary_point_figure='figS5_cohort_estimates',

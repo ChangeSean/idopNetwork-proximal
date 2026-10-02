@@ -138,7 +138,7 @@ Each exposure record contains its proxy sets, spectrum and bridge dimensions, se
 
 ### 3.10 Quasi-dynamic network interpretation
 
-The weak-form ODE decomposition of idopNetwork describes molecular variation along the niche index: $\dot x_j=Q_{jj}(x_j)+\sum_{k\in\operatorname{pa}(j)}Q_{jk}(x_k)$. On the support graph, the $Q$'s are expanded in an integral Legendre basis of order zero and fitted to the power-curve samples by least squares. The signed weights describe self and cross-protein contributions to the niche curves (Figure 3c; Figures S1–S2). Bridge estimation uses the observed protein levels and reduced readouts defined in Section 3.5.
+The weak-form ODE decomposition of idopNetwork describes molecular variation along the niche index: $\dot x_j=Q_{jj}(x_j)+\sum_{k\in\operatorname{pa}(j)}Q_{jk}(x_k)$. On the support graph, the $Q$'s are expanded in an integral Legendre basis of order zero and fitted to the power-curve samples by least squares. The signed weights describe self and cross-protein contributions to the niche curves (Figure 3b,d,f; Figures S1–S2). Bridge estimation uses the observed protein levels and reduced readouts defined in Section 3.5.
 
 ## 4 Identification and estimation
 
@@ -510,7 +510,7 @@ Weak system IV supplies 136/200 point fits, with linear bias 0.074, RMSE 0.353 a
 
 We use TCGA PanCancer Atlas ovarian-cancer (OV) RPPA and clinical tables from cBioPortal [25, 26, 27]. The cohort includes 411 patients and 245 deaths. The fixed split assigns 308 patients to discovery and 103 to estimation, with 67 deaths in estimation. Discovery selects the 60 most variable proteins after missingness and duplicate-antibody filtering. The bridge includes age. Clinical contrasts correspond to one discovery-cohort protein standard deviation at a 36-month horizon.
 
-Figures 2–3 illustrate LCK and CDH2 molecular representation; Figure 5 gives the selected proxy designs for the three ovarian proteins discussed below. Table S1 and Figures S5–S6 report the supporting analyses in nine other tumour cohorts.
+Figure 2 illustrates LCK and CDH2 niche curves in the full-cohort reference. Figure 3 shows discovery-sample networks and curve contributions for PTEN, SERPINE1 and CCNE1; Figure 5 summarises their selected proxy designs. Table S1 and Figures S5–S6 report the supporting analyses in nine other tumour cohorts.
 
 ### 6.2 Point estimates of restricted survival contrasts
 
@@ -558,7 +558,7 @@ The manuscript, analysis code, study protocols, aggregate results and reproducti
 
 **Figure 2.** TCGA-OV niche-index power curves for LCK, CDH2, four local treatment proxies and two separated readouts. Points are patient measurements; curve exponents and network roles are annotated.
 
-**Figure 3.** Exposure-specific networks for LCK and CDH2. The upper panels show exposure, proxy and remaining-protein planes with ODE edges at each exposure's grid-selected penalty. The lower panels decompose selected niche curves into self and cross-protein contributions.
+**Figure 3.** Ovarian discovery networks and niche-curve decompositions for PTEN, SERPINE1 and CCNE1. Panels a,c,e show exposure, proxy and remaining-protein planes for the 60-protein panel learned from 308 discovery patients. Each uses its frozen selected design at window width 0.4 and penalty 0.20, with joint/conditional ranks 1/1, 2/2 and 2/2. Arrows show signed ODE contributions along the niche index. Panels b,d,f show observed protein levels, reconstructed curves, self contributions with baseline, and cross-protein contributions labelled by source.
 
 **Figure 4.** Independent-sample validation across seven systems, each with 200 fresh datasets. Point error uses available estimates; coverage uses all 200 sets. Bars give 1.96 Monte Carlo standard errors.
 

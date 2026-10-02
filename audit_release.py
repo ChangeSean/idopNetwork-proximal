@@ -63,6 +63,24 @@ def main():
         check(f'{study} complete panel', len(rows) == 60)
         expected = {'bounded': 2, 'disconnected': 3, 'all_real': 55} if study == 'ov' else {'all_real': 60}
         check(f'{study} confidence-set shapes', Counter(x['rmst_kind'] for x in rows) == expected)
+    figure = json.loads((ROOT / 'results/discovery_estimation_application_20261001/figure3_discovery_provenance.json').read_text(encoding='utf-8'))
+    designs_path = ROOT / 'results/discovery_estimation_application_20261001/ov_discovery_designs.json'
+    designs = json.loads(designs_path.read_text(encoding='utf-8'))
+    ov_manifest = json.loads((ROOT / 'results/discovery_estimation_application_20261001/ov_manifest.json').read_text(encoding='utf-8'))
+    check('Figure 3 current ovarian cases', [p['exposure'] for p in figure['panels']] == ['PTEN', 'SERPINE1', 'CCNE1'])
+    check('Figure 3 discovery sample', figure['discovery_id_sha256'] == ov_manifest['discovery_id_sha256'])
+    check('Figure 3 frozen design fingerprint', figure['design_file_sha256'] == hashlib.sha256(designs_path.read_bytes()).hexdigest())
+    check('Figure 3 clinical records unchanged', figure['clinical_records_sha256'] == hashlib.sha256((ROOT / 'results/discovery_estimation_application_20261001/ov_all_exposures.csv').read_bytes()).hexdigest())
+    check('Figure 3 design replay completed', figure['all_frozen_designs_replayed'] and figure['analysis_csv_files_unchanged'] > 0)
+    for panel in figure['panels']:
+        protein = panel['exposure']
+        row = designs[protein]['row']
+        check(f'Figure 3 {protein} patient count', panel['n_discovery'] == ov_manifest['n_discovery'])
+        for key in ('Z', 'W', 'r_grid', 'r_signal', 'window_fraction', 'alpha'):
+            check(f'Figure 3 {protein} {key}', panel[key] == row[key])
+    for suffix, expected in figure['figures'].items():
+        check('Figure 3 ' + suffix + ' fingerprint', hashlib.sha256((ROOT / f'figures/fig3_causal.{suffix}').read_bytes()).hexdigest() == expected)
+    check('Figure 3 caption matches current panels', 'Panels a,c,e' in text and 'Panels b,d,f' in text)
     result = {'passed': True, 'checks': len(checks), 'canonical_source': 'manuscript.md',
               'manuscript_sha256': hashlib.sha256(before).hexdigest(), 'builder_idempotent': True,
               'final_analysis_sources_unchanged': True, 'complete_comparisons_retained': True}

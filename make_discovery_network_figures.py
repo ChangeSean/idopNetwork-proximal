@@ -1,0 +1,188 @@
+"""Figure 3 from the frozen ovarian discovery sample and selected designs."""
+import hashlib
+import json
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from matplotlib.lines import Line2D
+
+import figures as F
+import independent_design_bridge as ID
+from idop_core import get_power_function_samples, _solve_ode_decomposition, ode_solver
+from multiscale_bridge import design_grid
+from proximal import adjacency_from_supports
+from run_discovery_estimation_application import prepare
+
+ROOT = Path(__file__).resolve().parent
+APP = ROOT / 'results/discovery_estimation_application_20261001'
+EXPOSURES = ('PTEN', 'SERPINE1', 'CCNE1')
+
+
+def result_hashes():
+    """Clinical and simulation coefficients must remain unchanged by plotting."""
+    return {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in (ROOT / 'results').rglob('*.csv')}
+
+
+def discovery_networks():
+    cohort, _, _, _, _, info = prepare('ov')
+    manifest = json.loads((APP / 'ov_manifest.json').read_text(encoding='utf-8'))
+    frozen = json.loads((APP / 'ov_discovery_designs.json').read_text(encoding='utf-8'))
+    for key in ('names', 'n_discovery', 'n_estimation', 'split_seed',
+                'discovery_id_sha256', 'estimation_id_sha256'):
+        assert info[key] == manifest[key], 'Discovery replay: ' + key
+    for key in ('discovery_mean', 'discovery_sd'):
+        assert np.allclose([info[key][n] for n in info['names']],
+                           [manifest[key][n] for n in info['names']], rtol=1e-12, atol=1e-12)
+    grid = design_grid(cohort)
+    mapped, provenance = {}, []
+    cache = {}
+    for exposure in EXPOSURES:
+        saved = frozen[exposure]
+        replay = ID.freeze(grid, info['names'].index(exposure))
+        assert saved['ready'] and replay['ready'], exposure
+        for key in ('a', 'Z', 'W', 'pivots'):
+            assert replay[key] == saved[key], f'{exposure}: {key}'
+        assert np.allclose(replay['P'], saved['P'], rtol=1e-8, atol=1e-8), exposure
+        row = saved['row']
+        for key in ('window_fraction', 'alpha', 'r_grid', 'r_signal', 'Z', 'W'):
+            assert replay['row'][key] == row[key], f'{exposure}: {key}'
+        selected = next(r for r in grid if r['alpha'] == row['alpha'] and
+                        r.get('window_fraction', .2) == row['window_fraction'])
+        design_key = (row['window_fraction'], row['alpha'])
+        if design_key not in cache:
+            names = selected['names']
+            supports = pd.DataFrame([
+                dict(target=names[j], source='{' + ','.join(names[i] for i in
+                     np.flatnonzero(selected['A'][:, j])) + '}')
+                for j in range(len(names))])
+            assert np.array_equal(adjacency_from_supports(supports, names), selected['A'])
+            samples = get_power_function_samples(selected['params'], cohort['qd'].index, n_samples=100)
+            dec = _solve_ode_decomposition(cohort['qd'], samples, supports,
+                                           basis_order=0, ridge=1e-6)
+            edges = ode_solver(cohort['qd'], samples, supports, basis_order=0, ridge=1e-6)
+            cache[design_key] = dict(supports=supports, samples=samples,
+                                    decomposition=dec, edgelist=edges)
+        res = dict(selected, qd=cohort['qd'], estimates=pd.DataFrame([row]),
+                   basis_order=0, ode_ridge=1e-6, **cache[design_key])
+        mapped[exposure] = res
+        provenance.append(dict(exposure=exposure, n_discovery=info['n_discovery'],
+                               n_proteins=len(info['names']), Z=row['Z'], W=row['W'],
+                               r_grid=row['r_grid'], r_signal=row['r_signal'],
+                               conditional_root=row['conditional_root'],
+                               window_fraction=row['window_fraction'], alpha=row['alpha'],
+                               support_edges=int(np.triu(selected['Und'], 1).sum()),
+                               signed_ode_edges=len(res['edgelist'])))
+    return mapped, provenance, info
+
+
+def draw_decomposition(ax, res, exposure):
+    dec = res['decomposition']
+    s = np.asarray(dec['sample_tau'])
+    j = list(dec['features']).index(exposure)
+    predicted = np.asarray(dec['predicted_states'])[:, j]
+    ax.scatter(res['qd'].index, res['qd'][exposure], s=5, color=F.MUTED,
+               alpha=.45, linewidths=0)
+    ax.plot(s, predicted, color=F.INK, lw=1.35)
+    self_part = dec['intercepts'][j] + dec['interaction_functions'].get(
+        (exposure, exposure), np.zeros_like(s))
+    ax.plot(s, self_part, color=F.INK2, lw=1, ls='--')
+    palette = (F.BLUE, F.AQUA, F.YELLOW, '#9b4567', '#7859a8')
+    endpoints = []
+    for i, source in enumerate(dec['support_sets'].get(exposure, [])):
+        if source == exposure:
+            continue
+        contribution = np.asarray(dec['interaction_functions'][(exposure, source)])
+        color = palette[i % len(palette)]
+        ax.plot(s, contribution, color=color, lw=1)
+        endpoints.append((float(contribution[-1]), source, color))
+    endpoints.sort()
+    span = max(np.ptp(ax.get_ylim()), 1.)
+    labels = [v[0] for v in endpoints]
+    for i in range(1, len(labels)):
+        labels[i] = max(labels[i], labels[i-1] + .10 * span)
+    dx = s[-1] - s[0]
+    for (value, source, color), position in zip(endpoints, labels):
+        ax.text(s[-1] + .035 * dx, position, source, color=color, fontsize=8,
+                ha='left', va='center')
+        if abs(value-position) > 1e-10:
+            ax.plot([s[-1], s[-1] + .028 * dx], [value, position], lw=.45, color=color)
+    if labels:
+        lo, hi = ax.get_ylim()
+        ax.set_ylim(min(lo, min(labels)-.05*span), max(hi, max(labels)+.05*span))
+    ax.set_xlim(s[0], s[-1] + .34 * dx)
+    ax.axhline(0, color=F.GRID, lw=.7)
+    ax.grid(axis='y', color=F.GRID, lw=.4)
+    ax.set_xlabel('Niche index $s$', fontsize=8)
+    ax.set_ylabel('Cumulative niche contribution', fontsize=8)
+    ax.set_title(exposure + ' curve decomposition', fontsize=9, loc='left', pad=9)
+    ax.tick_params(labelsize=8)
+
+
+def main():
+    before = result_hashes()
+    mapped, provenance, info = discovery_networks()
+    F.set_style()
+    fig = plt.figure(figsize=(F.DOUBLE, 9.3))
+    grid = fig.add_gridspec(3, 2, left=.045, right=.985, top=.92, bottom=.12,
+                           width_ratios=(1.06, 1), wspace=.27, hspace=.57)
+    for i, exposure in enumerate(EXPOSURES):
+        res = mapped[exposure]
+        ax = fig.add_subplot(grid[i, 0])
+        F._draw_planes(ax, res, exposure, label_others=False,
+                       w_in=F.DOUBLE/2, h_in=2.4, compact=True)
+        # Spread the eight W labels over the gap between the outer planes.
+        row = res['estimates'].iloc[0]
+        names_w = row.W.split(';')
+        labels_w = sorted([t for t in ax.texts if t.get_text() in names_w],
+                          key=lambda t: -t.get_position()[1])
+        leaders_w = ax.lines[-len(names_w):]
+        for label, leader, y in zip(labels_w, leaders_w, np.linspace(2.48, .82, len(names_w))):
+            label.set_y(y)
+            xy = leader.get_ydata().copy()
+            xy[-1] = y
+            leader.set_ydata(xy)
+        # Replace the old full-cohort annotation with frozen discovery information.
+        for text in ax.texts:
+            if 'signed edges' in text.get_text():
+                text.remove()
+        ax.set_title(f'{exposure}   joint / conditional rank {int(row.r_grid)} / {int(row.r_signal)}',
+                     fontsize=9, loc='left', x=.025, pad=7)
+        F._panel_label(ax, 'ace'[i], x=-.065, y=1.04)
+        curve = fig.add_subplot(grid[i, 1])
+        draw_decomposition(curve, res, exposure)
+        F._panel_label(curve, 'bdf'[i], x=-.17, y=1.04)
+    fig.suptitle('Ovarian discovery networks and molecular curve contributions', fontsize=10, y=.982)
+    fig.text(.5, .954, f'{info["n_discovery"]} discovery patients; 60 proteins; '
+             'selected width 0.4 and penalty 0.20', ha='center', fontsize=8, color=F.INK2)
+    handles = [
+        Line2D([], [], ls='none', marker='o', color=F.ORANGE, mec=F.INK, ms=5, label='Exposure $A$'),
+        Line2D([], [], ls='none', marker='o', color=F.BLUE, mec=F.INK, ms=5, label='Treatment proxy $Z$'),
+        Line2D([], [], ls='none', marker='o', color=F.AQUA, mec=F.INK, ms=5, label='Outcome proxy $W$'),
+        Line2D([], [], color=F.BLUE, lw=1, label='Positive ODE contribution'),
+        Line2D([], [], color=F.ORANGE, lw=1, label='Negative ODE contribution'),
+        Line2D([], [], color=F.INK, lw=1.3, label='Reconstructed curve'),
+        Line2D([], [], color=F.MUTED, marker='o', ls='none', ms=3, label='Observed discovery protein'),
+        Line2D([], [], color=F.INK2, lw=1, ls='--', label='Self contribution and baseline'),
+        Line2D([], [], color='#7859a8', lw=1, label='Source contributions labelled by protein')]
+    fig.legend(handles=handles, loc='lower center', ncol=3, fontsize=7.5,
+               bbox_to_anchor=(.52, .019), columnspacing=1.1, handlelength=1.7)
+    F.save(fig, 'fig3_causal')
+    assert before == result_hashes(), 'Plotting changed an analysis CSV'
+    document = dict(figure='fig3_causal', cohort='ov', source='frozen discovery sample',
+                    split_seed=info['split_seed'], discovery_id_sha256=info['discovery_id_sha256'],
+                    design_file_sha256=hashlib.sha256((APP/'ov_discovery_designs.json').read_bytes()).hexdigest(),
+                    clinical_records_sha256=hashlib.sha256((APP/'ov_all_exposures.csv').read_bytes()).hexdigest(),
+                    analysis_csv_files_unchanged=len(before), all_frozen_designs_replayed=True,
+                    panels=provenance, ode_basis_order=0, ode_ridge=1e-6,
+                    edge_interpretation='Signed contributions to molecular niche curves',
+                    figures={suffix: hashlib.sha256((ROOT/f'figures/fig3_causal.{suffix}').read_bytes()).hexdigest()
+                             for suffix in ('pdf', 'png')})
+    (APP/'figure3_discovery_provenance.json').write_text(json.dumps(document, indent=2), encoding='utf-8')
+    print(json.dumps(document, indent=2))
+
+
+if __name__ == '__main__':
+    main()

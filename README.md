@@ -35,7 +35,7 @@ python workflow.py tables
 python workflow.py figures
 ```
 
-`verify` checks stored simulation records, paired comparisons, bridge algebra, complete clinical reporting and publication consistency without patient data. `tables` refreshes Tables 2–5 and S1 from stored results and preserves the manuscript's prose. `figures` regenerates Figures 1, 4–7 and S5 from current records; the remaining figures are supplied as publication assets.
+`verify` checks stored simulation records, paired comparisons, bridge algebra, complete clinical reporting and publication consistency without patient data. `tables` refreshes Tables 2–5 and S1 from stored results and preserves the manuscript's prose. `figures` regenerates Figures 1, 3–7 and S5. Figure 3 replays the frozen ovarian discovery designs using downloaded patient inputs; the clinical plots use aggregate records. The remaining figures are supplied as publication assets.
 
 ```bash
 # Recompute the final seven-system study (200 datasets per system).

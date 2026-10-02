@@ -6,11 +6,11 @@
     "algebra": 12,
     "document": 2398,
     "evidence": 270,
-    "release": 93,
+    "release": 122,
     "clinical_extension": 4441,
     "clinical_reporting": 619
   },
-  "total_checks": 16798,
+  "total_checks": 16827,
   "final_datasets": 1400,
   "final_outcome_records": 2800,
   "main_tables": 5,
