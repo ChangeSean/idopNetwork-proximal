@@ -4,8 +4,8 @@
   "numeric_table_cells": 2297,
   "tables": 15,
   "references": 37,
-  "native_equations": 424,
+  "native_equations": 422,
   "word_page_rendering": "unverified: packaged renderer cannot find soffice.exe",
-  "source_sha256": "2ef7eb39775dbcfefc89b09315c58f644b54b442b61c2bf9b81e10b88e112001",
-  "word_sha256": "ecbc95f89f56b2291b6c5c9fdf4939b124f49b1cb58e28fc2676363436726baf"
+  "source_sha256": "79289c93cb114bdb60c8cbc5cc176e2805bae18d37f64bd06caa1d6ac42f41d0",
+  "word_sha256": "68caced8443b73333170595ea88fe09d5da29bf489091e56dc082c24a528d251"
 }

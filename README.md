@@ -56,7 +56,7 @@ python workflow.py word
 
 Simulation and clinical commands write to their declared result directories. Committed records provide the reference run in Git history. Detailed component-study commands and fixed seeds are in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 
-`clinical --cohort both` runs OV/LUAD; `clinical --cohort remaining` applies the same frozen implementation to the other eight cohorts. `results/additional_cohorts_application_20261002/point_estimates.csv` contains every completed coefficient with its original confidence sets and off-range flags. The original implementation and frozen OV/LUAD protocol remain unchanged; the eight-cohort extension has its own protocol and source/input hashes.
+`clinical --cohort both` runs OV/LUAD; `clinical --cohort remaining` runs the other eight cohorts. `results/additional_cohorts_application_20261002/point_estimates.csv` contains completed coefficients, confidence sets and off-range flags. Study protocols and manifests record the analysis settings and source/input hashes.
 
 ## Repository layout
 
@@ -72,7 +72,7 @@ Simulation and clinical commands write to their declared result directories. Com
 | `DISCOVERY_ESTIMATION_PROTOCOL_20261001.md` | Frozen final analysis protocol |
 | `release_layout.py` | Explicit publication file inventory and code dependencies |
 
-The paper builder reads canonical Markdown directly. Revision archives, draft manuscripts and incremental manuscript migration scripts are excluded from the publication inventory. Source manifests retain exact code and protocol fingerprints for each study.
+The paper builder reads canonical Markdown directly. Source manifests provide exact code and protocol fingerprints for each study.
 
 ## Data and attribution
 
