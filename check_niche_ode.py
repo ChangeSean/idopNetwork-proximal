@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from niche_ode import DEFAULT_DEGREE, DEFAULT_RIDGE, integrated_state_basis, ridge_refit, solve_niche_ode, decomposition_edges
+from niche_ode import DEFAULT_DEGREE, DEFAULT_RIDGE, integrated_state_basis, ridge_refit, monotone_intrinsic_refit, solve_niche_ode, decomposition_edges
 
 
 def main():
@@ -19,7 +19,16 @@ def main():
     state = 2*time+3
     check('time integral of linear Legendre basis',
           integrated_state_basis(state[:, None], time, 1)[0][:, 0],
-          time**2-time, atol=1e-12)
+          time**2/2, atol=1e-12)
+    check('decreasing linear source gives the other half parabola',
+          integrated_state_basis((-state)[:, None], time, 1)[0][:, 0],
+          time-time**2/2, atol=1e-12)
+    irregular = np.array([0., .03, .2, .31, .63, .75, 1.])
+    nonmonotone_state = np.sin(3*np.pi*irregular)
+    branch = integrated_state_basis(nonmonotone_state[:, None], irregular, 1)[0][:, 0]
+    assert np.all(np.diff(branch) >= 0)
+    assert np.all(np.diff(-branch) <= 0)
+    checks.append('irregular nonmonotone state still gives monotone source contributions')
     X = np.column_stack([time, time**2])
     y = 2+X @ np.array([3., -4.])
     intercept, beta = ridge_refit(X, y, 0.)
@@ -34,7 +43,7 @@ def main():
                              {'target': 'B', 'source': '{}'},
                              {'target': 'C', 'source': '{}'}])
     dec = solve_niche_ode(data, supports)
-    assert dec['settings']['degree'] == DEFAULT_DEGREE == 0
+    assert dec['settings']['degree'] == DEFAULT_DEGREE == 1
     assert dec['settings']['ridge'] == DEFAULT_RIDGE == .1
     zero = solve_niche_ode(data, supports, degree=0)
     base_zero, slope_zero = ridge_refit(time[:, None], data['A'].to_numpy(), DEFAULT_RIDGE)
@@ -48,12 +57,29 @@ def main():
     check('affine niche-coordinate invariance', dec['predicted_states'],
           other['predicted_states'], atol=1e-8)
     check('constant target', dec['predicted_states'][:, 2], 4., atol=1e-10)
+    shaped_X = np.column_stack([time, time**2/2])
+    turning_y = 2+time-time**2
+    for penalty in (0., DEFAULT_RIDGE):
+        intercept, constrained, status = monotone_intrinsic_refit(shaped_X, turning_y, penalty)
+        derivative_endpoints = np.array([constrained[0], constrained[0]+constrained[1]])
+        assert derivative_endpoints.prod() >= -1e-9
+        fitted = intercept+shaped_X @ constrained
+        assert np.all(np.diff(fitted) >= -1e-9) or np.all(np.diff(fitted) <= 1e-9)
+        check('constrained intercept centres residuals '+str(penalty), np.mean(turning_y-fitted), 0., atol=1e-10)
+        assert status != 'inactive'
+        checks.append('turning intrinsic fit projected to a monotone branch '+str(penalty))
+    base, coef, status = monotone_intrinsic_refit(shaped_X, 2+time+time**2, DEFAULT_RIDGE)
+    old_base, old_coef = ridge_refit(shaped_X, 2+time+time**2, DEFAULT_RIDGE)
+    check('feasible ridge fit unchanged', np.r_[base, coef], np.r_[old_base, old_coef], atol=1e-12)
     for j, target in enumerate(data.columns):
         reconstructed = dec['intercepts'][j]+dec['interaction_functions'][(target, target)]
         for source in dec['support_sets'][target]:
             reconstructed = reconstructed+dec['interaction_functions'][(target, source)]
         check('additive closure '+target, reconstructed, dec['predicted_states'][:, j], atol=1e-12)
         check('centred residuals '+target, dec['diagnostics'][target]['mean_residual'], 0., atol=1e-10)
+        assert dec['diagnostics'][target]['intrinsic_direction'] != 'nonmonotone'
+        assert all(v != 'nonmonotone' for v in dec['diagnostics'][target]['source_directions'].values())
+        checks.append('monotone individual contributions '+target)
     edges = decomposition_edges(dec)
     assert set(zip(edges.source, edges.target)) <= {('B', 'A')}
     assert dec['support_sets'] == {'A': ['B'], 'B': [], 'C': []}

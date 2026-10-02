@@ -1,20 +1,30 @@
 {
   "passed": true,
-  "checks": 14,
+  "checks": 24,
   "invariants": [
     "time integral of linear Legendre basis",
+    "decreasing linear source gives the other half parabola",
+    "irregular nonmonotone state still gives monotone source contributions",
     "unpenalised polynomial recovery",
     "ridge invariance to column units",
     "zero degree retains the common baseline",
     "zero degree source convention",
     "affine niche-coordinate invariance",
     "constant target",
+    "constrained intercept centres residuals 0.0",
+    "turning intrinsic fit projected to a monotone branch 0.0",
+    "constrained intercept centres residuals 0.1",
+    "turning intrinsic fit projected to a monotone branch 0.1",
+    "feasible ridge fit unchanged",
     "additive closure A",
     "centred residuals A",
+    "monotone individual contributions A",
     "additive closure B",
     "centred residuals B",
+    "monotone individual contributions B",
     "additive closure C",
     "centred residuals C",
+    "monotone individual contributions C",
     "fixed-support contributions"
   ]
 }

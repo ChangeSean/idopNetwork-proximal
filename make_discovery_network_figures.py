@@ -30,9 +30,7 @@ def result_hashes():
 
 
 def network_edges(selected, decomposition):
-    """At degree zero display regression supports without fitted ODE weights."""
-    if decomposition['settings']['degree']:
-        return decomposition_edges(decomposition)
+    """Display the frozen regression supports independently of curve weights."""
     source, target = np.nonzero(selected['A'])
     names = selected['names']
     return pd.DataFrame(dict(source=[names[i] for i in source],
@@ -136,7 +134,8 @@ def draw_decomposition(ax, res, exposure):
         ax.text(s[-1] + .035 * dx, position, source, color=color, fontsize=8,
                 ha='left', va='center')
         if abs(value-position) > 1e-10:
-            ax.plot([s[-1], s[-1] + .028 * dx], [value, position], lw=.45, color=color)
+            ax.plot([s[-1], s[-1] + .028 * dx], [value, position], lw=.45,
+                    color=F.MUTED, ls=':')
     if labels:
         lo, hi = ax.get_ylim()
         ax.set_ylim(min(lo, min(labels)-.05*span), max(hi, max(labels)+.05*span))
@@ -277,7 +276,7 @@ def trial(degree, ridge=DEFAULT_RIDGE):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--trial-degree', type=int, help='Compare a nonnegative degree with the published degree 0')
+    parser.add_argument('--trial-degree', type=int, help='Compare a nonnegative degree with the published degree 1')
     parser.add_argument('--trial-ridge', type=float, help='Compare a ridge penalty with the published value')
     args = parser.parse_args()
     if args.trial_degree is not None or args.trial_ridge is not None:
@@ -321,7 +320,7 @@ def main():
         curve = fig.add_subplot(grid[i, 1])
         draw_decomposition(curve, res, exposure)
         F._panel_label(curve, 'bdf'[i], x=-.17, y=1.04)
-    fig.suptitle('Ovarian discovery supports and zero-degree niche trends', fontsize=10, y=.982)
+    fig.suptitle('Ovarian discovery supports and monotone curve contributions', fontsize=10, y=.982)
     neutral_support_arrows(fig)
     fig.text(.5, .954, f'{info["n_discovery"]} discovery patients; graph width 0.4, LASSO 0.20; '
              f'ODE degree {DEFAULT_DEGREE}, ridge {DEFAULT_RIDGE:g}', ha='center', fontsize=8, color=F.INK2)
@@ -330,7 +329,9 @@ def main():
         Line2D([], [], ls='none', marker='o', color=F.BLUE, mec=F.INK, ms=5, label='Treatment proxy $Z$'),
         Line2D([], [], ls='none', marker='o', color=F.AQUA, mec=F.INK, ms=5, label='Outcome proxy $W$'),
         Line2D([], [], color=F.MUTED, lw=.6, label='Directed LASSO support'),
-        Line2D([], [], color=F.INK, lw=1.3, label='Fitted intrinsic baseline'),
+        Line2D([], [], color=F.INK, lw=1.3, label='Reconstructed curve'),
+        Line2D([], [], color=F.INK2, lw=1, ls='--', label='Intrinsic contribution'),
+        Line2D([], [], color=F.BLUE, lw=1, label='Source contributions (labelled)'),
         Line2D([], [], color=F.MUTED, marker='o', ls='none', ms=3, label='Observed discovery protein')]
     fig.legend(handles=handles, loc='lower center', ncol=3, fontsize=7.5,
                bbox_to_anchor=(.52, .019), columnspacing=1.1, handlelength=1.7)
@@ -344,7 +345,7 @@ def main():
                     analysis_csv_files_unchanged=len(before), all_frozen_designs_replayed=True,
                     panels=provenance, reference_panels=references,
                     ode_settings=mapped[EXPOSURES[0]]['decomposition']['settings'],
-                    edge_interpretation='Directed LASSO regression supports; degree-zero source terms merged into baseline',
+                    edge_interpretation='Directed LASSO regression supports; monotone state-integrated contributions fitted separately',
                     figures={suffix: hashlib.sha256((ROOT/f'figures/fig3_causal.{suffix}').read_bytes()).hexdigest()
                              for suffix in ('pdf', 'png')},
                     reference_figures={f'{name}.{suffix}': hashlib.sha256(
