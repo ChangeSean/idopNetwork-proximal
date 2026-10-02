@@ -1,0 +1,3677 @@
+{
+  "VHL": {
+    "row": {
+      "exposure": "VHL",
+      "nZ": 1,
+      "nW": 2,
+      "Z": "ETS1",
+      "W": "TUBA1B;KDR",
+      "r_pca": 1,
+      "r_bridge": 1,
+      "r_joint": 1,
+      "r_signal": 0,
+      "nu": 0.06528702570249977,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.2,
+      "joint_pvalues": "1.6812891133362217e-09;0.25765353342346886",
+      "conditional_pvalues": "0.2933496764926809",
+      "status": "conditional_information_dimension",
+      "r_grid": 1,
+      "conditional_root": 0.06528702570249975,
+      "conditional_roots": "0.06528702570249975",
+      "nu_raw": 0.06721991262916398,
+      "conditional_rank_agreement": false,
+      "eligible_designs": 0
+    },
+    "a": 0,
+    "Z": [
+      36
+    ],
+    "W": [
+      6,
+      30
+    ],
+    "ready": false
+  },
+  "MYH11": {
+    "row": {
+      "exposure": "MYH11",
+      "nZ": 4,
+      "nW": 18,
+      "Z": "CAV1;RICTOR;RAD51;FOXM1",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "1.1650306925599767e-76;1.094683044899237e-36;2.4447764508997117e-16;5.007304036192817e-07;0.00044101541350607406",
+      "conditional_pvalues": "2.8497440020286864e-59;4.021141001712611e-30;3.965949802950583e-14;7.492375555453194e-05",
+      "status": "proxy_dimensions",
+      "r_grid": 5,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 1,
+    "Z": [
+      3,
+      23,
+      40,
+      58
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "GAPDH": {
+    "row": {
+      "exposure": "GAPDH",
+      "nZ": 3,
+      "nW": 12,
+      "Z": "G6PD;AR;CDH2",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": 0.0320149599301205,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "3.366885581535152e-43;1.246247249914018e-20;0.0006616714021747856;0.07621374647890647",
+      "conditional_pvalues": "4.0248288598943386e-36;1.5944966510056893e-07;0.08094022266340278",
+      "status": "conditional_information_dimension",
+      "r_grid": 3,
+      "conditional_root": 0.10864945737481504,
+      "conditional_roots": "0.6699311172988354;0.3533618942329947;0.10864945737481504",
+      "nu_raw": 0.044523383667220515,
+      "conditional_rank_agreement": false,
+      "eligible_designs": 0
+    },
+    "a": 2,
+    "Z": [
+      20,
+      43,
+      48
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "CAV1": {
+    "row": {
+      "exposure": "CAV1",
+      "nZ": 5,
+      "nW": 12,
+      "Z": "MYH11;CCNB1;TGM2;RICTOR;EIF4EBP1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": 0.00784663216423756,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "8.672261199077067e-39;4.3755078769584225e-22;1.9124446732811368e-08;0.0005568738672383293;0.03354484939267807;0.13706493360859967",
+      "conditional_pvalues": "6.021548531920921e-38;3.906332829020183e-19;5.069994402287172e-11;0.0013031694479230297;0.40664914090833393",
+      "status": "conditional_information_dimension",
+      "r_grid": 5,
+      "conditional_root": 0.05198025107147016,
+      "conditional_roots": "0.6106052868276689;0.4535847013388149;0.42023305623347507;0.25556786030061773;0.05198025107147016",
+      "nu_raw": 0.021270598987689477,
+      "conditional_rank_agreement": false,
+      "eligible_designs": 0
+    },
+    "a": 3,
+    "Z": [
+      1,
+      10,
+      22,
+      23,
+      45
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "SERPINE1": {
+    "row": {
+      "exposure": "SERPINE1",
+      "nZ": 2,
+      "nW": 56,
+      "Z": "FN1;ITGA2",
+      "W": "VHL;MYH11;GAPDH;CAV1;IGFBP2;TUBA1B;CTNNB1;ANXA1;CLDN7;CCNB1;FASN;TFRC;INPP4B;STAT5A;CASP7;HSPA1A;ASNS;CDH1;KIT;G6PD;ERBB2;TGM2;RICTOR;SQSTM1;RAB25;TP53;ACACA;BRAF;KDR;RPS6;DIABLO;EEF2K;ATM;PXN;ETS1;PRKCA;RBM15;RAD51;MYC;EEF2;AR;ESR1;EIF4EBP1;PREX1;TSC1;CDH2;BAK1;SYK;EIF4G1;BCL2L11;TP53BP1;CCNE1;XBP1;MSH2;FOXM1;PRDX1",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "4.486460535584668e-55;1.2551786168409063e-24;4.860833805581307e-10",
+      "conditional_pvalues": "1.0378680491410831e-32;2.010434708998922e-15",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 4,
+    "Z": [
+      38,
+      50
+    ],
+    "W": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "IGFBP2": {
+    "row": {
+      "exposure": "IGFBP2",
+      "nZ": 2,
+      "nW": 18,
+      "Z": "ANXA1;STAT5A",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "1.1823870449006727e-25;1.7271555940401878e-09;0.047145422353915556",
+      "conditional_pvalues": "6.787035495697025e-23;5.590837543040123e-06",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 5,
+    "Z": [
+      8,
+      14
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "TUBA1B": {
+    "row": {
+      "exposure": "TUBA1B",
+      "nZ": 0,
+      "nW": 0,
+      "Z": "",
+      "W": "",
+      "r_pca": 1,
+      "r_bridge": 0,
+      "r_joint": 0,
+      "r_signal": 0,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "status": "no_shared_direction",
+      "r_grid": 0,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 6,
+    "Z": [],
+    "W": [],
+    "ready": false
+  },
+  "CTNNB1": {
+    "row": {
+      "exposure": "CTNNB1",
+      "nZ": 2,
+      "nW": 18,
+      "Z": "CDH1;RAD51",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "1.1715232514115523e-78;4.5490749875216157e-29;3.7982548315873604e-11",
+      "conditional_pvalues": "9.972959599458575e-34;3.4769472973899376e-16",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 7,
+    "Z": [
+      18,
+      40
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "ANXA1": {
+    "row": {
+      "exposure": "ANXA1",
+      "nZ": 2,
+      "nW": 18,
+      "Z": "IGFBP2;ESR1",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": 0.04044727858749505,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "8.833124429467525e-14;9.104761399407364e-06;0.11815052183528832",
+      "conditional_pvalues": "4.4277237614975524e-07;0.14493050026411178",
+      "status": "conditional_information_dimension",
+      "r_grid": 2,
+      "conditional_root": 0.09065179441098407,
+      "conditional_roots": "0.34670365321155466;0.09065179441098407",
+      "nu_raw": 0.05184738858459785,
+      "conditional_rank_agreement": false,
+      "eligible_designs": 0
+    },
+    "a": 8,
+    "Z": [
+      5,
+      44
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "CLDN7": {
+    "row": {
+      "exposure": "CLDN7",
+      "nZ": 6,
+      "nW": 32,
+      "Z": "FASN;STAT5A;CDH1;KIT;RAB25;SYK",
+      "W": "VHL;GAPDH;CAV1;SERPINE1;IGFBP2;TUBA1B;ANXA1;INPP4B;ASNS;G6PD;ERBB2;TGM2;SQSTM1;TP53;PDCD4;BRAF;KDR;RPS6;PXN;ETS1;FN1;RBM15;MYC;EEF2;AR;ESR1;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;XBP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 7,
+      "r_joint": 7,
+      "r_signal": 6,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "1.6826947087197668e-89;8.428912851289573e-48;2.759368492170712e-32;1.0163899435932387e-18;7.711774654844276e-11;2.075837103222665e-05;0.007766401438175059",
+      "conditional_pvalues": "2.9021344896212776e-80;2.4456628804430273e-38;9.190130841069487e-25;4.257904432526776e-13;1.2309572922842014e-07;0.00021499919702121643",
+      "status": "proxy_dimensions",
+      "r_grid": 7,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 9,
+    "Z": [
+      11,
+      14,
+      18,
+      19,
+      25,
+      51
+    ],
+    "W": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      13,
+      17,
+      20,
+      21,
+      22,
+      24,
+      26,
+      27,
+      29,
+      30,
+      31,
+      35,
+      36,
+      38,
+      39,
+      41,
+      42,
+      43,
+      44,
+      45,
+      50,
+      52,
+      54,
+      56,
+      57
+    ],
+    "ready": false
+  },
+  "CCNB1": {
+    "row": {
+      "exposure": "CCNB1",
+      "nZ": 8,
+      "nW": 12,
+      "Z": "CAV1;TFRC;CASP7;TGM2;RICTOR;CCNE1;MSH2;FOXM1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 5,
+      "nu": 0.03314469989165377,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "6.697431176486e-48;3.0505220963710836e-31;2.6491326668280647e-17;5.237137989144943e-05;0.01611787161838871;0.29004856532516515;0.8426141354339332;0.8140735799942076;0.6991972324538324",
+      "conditional_pvalues": "1.4274329642442258e-53;9.673141723653994e-35;5.789311335909446e-17;7.611941293058115e-08;0.0005362375839402809",
+      "status": "reported",
+      "r_grid": 5,
+      "conditional_root": 0.27465492928457785,
+      "conditional_roots": "0.6276808436251673;0.6075152451287674;0.4801720848771231;0.35021520203596435;0.27465492928457785",
+      "nu_raw": 0.02745722092590642,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 2
+    },
+    "a": 10,
+    "Z": [
+      3,
+      12,
+      15,
+      22,
+      23,
+      55,
+      57,
+      58
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": true,
+    "P": [
+      [
+        0.49180973599777894,
+        -0.10522153972307235,
+        -0.1665404978204009,
+        0.007639692685593845,
+        0.3387568135117712
+      ],
+      [
+        0.08529463635579704,
+        0.024417330014335117,
+        0.30726149678879006,
+        -0.505388564305172,
+        0.10079043289490908
+      ],
+      [
+        0.4648607287552772,
+        -0.2793502888554905,
+        -0.17109539482258643,
+        -0.4274742132599579,
+        0.107069214422379
+      ],
+      [
+        0.06504859858186306,
+        0.13028818986270374,
+        -0.29293202326666073,
+        0.21334216831617228,
+        -0.22072856816538416
+      ],
+      [
+        0.3415068214247116,
+        0.36165015921548266,
+        0.030934091067232244,
+        0.34277697551329767,
+        0.266001779884413
+      ],
+      [
+        -0.00580549835549209,
+        0.2648611650109703,
+        0.13328322889089264,
+        0.18488233775769775,
+        0.4406456737003552
+      ],
+      [
+        0.32828666752074587,
+        0.19627426512552498,
+        -0.34870972788541676,
+        -0.07626531413450251,
+        0.09309516961271598
+      ],
+      [
+        -0.1808356238854523,
+        0.40298569243963617,
+        0.20366438182141247,
+        -0.19793764472250852,
+        0.32227190124485416
+      ],
+      [
+        -0.16672879478384306,
+        0.28978067503204546,
+        0.04947195358117834,
+        -0.45611915860597385,
+        0.12917863931786447
+      ],
+      [
+        0.45812442814462495,
+        -0.016536497386110766,
+        0.7375900056299187,
+        0.13341500694998062,
+        -0.315033110859926
+      ],
+      [
+        -0.12954154837003484,
+        -0.5692940951745773,
+        0.0872087065091111,
+        -0.01798540737718536,
+        0.30604259648408827
+      ],
+      [
+        -0.13758424333721492,
+        -0.2882971266771352,
+        0.16395423101164158,
+        0.3056697261434793,
+        0.47734022898590234
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        5,
+        8,
+        7,
+        6,
+        3
+      ],
+      "contrasts": [
+        0,
+        1,
+        2,
+        4
+      ]
+    }
+  },
+  "FASN": {
+    "row": {
+      "exposure": "FASN",
+      "nZ": 4,
+      "nW": 32,
+      "Z": "CLDN7;KIT;ACACA;EEF2K",
+      "W": "VHL;GAPDH;CAV1;SERPINE1;IGFBP2;TUBA1B;ANXA1;INPP4B;ASNS;G6PD;ERBB2;TGM2;SQSTM1;TP53;PDCD4;BRAF;KDR;RPS6;PXN;ETS1;FN1;RBM15;MYC;EEF2;AR;ESR1;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;XBP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "7.046498019134628e-58;2.0585359478541875e-32;2.323000895349622e-16;2.6490032684732036e-08;0.014571871633263865",
+      "conditional_pvalues": "1.0471731487729676e-52;4.1845199340871135e-29;6.879670360017375e-13;2.32828337327579e-05",
+      "status": "proxy_dimensions",
+      "r_grid": 5,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 11,
+    "Z": [
+      9,
+      19,
+      28,
+      33
+    ],
+    "W": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      13,
+      17,
+      20,
+      21,
+      22,
+      24,
+      26,
+      27,
+      29,
+      30,
+      31,
+      35,
+      36,
+      38,
+      39,
+      41,
+      42,
+      43,
+      44,
+      45,
+      50,
+      52,
+      54,
+      56,
+      57
+    ],
+    "ready": false
+  },
+  "TFRC": {
+    "row": {
+      "exposure": "TFRC",
+      "nZ": 1,
+      "nW": 18,
+      "Z": "CCNB1",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "2.5253315767727405e-28;0.03996545441416606",
+      "conditional_pvalues": "1.1989282025500642e-18",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 12,
+    "Z": [
+      10
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "INPP4B": {
+    "row": {
+      "exposure": "INPP4B",
+      "nZ": 2,
+      "nW": 18,
+      "Z": "RBM15;PRDX1",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "2.7979376045675164e-43;4.171023553422115e-14;0.001490490246636586",
+      "conditional_pvalues": "4.9524217415975104e-39;6.735583457277576e-10",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 13,
+    "Z": [
+      39,
+      59
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "STAT5A": {
+    "row": {
+      "exposure": "STAT5A",
+      "nZ": 5,
+      "nW": 18,
+      "Z": "IGFBP2;CLDN7;ATM;PRKCA;SYK",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": 0.0033745409995557325,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "4.789556627752785e-49;2.980654901034191e-26;4.197974491182795e-16;8.807295945433187e-08;0.008735733209950358;0.18087445647223757",
+      "conditional_pvalues": "5.566745199950433e-40;3.570315672534432e-24;4.9577929283221477e-14;5.8311978496792074e-05;0.7392495296354401",
+      "status": "conditional_information_dimension",
+      "r_grid": 5,
+      "conditional_root": 0.020861902979917645,
+      "conditional_roots": "0.5775396033628301;0.48775695634684363;0.45108511948779456;0.30336326823626675;0.020861902979917645",
+      "nu_raw": 0.020640532847568744,
+      "conditional_rank_agreement": false,
+      "eligible_designs": 0
+    },
+    "a": 14,
+    "Z": [
+      5,
+      9,
+      34,
+      37,
+      51
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "CASP7": {
+    "row": {
+      "exposure": "CASP7",
+      "nZ": 3,
+      "nW": 12,
+      "Z": "CCNB1;ERBB2;SYK",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 3,
+      "nu": 0.04263828671000245,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "4.96706677405319e-24;1.896511732432902e-12;0.005193760487094615;0.08300752610532144",
+      "conditional_pvalues": "1.7000166252393693e-25;2.0084609957001257e-11;0.013198468324549295",
+      "status": "reported",
+      "r_grid": 3,
+      "conditional_root": 0.153825184463552,
+      "conditional_roots": "0.5256582926069661;0.4202875612024298;0.153825184463552",
+      "nu_raw": 0.041358545378511365,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 15,
+    "Z": [
+      10,
+      21,
+      51
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": true,
+    "P": [
+      [
+        0.5392186154006074,
+        -0.261229180169043,
+        -0.07684559990252708
+      ],
+      [
+        -0.2237459005084701,
+        -0.044420505154911166,
+        0.5929800824079605
+      ],
+      [
+        0.37791970360964044,
+        -0.38203209079999134,
+        0.17145376127524584
+      ],
+      [
+        0.21926539588505592,
+        0.09958220940609386,
+        -0.3769691469864797
+      ],
+      [
+        0.3813324972991913,
+        0.1585064778200935,
+        0.008935967574292825
+      ],
+      [
+        0.08013890476842439,
+        0.20713703118750057,
+        0.02604669075170788
+      ],
+      [
+        0.34648360752398577,
+        -0.3043645715403742,
+        0.34986548896726294
+      ],
+      [
+        -0.16845002116369379,
+        0.08616474736793656,
+        0.1980840914490147
+      ],
+      [
+        -0.06599024507042732,
+        -0.11933254686487017,
+        0.04723215450823358
+      ],
+      [
+        0.3880959820399825,
+        0.7564621171741953,
+        0.19391629488557877
+      ],
+      [
+        -0.0669106360483232,
+        -0.08089498959475866,
+        -0.5115892554233692
+      ],
+      [
+        -0.09255909571105081,
+        0.11317949999130292,
+        0.08371274831565712
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        2,
+        1,
+        3
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "HSPA1A": {
+    "row": {
+      "exposure": "HSPA1A",
+      "nZ": 2,
+      "nW": 18,
+      "Z": "DIABLO;CDH2",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 2,
+      "nu": 0.10667240551133503,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "2.24653585692856e-36;1.3890298331274815e-05;0.17964370352940612",
+      "conditional_pvalues": "4.940499650454687e-28;7.024172922744629e-07",
+      "status": "reported",
+      "r_grid": 2,
+      "conditional_root": 0.3018981216233523,
+      "conditional_roots": "0.5887274194494869;0.3018981216233523",
+      "nu_raw": 0.06065239765282549,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 16,
+    "Z": [
+      32,
+      48
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": true,
+    "P": [
+      [
+        0.2687614391518043,
+        -0.2244824848630635
+      ],
+      [
+        0.2730761712818877,
+        -0.15106877709169325
+      ],
+      [
+        -0.230011414019201,
+        -0.3381036517286024
+      ],
+      [
+        0.19467292032022288,
+        -0.012854193171791182
+      ],
+      [
+        -0.07516127739431232,
+        -0.19420856149118026
+      ],
+      [
+        0.31391389480435605,
+        -0.14044920982542053
+      ],
+      [
+        0.19840336939279782,
+        0.29432542147372404
+      ],
+      [
+        0.4182261853118732,
+        -0.21112332240600634
+      ],
+      [
+        0.1540123491638263,
+        -0.08397711886666623
+      ],
+      [
+        0.13540682179482375,
+        -0.12098234198695013
+      ],
+      [
+        -0.12586872760784687,
+        -0.6276541468032306
+      ],
+      [
+        -0.31260126106451264,
+        -0.11459722561095192
+      ],
+      [
+        0.1374432893605582,
+        -0.13840462326680025
+      ],
+      [
+        -0.09927257609108608,
+        0.2727837993350306
+      ],
+      [
+        -0.050013463960653905,
+        0.07372415661572494
+      ],
+      [
+        0.3235071202871977,
+        -0.13514821338974914
+      ],
+      [
+        0.3511513722644657,
+        0.27771778917733103
+      ],
+      [
+        0.17057906975029064,
+        -0.022307716515578828
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        2,
+        1
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "ASNS": {
+    "row": {
+      "exposure": "ASNS",
+      "nZ": 4,
+      "nW": 12,
+      "Z": "EEF2K;PXN;EIF4EBP1;FOXM1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": 0.009145039597746294,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "2.7081032304292443e-33;8.450264657057306e-14;9.862851637167795e-08;0.02589067505506258;0.17304395549465026",
+      "conditional_pvalues": "5.3806025386981714e-27;1.5261487409564654e-16;4.294128736488357e-08;0.3957700811259076",
+      "status": "conditional_information_dimension",
+      "r_grid": 4,
+      "conditional_root": 0.0530894342705259,
+      "conditional_roots": "0.492095651102448;0.4404250390673833;0.37756506638628207;0.0530894342705259",
+      "nu_raw": 0.024095884012184078,
+      "conditional_rank_agreement": false,
+      "eligible_designs": 0
+    },
+    "a": 17,
+    "Z": [
+      33,
+      35,
+      45,
+      58
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "CDH1": {
+    "row": {
+      "exposure": "CDH1",
+      "nZ": 4,
+      "nW": 12,
+      "Z": "CTNNB1;CLDN7;RAB25;PDCD4",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "8.296211546035525e-67;5.923269607867873e-30;1.704527170057939e-17;5.943335023696243e-08;0.00133554870330359",
+      "conditional_pvalues": "8.453650467646055e-53;1.5506468536327794e-17;5.207659935392383e-08;0.002239612919899353",
+      "status": "proxy_dimensions",
+      "r_grid": 5,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 18,
+    "Z": [
+      7,
+      9,
+      25,
+      27
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "KIT": {
+    "row": {
+      "exposure": "KIT",
+      "nZ": 2,
+      "nW": 18,
+      "Z": "CLDN7;FASN",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "4.430201053494799e-20;1.8088418695477204e-08;4.649145515770897e-05",
+      "conditional_pvalues": "1.1560183389074754e-16;1.9201645350922056e-05",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 19,
+    "Z": [
+      9,
+      11
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "G6PD": {
+    "row": {
+      "exposure": "G6PD",
+      "nZ": 2,
+      "nW": 12,
+      "Z": "GAPDH;PRDX1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 2,
+      "nu": 0.16504066817956892,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "8.620419593198209e-35;2.444383635952183e-08;0.09817993752566309",
+      "conditional_pvalues": "4.309108641197382e-43;1.0646636811086171e-13",
+      "status": "reported",
+      "r_grid": 2,
+      "conditional_root": 0.43941651019188604,
+      "conditional_roots": "0.663040908258734;0.43941651019188604",
+      "nu_raw": 0.08306390909926935,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 20,
+    "Z": [
+      2,
+      59
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": true,
+    "P": [
+      [
+        -0.45903562770616113,
+        -0.011027739374927329
+      ],
+      [
+        -0.08560062772459265,
+        -0.1362120885408458
+      ],
+      [
+        -0.2718242147546528,
+        -0.12673632262508372
+      ],
+      [
+        -0.018945455371052463,
+        0.07511087172728875
+      ],
+      [
+        -0.2296473721502069,
+        -0.41093405169458996
+      ],
+      [
+        0.18399464604417315,
+        0.21578414223425688
+      ],
+      [
+        -0.2733575772793346,
+        -0.24444566455026961
+      ],
+      [
+        0.34128180361924365,
+        0.22310517481090691
+      ],
+      [
+        0.3065109546896765,
+        -0.2538892228689121
+      ],
+      [
+        -0.5611808820094982,
+        0.26458352673136587
+      ],
+      [
+        -0.08414718848842401,
+        0.2851093989736899
+      ],
+      [
+        -0.11818719968370925,
+        0.6472327054923881
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        2,
+        1
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "ERBB2": {
+    "row": {
+      "exposure": "ERBB2",
+      "nZ": 1,
+      "nW": 12,
+      "Z": "CASP7",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "1.6934815554192008e-18;4.557816419775583e-07",
+      "conditional_pvalues": "8.834501026834671e-07",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 21,
+    "Z": [
+      15
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "TGM2": {
+    "row": {
+      "exposure": "TGM2",
+      "nZ": 3,
+      "nW": 12,
+      "Z": "CAV1;SERPINE1;CCNB1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 3,
+      "nu": 0.05990038211652406,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "3.811402381234211e-29;4.822715088202858e-17;4.411487453621628e-05;0.052457077524648406",
+      "conditional_pvalues": "4.077873013673092e-36;1.9470587844394293e-20;0.0013897284343626886",
+      "status": "reported",
+      "r_grid": 3,
+      "conditional_root": 0.19763193478517535,
+      "conditional_roots": "0.5475370974210007;0.5398979251918136;0.19763193478517535",
+      "nu_raw": 0.04160183565480737,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 22,
+    "Z": [
+      3,
+      4,
+      10
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": true,
+    "P": [
+      [
+        0.20082028487319223,
+        -0.19606687125945196,
+        0.2592011671796539
+      ],
+      [
+        0.09449490043814002,
+        0.19851197660403325,
+        -0.21573072857937925
+      ],
+      [
+        0.47143244553873104,
+        -0.3923039382498281,
+        0.09063302496449166
+      ],
+      [
+        -0.3834874238125971,
+        -0.17085972147607836,
+        0.30457884078502895
+      ],
+      [
+        -0.11401694871580755,
+        0.19515331215143342,
+        0.49825610698558764
+      ],
+      [
+        0.35505254751077925,
+        0.1648923392026781,
+        -0.08332665216835579
+      ],
+      [
+        -0.08822511892594093,
+        -0.20708685962554874,
+        0.2869224288066676
+      ],
+      [
+        0.27754465687250146,
+        0.12154494999930601,
+        -0.23587943672236084
+      ],
+      [
+        -0.1332235795365314,
+        -0.0322686323090175,
+        -0.4064750521905032
+      ],
+      [
+        0.3457513043090787,
+        0.6706867345435894,
+        0.2858753324736175
+      ],
+      [
+        0.01490442896462404,
+        -0.1163454958222018,
+        -0.3489374911572622
+      ],
+      [
+        -0.46908342457449803,
+        0.38951851914487723,
+        -0.15304338527050254
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        2,
+        1,
+        0
+      ],
+      "contrasts": [
+        3
+      ]
+    }
+  },
+  "RICTOR": {
+    "row": {
+      "exposure": "RICTOR",
+      "nZ": 5,
+      "nW": 18,
+      "Z": "MYH11;CCNB1;DIABLO;TSC1;XBP1",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 6,
+      "r_joint": 6,
+      "r_signal": 5,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "6.7436605584931735e-90;2.7472348066167637e-49;8.26604465905537e-21;2.154003052721058e-09;0.00016258194210740857;0.012357599691521682",
+      "conditional_pvalues": "1.0397677550319955e-75;8.389533587274219e-37;1.188477555998882e-18;4.2347322203202005e-08;0.001054414810248128",
+      "status": "proxy_dimensions",
+      "r_grid": 6,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 23,
+    "Z": [
+      1,
+      10,
+      32,
+      47,
+      56
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "SQSTM1": {
+    "row": {
+      "exposure": "SQSTM1",
+      "nZ": 2,
+      "nW": 2,
+      "Z": "KIT;RAD51",
+      "W": "TUBA1B;KDR",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 2,
+      "nu": 0.08689017465301918,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.2,
+      "joint_pvalues": "3.222929688268587e-06;0.009251492707553504",
+      "conditional_pvalues": "7.713454753350862e-07;0.003121780937815396",
+      "status": "reported",
+      "r_grid": 2,
+      "conditional_root": 0.18262805696022044,
+      "conditional_roots": "0.30528651291386055;0.18262805696022044",
+      "nu_raw": 0.08689017465301911,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 24,
+    "Z": [
+      19,
+      40
+    ],
+    "W": [
+      6,
+      30
+    ],
+    "ready": true,
+    "P": [
+      [
+        0.2489693065848075,
+        0.9685113754513573
+      ],
+      [
+        0.9685113754513573,
+        -0.2489693065848075
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        1,
+        2
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "RAB25": {
+    "row": {
+      "exposure": "RAB25",
+      "nZ": 2,
+      "nW": 12,
+      "Z": "CLDN7;CDH1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "4.201215796120788e-29;2.516368071790822e-13;3.3911448123980233e-06",
+      "conditional_pvalues": "2.898039706313591e-17;9.1508783684384e-07",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 25,
+    "Z": [
+      9,
+      18
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "TP53": {
+    "row": {
+      "exposure": "TP53",
+      "nZ": 2,
+      "nW": 12,
+      "Z": "ETS1;RAD51",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": 0.005733752877639421,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "6.766981855360006e-24;0.0020224923309981164;0.08630993121519441",
+      "conditional_pvalues": "1.3654809171440416e-22;0.783880833964729",
+      "status": "conditional_information_dimension",
+      "r_grid": 2,
+      "conditional_root": 0.017090326372666047,
+      "conditional_roots": "0.5866944961693625;0.017090326372666047",
+      "nu_raw": 0.03608647090096509,
+      "conditional_rank_agreement": false,
+      "eligible_designs": 0
+    },
+    "a": 26,
+    "Z": [
+      36,
+      40
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "PDCD4": {
+    "row": {
+      "exposure": "PDCD4",
+      "nZ": 2,
+      "nW": 17,
+      "Z": "CDH1;FN1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;CASP7;ERBB2;SQSTM1;KDR;DIABLO;PXN;MYC;EEF2;ESR1;ITGA2;MSH2;PRDX1",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.3,
+      "joint_pvalues": "1.4880416576880854e-25;1.8139206318207633e-07;0.007878019251661168",
+      "conditional_pvalues": "1.5651108248634137e-16;0.005362083887436055",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 27,
+    "Z": [
+      18,
+      38
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      15,
+      21,
+      24,
+      30,
+      32,
+      35,
+      41,
+      42,
+      44,
+      50,
+      57,
+      59
+    ],
+    "ready": false
+  },
+  "ACACA": {
+    "row": {
+      "exposure": "ACACA",
+      "nZ": 3,
+      "nW": 18,
+      "Z": "FASN;ETS1;CDH2",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": 0.004158548154021151,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "1.2540732494821495e-52;1.940911948643274e-19;5.033700526728075e-06;0.05730294862294693",
+      "conditional_pvalues": "3.909991047819659e-45;2.26312404719899e-17;0.7536300667493911",
+      "status": "conditional_information_dimension",
+      "r_grid": 3,
+      "conditional_root": 0.019595018630050032,
+      "conditional_roots": "0.6634208203061791;0.5286756566729204;0.019595018630050032",
+      "nu_raw": 0.03032187786342244,
+      "conditional_rank_agreement": false,
+      "eligible_designs": 0
+    },
+    "a": 28,
+    "Z": [
+      11,
+      36,
+      48
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "BRAF": {
+    "row": {
+      "exposure": "BRAF",
+      "nZ": 3,
+      "nW": 12,
+      "Z": "TSC1;CDH2;EIF4G1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 3,
+      "nu": 0.10849837819220551,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "6.741244522689542e-44;3.574698203758179e-14;3.0250259840370354e-05;0.05277716226723865",
+      "conditional_pvalues": "6.881986731214063e-31;4.0707563025866883e-17;6.805205351986133e-09",
+      "status": "reported",
+      "r_grid": 3,
+      "conditional_root": 0.3503453679161445,
+      "conditional_roots": "0.5230645423236439;0.41850545637287234;0.3503453679161445",
+      "nu_raw": 0.060422773492358084,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 29,
+    "Z": [
+      47,
+      48,
+      52
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": true,
+    "P": [
+      [
+        0.5259293878676415,
+        0.028912296293967334,
+        0.05878924321907623
+      ],
+      [
+        -0.11256786311275047,
+        0.18143736461619078,
+        -0.36264018658952474
+      ],
+      [
+        0.40477956780842594,
+        0.18482158924843528,
+        0.306476909596592
+      ],
+      [
+        0.17272564742277152,
+        -0.0035961852568249172,
+        -0.22914352401594748
+      ],
+      [
+        0.11406419460262601,
+        0.03527057188667912,
+        -0.228539364431553
+      ],
+      [
+        0.11606474121759722,
+        -0.4704281544929429,
+        -0.24320729353656384
+      ],
+      [
+        0.34769283127156814,
+        -0.013671762778139002,
+        -0.23635596968256262
+      ],
+      [
+        -0.22297431212138052,
+        -0.3796078844213453,
+        0.0015363584000577385
+      ],
+      [
+        -0.35413034389796283,
+        0.4229691304433481,
+        -0.513894882960331
+      ],
+      [
+        0.44103876714038637,
+        0.1088969619080581,
+        -0.4599727517517504
+      ],
+      [
+        0.004220342713598335,
+        0.5106935646109575,
+        0.2548930162207234
+      ],
+      [
+        0.003909995919223936,
+        0.3371461613223702,
+        0.1035432417246769
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        1,
+        2,
+        3
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "KDR": {
+    "row": {
+      "exposure": "KDR",
+      "nZ": 0,
+      "nW": 0,
+      "Z": "",
+      "W": "",
+      "r_pca": 1,
+      "r_bridge": 0,
+      "r_joint": 0,
+      "r_signal": 0,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "status": "no_shared_direction",
+      "r_grid": 0,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 30,
+    "Z": [],
+    "W": [],
+    "ready": false
+  },
+  "RPS6": {
+    "row": {
+      "exposure": "RPS6",
+      "nZ": 1,
+      "nW": 18,
+      "Z": "RBM15",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "2.8609223025423884e-30;1.3538181600692076e-05",
+      "conditional_pvalues": "6.1333836756017055e-25",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 31,
+    "Z": [
+      39
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "DIABLO": {
+    "row": {
+      "exposure": "DIABLO",
+      "nZ": 3,
+      "nW": 18,
+      "Z": "HSPA1A;RICTOR;SQSTM1",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "3.532247573144323e-29;1.0996015409861152e-10;3.749950398839201e-06;0.006090654822618944",
+      "conditional_pvalues": "7.532536831036336e-25;3.6426030756490694e-06;0.004590930154326538",
+      "status": "proxy_dimensions",
+      "r_grid": 4,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 32,
+    "Z": [
+      16,
+      23,
+      24
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "EEF2K": {
+    "row": {
+      "exposure": "EEF2K",
+      "nZ": 3,
+      "nW": 12,
+      "Z": "ASNS;RBM15;RAD51",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "4.134989252793032e-43;2.6925560056732094e-22;3.204285573561779e-12;5.1603873530441815e-05",
+      "conditional_pvalues": "3.4475249070012054e-35;2.947699844711596e-17;1.376071394786466e-09",
+      "status": "proxy_dimensions",
+      "r_grid": 4,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 33,
+    "Z": [
+      17,
+      39,
+      40
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "ATM": {
+    "row": {
+      "exposure": "ATM",
+      "nZ": 2,
+      "nW": 18,
+      "Z": "STAT5A;PREX1",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "6.953720379208733e-41;3.689401170665844e-16;0.00012931594463510442",
+      "conditional_pvalues": "1.8134316918769257e-27;1.0656490385929186e-06",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 34,
+    "Z": [
+      14,
+      46
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "PXN": {
+    "row": {
+      "exposure": "PXN",
+      "nZ": 1,
+      "nW": 12,
+      "Z": "ASNS",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "1.2150889607508309e-20;0.00187065726725424",
+      "conditional_pvalues": "1.7505719967223712e-09",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 35,
+    "Z": [
+      17
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "ETS1": {
+    "row": {
+      "exposure": "ETS1",
+      "nZ": 3,
+      "nW": 18,
+      "Z": "TP53;ACACA;XBP1",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "2.220400735204769e-50;7.586784018356237e-20;1.9569334710029851e-07;0.016244075167249815",
+      "conditional_pvalues": "4.4203398898042455e-37;2.1458251620730568e-07;0.023716545033199157",
+      "status": "proxy_dimensions",
+      "r_grid": 4,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 36,
+    "Z": [
+      26,
+      28,
+      56
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "PRKCA": {
+    "row": {
+      "exposure": "PRKCA",
+      "nZ": 4,
+      "nW": 12,
+      "Z": "STAT5A;PREX1;TSC1;BCL2L11",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "6.304453560432119e-42;9.619491235757235e-19;1.0082295232147304e-09;0.0002694496808370402;0.01850466664932673",
+      "conditional_pvalues": "1.1315365869060039e-28;2.7322556547587666e-14;9.751139253167742e-07;0.0011346350253396923",
+      "status": "proxy_dimensions",
+      "r_grid": 5,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 37,
+    "Z": [
+      14,
+      46,
+      47,
+      53
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "FN1": {
+    "row": {
+      "exposure": "FN1",
+      "nZ": 2,
+      "nW": 56,
+      "Z": "SERPINE1;PDCD4",
+      "W": "VHL;MYH11;GAPDH;CAV1;IGFBP2;TUBA1B;CTNNB1;ANXA1;CLDN7;CCNB1;FASN;TFRC;INPP4B;STAT5A;CASP7;HSPA1A;ASNS;CDH1;KIT;G6PD;ERBB2;TGM2;RICTOR;SQSTM1;RAB25;TP53;ACACA;BRAF;KDR;RPS6;DIABLO;EEF2K;ATM;PXN;ETS1;PRKCA;RBM15;RAD51;MYC;EEF2;AR;ESR1;EIF4EBP1;PREX1;TSC1;CDH2;BAK1;SYK;EIF4G1;BCL2L11;TP53BP1;CCNE1;XBP1;MSH2;FOXM1;PRDX1",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "4.457459763551202e-50;2.607487847978099e-18;2.6933643292304102e-08",
+      "conditional_pvalues": "6.832521503053706e-26;3.62744162138006e-12",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 38,
+    "Z": [
+      4,
+      27
+    ],
+    "W": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "RBM15": {
+    "row": {
+      "exposure": "RBM15",
+      "nZ": 3,
+      "nW": 12,
+      "Z": "RPS6;EEF2K;TP53BP1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "4.432063462512168e-27;6.6787646403719504e-12;1.1145379211584916e-06;0.000887255005852525",
+      "conditional_pvalues": "1.2799433804974663e-17;1.3284357143366456e-07;0.00048502750057940433",
+      "status": "proxy_dimensions",
+      "r_grid": 4,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 39,
+    "Z": [
+      31,
+      33,
+      54
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "RAD51": {
+    "row": {
+      "exposure": "RAD51",
+      "nZ": 5,
+      "nW": 12,
+      "Z": "TP53;EEF2K;PREX1;XBP1;FOXM1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": 0.022460946909174967,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "2.0252735444864878e-38;1.0650115008088653e-16;1.9656895016254916e-05;0.025167517337527916;0.2778183847712008;0.7413485501052406",
+      "conditional_pvalues": "1.1498100415588715e-29;3.0542457506654443e-14;6.610265296340692e-07;0.1585685445358047",
+      "status": "conditional_information_dimension",
+      "r_grid": 4,
+      "conditional_root": 0.11974916977163112,
+      "conditional_roots": "0.5666165715420226;0.42913335836966593;0.3604664163635329;0.11974916977163112",
+      "nu_raw": 0.030117498613886497,
+      "conditional_rank_agreement": false,
+      "eligible_designs": 0
+    },
+    "a": 40,
+    "Z": [
+      26,
+      33,
+      46,
+      56,
+      58
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "MYC": {
+    "row": {
+      "exposure": "MYC",
+      "nZ": 1,
+      "nW": 58,
+      "Z": "GAPDH",
+      "W": "VHL;MYH11;CAV1;SERPINE1;IGFBP2;TUBA1B;CTNNB1;ANXA1;CLDN7;CCNB1;FASN;TFRC;INPP4B;STAT5A;CASP7;HSPA1A;ASNS;CDH1;KIT;G6PD;ERBB2;TGM2;RICTOR;SQSTM1;RAB25;TP53;PDCD4;ACACA;BRAF;KDR;RPS6;DIABLO;EEF2K;ATM;PXN;ETS1;PRKCA;FN1;RBM15;RAD51;EEF2;AR;ESR1;EIF4EBP1;PREX1;TSC1;CDH2;BAK1;ITGA2;SYK;EIF4G1;BCL2L11;TP53BP1;CCNE1;XBP1;MSH2;FOXM1;PRDX1",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "4.691038650144843e-34;1.3592199332947216e-05",
+      "conditional_pvalues": "1.0888304339405836e-28",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 41,
+    "Z": [
+      2
+    ],
+    "W": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "EEF2": {
+    "row": {
+      "exposure": "EEF2",
+      "nZ": 1,
+      "nW": 2,
+      "Z": "PRDX1",
+      "W": "TUBA1B;KDR",
+      "r_pca": 1,
+      "r_bridge": 1,
+      "r_joint": 1,
+      "r_signal": 1,
+      "nu": 0.27934127526766733,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.2,
+      "joint_pvalues": "5.574580874713576e-09;0.3793668050421414",
+      "conditional_pvalues": "4.58889300494639e-06",
+      "status": "reported",
+      "r_grid": 1,
+      "conditional_root": 0.27934127526766733,
+      "conditional_roots": "0.27934127526766733",
+      "nu_raw": 0.2131746472914739,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 42,
+    "Z": [
+      59
+    ],
+    "W": [
+      6,
+      30
+    ],
+    "ready": true,
+    "P": [
+      [
+        -0.6409983556125965
+      ],
+      [
+        -0.7675422516721455
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        1
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "AR": {
+    "row": {
+      "exposure": "AR",
+      "nZ": 3,
+      "nW": 12,
+      "Z": "GAPDH;PREX1;FOXM1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "5.693474285034797e-33;3.3007187004042e-15;3.2908298389937326e-06;0.027020558914063377",
+      "conditional_pvalues": "9.989333561426079e-26;1.3734910019301339e-14;1.6003210916063056e-05",
+      "status": "proxy_dimensions",
+      "r_grid": 4,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 43,
+    "Z": [
+      2,
+      46,
+      58
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "ESR1": {
+    "row": {
+      "exposure": "ESR1",
+      "nZ": 2,
+      "nW": 18,
+      "Z": "ANXA1;XBP1",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "3.0670948569404115e-21;1.6460288964291884e-07;0.03154668108482172",
+      "conditional_pvalues": "2.887968748597795e-17;1.6963939854849332e-07",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 44,
+    "Z": [
+      8,
+      56
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "EIF4EBP1": {
+    "row": {
+      "exposure": "EIF4EBP1",
+      "nZ": 3,
+      "nW": 12,
+      "Z": "CAV1;CTNNB1;ASNS",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "1.773820653527398e-51;7.40143398386276e-21;0.00021019746118221792;0.01307321138725461",
+      "conditional_pvalues": "1.628438194355201e-40;1.9940977846155286e-13;0.015027490631103476",
+      "status": "proxy_dimensions",
+      "r_grid": 4,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 45,
+    "Z": [
+      3,
+      7,
+      17
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "PREX1": {
+    "row": {
+      "exposure": "PREX1",
+      "nZ": 5,
+      "nW": 12,
+      "Z": "ATM;PRKCA;RAD51;AR;EIF4G1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 6,
+      "r_joint": 6,
+      "r_signal": 5,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "1.4083302745373723e-56;1.0906038087931585e-25;9.277411340220864e-10;2.021122111230241e-07;2.6413476594315787e-05;0.003149991653383941",
+      "conditional_pvalues": "5.92296123077065e-47;2.6661815980006076e-16;6.751577688838608e-07;5.400191293838305e-05;0.0056326792516546605",
+      "status": "proxy_dimensions",
+      "r_grid": 6,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 46,
+    "Z": [
+      34,
+      37,
+      40,
+      43,
+      52
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "TSC1": {
+    "row": {
+      "exposure": "TSC1",
+      "nZ": 6,
+      "nW": 12,
+      "Z": "STAT5A;RICTOR;BRAF;PRKCA;CDH2;PRDX1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 6,
+      "r_joint": 6,
+      "r_signal": 6,
+      "nu": 0.029578972115915522,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "1.252540212102989e-65;1.1395165798125862e-35;5.522898461855476e-21;3.765109776990691e-12;4.069350189771199e-06;0.018684594637695236;0.9212626905595607",
+      "conditional_pvalues": "3.3795356462759973e-57;3.848527672232909e-39;4.454675096900509e-26;8.936694088119294e-17;2.062632560691047e-09;5.320889277677823e-06",
+      "status": "reported",
+      "r_grid": 6,
+      "conditional_root": 0.28013896490265167,
+      "conditional_roots": "0.6142028076302845;0.5451672993842971;0.47581958890411885;0.4226897147400644;0.3102247974886578;0.28013896490265167",
+      "nu_raw": 0.022973510477452656,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 47,
+    "Z": [
+      14,
+      23,
+      29,
+      37,
+      48,
+      59
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": true,
+    "P": [
+      [
+        0.5093079320156103,
+        0.07791331873418092,
+        -0.09233805996706605,
+        -0.08860916884523583,
+        0.05623329690955306,
+        -0.01765051312758072
+      ],
+      [
+        -0.13128665757940972,
+        -0.20606896058629173,
+        -0.5161593042476549,
+        0.05775646797147656,
+        -0.33547659903847515,
+        -0.3721581057805778
+      ],
+      [
+        0.4027432941389301,
+        -0.02893682907991836,
+        -0.06757000220313686,
+        -0.36891746540664433,
+        -0.06252159530626661,
+        -0.2869738155094804
+      ],
+      [
+        0.15456222535706216,
+        0.050213920747331574,
+        0.4050026500042155,
+        0.05962765612522937,
+        -0.06092454735165892,
+        0.18070994542697097
+      ],
+      [
+        0.17159932487166263,
+        -0.10368346835542573,
+        -0.16260672361216771,
+        0.47089042078335136,
+        -0.06185934519399243,
+        0.5243180659863725
+      ],
+      [
+        -0.04346895711477293,
+        0.5953038639253133,
+        0.19950458187893502,
+        0.05408889895034484,
+        0.09278416330136004,
+        -0.4128656823581253
+      ],
+      [
+        0.30948287127513363,
+        0.009784492436205133,
+        -0.35200964532028767,
+        -0.09511133467980233,
+        -0.3874860642458287,
+        0.01781405358941411
+      ],
+      [
+        -0.3217249239439477,
+        0.4344408233367738,
+        0.045191837546936064,
+        -6.812618927706793e-05,
+        -0.5984149079710999,
+        0.06701164675649071
+      ],
+      [
+        -0.29837704726120495,
+        -0.4203367980275483,
+        0.13853732182425135,
+        0.3677808232198015,
+        -0.0787670990731385,
+        -0.3468723381380535
+      ],
+      [
+        0.4511280855332496,
+        0.09992055138723994,
+        0.19988957515209443,
+        0.615318563749163,
+        -0.22390247485120246,
+        -0.27761745782487834
+      ],
+      [
+        0.1127747023702147,
+        -0.3933522316123285,
+        0.3461536828778979,
+        -0.12275561559426083,
+        0.016619469504087388,
+        -0.2576217302650408
+      ],
+      [
+        0.037304198611004646,
+        -0.22965557812586465,
+        0.4304572944152727,
+        -0.2941069090714085,
+        -0.5471548272152784,
+        0.17955643533319193
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        3,
+        6,
+        4,
+        2,
+        5,
+        1
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "CDH2": {
+    "row": {
+      "exposure": "CDH2",
+      "nZ": 5,
+      "nW": 18,
+      "Z": "HSPA1A;ACACA;AR;TSC1;BAK1",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": 0.011526846528140648,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "1.1145167460478804e-68;1.783823584074707e-24;4.887220771038768e-12;7.48730881037677e-06;0.0047419321345246014;0.1195286479117278",
+      "conditional_pvalues": "1.3413528556361404e-49;9.227646448303315e-28;4.7131702947227794e-11;1.2006851749602736e-05;0.09969432079567586",
+      "status": "conditional_information_dimension",
+      "r_grid": 5,
+      "conditional_root": 0.10292471141637066,
+      "conditional_roots": "0.6387927882171579;0.5753402882548794;0.3787639372752495;0.30802967175263285;0.10292471141637066",
+      "nu_raw": 0.019112839341179157,
+      "conditional_rank_agreement": false,
+      "eligible_designs": 0
+    },
+    "a": 48,
+    "Z": [
+      16,
+      28,
+      43,
+      47,
+      49
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "BAK1": {
+    "row": {
+      "exposure": "BAK1",
+      "nZ": 1,
+      "nW": 18,
+      "Z": "CDH2",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "1.3094568872503276e-37;7.943441111410585e-05",
+      "conditional_pvalues": "2.7433079780143876e-31",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 49,
+    "Z": [
+      48
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "ITGA2": {
+    "row": {
+      "exposure": "ITGA2",
+      "nZ": 1,
+      "nW": 56,
+      "Z": "SERPINE1",
+      "W": "VHL;MYH11;GAPDH;CAV1;IGFBP2;TUBA1B;CTNNB1;ANXA1;CLDN7;CCNB1;FASN;TFRC;INPP4B;STAT5A;CASP7;HSPA1A;ASNS;CDH1;KIT;G6PD;ERBB2;TGM2;RICTOR;SQSTM1;RAB25;TP53;ACACA;BRAF;KDR;RPS6;DIABLO;EEF2K;ATM;PXN;ETS1;PRKCA;RBM15;RAD51;MYC;EEF2;AR;ESR1;EIF4EBP1;PREX1;TSC1;CDH2;BAK1;SYK;EIF4G1;BCL2L11;TP53BP1;CCNE1;XBP1;MSH2;FOXM1;PRDX1",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "3.291902732824082e-41;9.815244272576777e-16",
+      "conditional_pvalues": "2.0171618126263318e-21",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 50,
+    "Z": [
+      4
+    ],
+    "W": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "SYK": {
+    "row": {
+      "exposure": "SYK",
+      "nZ": 2,
+      "nW": 32,
+      "Z": "CLDN7;STAT5A",
+      "W": "VHL;GAPDH;CAV1;SERPINE1;IGFBP2;TUBA1B;ANXA1;INPP4B;ASNS;G6PD;ERBB2;TGM2;SQSTM1;TP53;PDCD4;BRAF;KDR;RPS6;PXN;ETS1;FN1;RBM15;MYC;EEF2;AR;ESR1;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;XBP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "3.1204703830840413e-51;2.67783326662812e-17;4.7780056387138764e-08",
+      "conditional_pvalues": "2.9246076093310786e-43;1.4476782294957393e-10",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 51,
+    "Z": [
+      9,
+      14
+    ],
+    "W": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      13,
+      17,
+      20,
+      21,
+      22,
+      24,
+      26,
+      27,
+      29,
+      30,
+      31,
+      35,
+      36,
+      38,
+      39,
+      41,
+      42,
+      43,
+      44,
+      45,
+      50,
+      52,
+      54,
+      56,
+      57
+    ],
+    "ready": false
+  },
+  "EIF4G1": {
+    "row": {
+      "exposure": "EIF4G1",
+      "nZ": 3,
+      "nW": 12,
+      "Z": "BRAF;PREX1;TP53BP1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 3,
+      "nu": 0.04099029968973522,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "4.052459750940276e-42;8.967851133985974e-16;1.587828759636337e-05;0.08005704183078553",
+      "conditional_pvalues": "3.927907212180599e-31;1.601229976282179e-14;0.010440692275509481",
+      "status": "reported",
+      "r_grid": 3,
+      "conditional_root": 0.15888238737767896,
+      "conditional_roots": "0.5573648404215121;0.4704298700976844;0.15888238737767896",
+      "nu_raw": 0.034443909565038046,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 52,
+    "Z": [
+      29,
+      46,
+      54
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": true,
+    "P": [
+      [
+        0.49642231653167107,
+        -0.0009444441705008847,
+        -0.13972777013213844
+      ],
+      [
+        -0.1182087092261005,
+        -0.3499213687562015,
+        -0.0277201841865441
+      ],
+      [
+        0.37187778434656527,
+        -0.2331954155094992,
+        0.4596293508569324
+      ],
+      [
+        0.18310716369342644,
+        0.2780015426828748,
+        -0.36365067040918453
+      ],
+      [
+        0.07698363637298819,
+        -0.278775785891866,
+        -0.28460586414797373
+      ],
+      [
+        0.1791143556050398,
+        -0.11812800374760292,
+        -0.3150910561174615
+      ],
+      [
+        0.3148417625236453,
+        -0.17638074776363258,
+        -0.49084546148462094
+      ],
+      [
+        -0.20823067391380537,
+        -0.4851222522122446,
+        0.1280704470001073
+      ],
+      [
+        -0.3414986685540346,
+        -0.014690096037631009,
+        -0.3833341369909857
+      ],
+      [
+        0.5188631800037152,
+        -2.790771098987177e-05,
+        0.16986089206272237
+      ],
+      [
+        -0.001905148667567795,
+        0.536936337270539,
+        0.13553117959217337
+      ],
+      [
+        -0.03784855884000383,
+        0.3150378109690847,
+        -0.06652916278028996
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        1,
+        2,
+        3
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "BCL2L11": {
+    "row": {
+      "exposure": "BCL2L11",
+      "nZ": 2,
+      "nW": 18,
+      "Z": "PRKCA;TSC1",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "1.81942253284105e-55;4.352333115673173e-19;1.811627880122209e-08",
+      "conditional_pvalues": "2.0819908149485994e-44;3.5270247979812615e-08",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 53,
+    "Z": [
+      37,
+      47
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "TP53BP1": {
+    "row": {
+      "exposure": "TP53BP1",
+      "nZ": 2,
+      "nW": 12,
+      "Z": "RBM15;EIF4G1",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;SQSTM1;KDR;DIABLO;MYC;EEF2;ESR1;ITGA2",
+      "r_pca": 1,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "5.22008042871286e-30;1.9010032835742995e-11;4.842524078881776e-05",
+      "conditional_pvalues": "1.2662446376542872e-15;1.0691974881692745e-05",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 54,
+    "Z": [
+      39,
+      52
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      24,
+      30,
+      32,
+      41,
+      42,
+      44,
+      50
+    ],
+    "ready": false
+  },
+  "CCNE1": {
+    "row": {
+      "exposure": "CCNE1",
+      "nZ": 1,
+      "nW": 18,
+      "Z": "CCNB1",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "1.7452520213885573e-33;1.3421342493970394e-05",
+      "conditional_pvalues": "2.291444146205155e-22",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 55,
+    "Z": [
+      10
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  },
+  "XBP1": {
+    "row": {
+      "exposure": "XBP1",
+      "nZ": 3,
+      "nW": 17,
+      "Z": "RICTOR;ETS1;RAD51",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;CASP7;ERBB2;SQSTM1;KDR;DIABLO;PXN;MYC;EEF2;ESR1;ITGA2;MSH2;PRDX1",
+      "r_pca": 1,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.3,
+      "joint_pvalues": "4.793142878583025e-59;1.4579923949629869e-21;7.59335032814154e-05;0.02497532381076071",
+      "conditional_pvalues": "7.801124589610371e-44;1.4068125045622683e-08;0.00034585842084583127",
+      "status": "proxy_dimensions",
+      "r_grid": 4,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 56,
+    "Z": [
+      23,
+      36,
+      40
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      15,
+      21,
+      24,
+      30,
+      32,
+      35,
+      41,
+      42,
+      44,
+      50,
+      57,
+      59
+    ],
+    "ready": false
+  },
+  "MSH2": {
+    "row": {
+      "exposure": "MSH2",
+      "nZ": 2,
+      "nW": 2,
+      "Z": "CCNB1;BRAF",
+      "W": "TUBA1B;KDR",
+      "r_pca": 1,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": 0.04872071198882338,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.2,
+      "joint_pvalues": "4.064602572571747e-12;0.009549290737989812",
+      "conditional_pvalues": "1.8507811289394039e-09;0.061562142384034346",
+      "status": "conditional_information_dimension",
+      "r_grid": 2,
+      "conditional_root": 0.1161047940343465,
+      "conditional_roots": "0.39258764498166465;0.1161047940343465",
+      "nu_raw": 0.048720711988823336,
+      "conditional_rank_agreement": false,
+      "eligible_designs": 0
+    },
+    "a": 57,
+    "Z": [
+      10,
+      29
+    ],
+    "W": [
+      6,
+      30
+    ],
+    "ready": false
+  },
+  "FOXM1": {
+    "row": {
+      "exposure": "FOXM1",
+      "nZ": 5,
+      "nW": 17,
+      "Z": "MYH11;CCNB1;ASNS;RAD51;AR",
+      "W": "VHL;IGFBP2;TUBA1B;ANXA1;INPP4B;CASP7;ERBB2;SQSTM1;KDR;DIABLO;PXN;MYC;EEF2;ESR1;ITGA2;MSH2;PRDX1",
+      "r_pca": 1,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": 0.004974448471841405,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.3,
+      "joint_pvalues": "1.68541717444954e-63;1.0300636780413462e-28;9.843226938121291e-14;7.622415540511239e-07;0.013179897759792404;0.19177285617204742",
+      "conditional_pvalues": "3.510642603022455e-50;7.119019898039918e-31;3.6679388266119417e-13;2.9542310655822196e-05;0.51447259128195",
+      "status": "conditional_information_dimension",
+      "r_grid": 5,
+      "conditional_root": 0.0408459204170684,
+      "conditional_roots": "0.61473148531552;0.5861737704697698;0.4301008114236418;0.3100531246118455;0.0408459204170684",
+      "nu_raw": 0.018242060652953227,
+      "conditional_rank_agreement": false,
+      "eligible_designs": 0
+    },
+    "a": 58,
+    "Z": [
+      1,
+      10,
+      17,
+      40,
+      43
+    ],
+    "W": [
+      0,
+      5,
+      6,
+      8,
+      13,
+      15,
+      21,
+      24,
+      30,
+      32,
+      35,
+      41,
+      42,
+      44,
+      50,
+      57,
+      59
+    ],
+    "ready": false
+  },
+  "PRDX1": {
+    "row": {
+      "exposure": "PRDX1",
+      "nZ": 3,
+      "nW": 18,
+      "Z": "INPP4B;G6PD;TSC1",
+      "W": "VHL;GAPDH;SERPINE1;TUBA1B;ASNS;ERBB2;PDCD4;BRAF;KDR;PXN;FN1;MYC;EEF2;EIF4EBP1;ITGA2;EIF4G1;TP53BP1;MSH2",
+      "r_pca": 1,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "2.1537768167618684e-55;2.074930212253922e-18;6.055035029112526e-08;0.010121070085158093",
+      "conditional_pvalues": "2.0313160271337126e-40;5.059043704470282e-10;0.0001808031755316106",
+      "status": "proxy_dimensions",
+      "r_grid": 4,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 59,
+    "Z": [
+      13,
+      20,
+      47
+    ],
+    "W": [
+      0,
+      2,
+      4,
+      6,
+      17,
+      21,
+      27,
+      29,
+      30,
+      35,
+      38,
+      41,
+      42,
+      45,
+      50,
+      52,
+      54,
+      57
+    ],
+    "ready": false
+  }
+}

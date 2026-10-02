@@ -56,8 +56,8 @@ def _panel_label(ax, s, x=-0.18, y=1.04):
 def fig_schematic():
     """Data representation, network construction and exposure-specific estimation.
 
-    ODE fitting uses both power curves and selected supports. Linear and Cox
-    outcome stages share fitted, reduced-rank proxies, with distinct targets.
+    ODE fitting uses both power curves and selected supports. Complete-data and
+    inverse-censoring-weighted outcomes enter the same reduced mean bridge.
     All lettering is at least 8 pt at the 6.9 in publication width.
     """
     set_style()
@@ -100,7 +100,7 @@ def fig_schematic():
     step(21, 'Niche ordering', ['$s_k=\\sum_j X_{kj}$', 'sort patient rows'])
     step(41, 'Power curves', ['$c_j(s)=a_j s^{b_j}$'])
     step(61, 'Deviations', ['$U=X-C(s)$', 'centre columns: $U_c$'])
-    step(81, 'Latent space', ['$U_c\\approx\\widehat F\\widehat\\Lambda^\\top$', '$\\widehat r$; residual $\\rho_i$'])
+    step(81, 'Latent space', ['$U_c\\approx\\widehat F\\widehat\\Lambda^\\top$', '$\\widehat r_{\\mathrm{PCA}}$; residual $\\rho_i$'])
     for x in (19, 39, 59, 79):
         arrow((x, 86.5), (x + 2, 86.5))
 
@@ -130,46 +130,45 @@ def fig_schematic():
     label(8.5, 33.5, '$A=X_a$', color=ORANGE)
     frame(20, 29, 29, 14)
     label(34.5, 40, 'Exposure-specific proxies', color=INK, bold=True)
-    label(34.5, 35.8, '$Z_A$: neighbours of $A$', color=BLUE)
+    label(34.5, 35.8, '$Z_A$: eligible neighbours of $A$', color=BLUE)
     label(34.5, 31.5, '$W_A$: separate components', color=AQUA)
     arrow((16, 36), (20, 36), ORANGE)
     arrow((31, 58), (31, 43))
-    label(29.5, 49, '$G$: undirected', ha='right')
+    label(29.5, 49, r'$G_\alpha$: support grid', ha='right')
     routed([(90, 81), (90, 77.5), (101.5, 77.5),
             (101.5, 48), (42, 48), (42, 43)], MUTED)
-    label(70, 49.5, '$\\widehat\\Lambda,\\widehat r$: loading and dimension screen', color=MUTED)
+    label(70, 49.5, '$\\widehat\\Lambda$: loading eligibility', color=MUTED)
 
     frame(55, 29, 44, 14)
-    label(77, 40, 'Common first stage', color=INK, bold=True)
-    label(77, 35.8, '$\\widehat W=\\widehat E[W_A\\mid A,Z_A,C]$')
-    label(77, 31.5, 'reduced-rank projection: $R=\\widehat W P$')
+    label(77, 40, 'Grid information and first stage', color=INK, bold=True)
+    label(77, 35.8, '$\\widehat r_* = \\max_\\alpha \\widehat r_{\\mathrm{joint},\\alpha}$; select full coverage')
+    label(77, 31.5, 'LS first stage $\\widehat W$; $R=\\widehat W P$ has $\\widehat r_*$ directions')
     arrow((49, 36), (55, 36))
     label(77, 45.5, 'Measured covariates $C$')
     arrow((77, 44.2), (77, 43))
 
     # First-stage output branches to distinct linear and survival outcome fits.
-    ax.plot([77, 77, 43, 83], [29, 25.5, 25.5, 25.5], color=INK2, lw=0.8)
-    arrow((43, 25.5), (43, 22))
-    arrow((83, 25.5), (83, 22))
+    routed([(77,29),(77,25.5),(43,25.5),(43,22)])
     frame(25, 1, 36, 21)
     label(43, 19, 'Linear outcome bridge', color=INK, bold=True)
     label(43, 14.8, '$E[Y\\mid A,Z_A,C]$')
     label(43, 11, '$=E[h(W_A,A,C)\\mid A,Z_A,C]$')
-    label(43, 6.8, '$Y$ on $(A,R,C)$')
-    label(43, 3, 'Total effect $\\widehat\\tau_A$', color=ORANGE, bold=True)
+    label(43, 6.8, '$Y$ or $V_L$ on $(A,R,C)$')
+    label(43, 3, 'Total intervention contrast $\\widehat\\tau_{A,L}$', color=ORANGE, bold=True)
     frame(66, 1, 34, 21)
-    label(83, 19, 'Cox second stage', color=INK, bold=True)
-    label(83, 14.8, 'time $T$, event indicator $D$')
-    label(83, 10.6, 'Cox regression on $(A,R,C)$')
-    label(83, 5.3, 'Cox score parameter $\\widehat\\beta_A$', color=ORANGE, bold=True)
+    label(83, 19, 'Censored clinical outcomes', color=INK, bold=True)
+    label(83, 14.8, 'follow-up $O$, event indicator $D$')
+    label(83, 10.6, 'fit $\\widehat G(t\\mid A,C)$; IPCW $V_L$')
+    label(83, 5.3, 'RMST and survival probability', color=ORANGE, bold=True)
+    arrow((66,11),(61,11),AQUA)
     frame(1, 5, 19, 16)
     label(10.5, 18, 'Clinical outcomes', color=INK, bold=True)
     label(10.5, 13.5, '$Y$ (linear)')
-    label(10.5, 9, '$(T,D)$ (survival)')
+    label(10.5, 9, '$(O,D)$ (survival)')
     arrow((20, 14), (25, 14))
     routed([(10.5, 5), (10.5, -3), (83, -3), (83, 1)])
-    label(46.5, -1.2, 'survival outcome $(T,D)$')
-    label(50.5, -8, 'Report estimates and intervals when proxy dimensions and $\\nu\\geq0.05$ pass.')
+    label(46.5, -1.2, 'survival outcome $(O,D)$')
+    label(50.5, -8, 'Report: matching proxy ranks, $\\nu\\geq0.05$, censoring positivity; patient bootstrap.')
     fig.subplots_adjust(left=0.01, right=0.99, bottom=0.01, top=0.99)
     return fig
 
@@ -242,7 +241,7 @@ def fig_network(res, exposure, seed=7):
             r_ = role[n]; big = r_ != 'other'
             ax.scatter(*pos[n], s=(100 if big else 26) * node_scale, color=ROLE[r_], ec=INK if big else PAPER,
                        lw=0.6 if big else 0.4, zorder=3)
-        for n in rn:
+        for n in (rn if label_roles else []):
             # label on the side facing away from the nearest other role node
             others_ = [m for m in rn if m != n]
             if others_:
@@ -257,7 +256,7 @@ def fig_network(res, exposure, seed=7):
                         fontsize=8, fontweight='bold', color=INK, zorder=4,
                         bbox=dict(boxstyle='round,pad=0.12', fc=PAPER, ec='none', alpha=0.75))
 
-    fig = plt.figure(figsize=(DOUBLE, 4.4))
+    fig = plt.figure(figsize=(DOUBLE, max(4.4,.4*len(others)+1)))
     gs = GridSpec(max(len(others), 1), 2, figure=fig, width_ratios=[2.6, 1], wspace=0.04, hspace=0.12)
     # ---- exposure component, exposure pinned at the centre
     axL = fig.add_subplot(gs[:, 0]); axL.axis('off')
@@ -290,7 +289,14 @@ def fig_network(res, exposure, seed=7):
         p = nx.spring_layout(sg, seed=seed, k=0.9, iterations=200) if len(g) > 1 else {g[0]: np.zeros(2)}
         arr = np.array(list(p.values())); span = max((arr.max(0) - arr.min(0)).max(), 1e-9)
         p = {n: (xy - arr.mean(0)) / span * 1.5 for n, xy in p.items()}
-        draw(ax, g, p, node_scale=0.85)
+        if len(g)==1:
+            p={g[0]:np.array([-.6,0.])}
+        elif len(g)<=4:
+            p={node:np.array([x,.3]) for node,x in zip(g,np.linspace(-.72,.72,len(g)))}
+        draw(ax, g, p, label_roles=False, node_scale=0.85)
+        for node in g:
+            ax.annotate(node,p[node],xytext=(12,0) if len(g)==1 else (0,-5),textcoords='offset points',
+                        ha='left' if len(g)==1 else 'center',va='center' if len(g)==1 else 'top',fontsize=8,fontweight='bold')
         ax.set_xlim(-1.1, 1.1); ax.set_ylim(-1.0, 1.0)
         ax.add_patch(plt.Rectangle((-1.08, -0.98), 2.16, 1.96, fc='#faf9f6', ec='#ebe9e3', lw=0.5, zorder=0))
         if i_ == 0: ax.set_title('other components', fontsize=8, loc='left', color=INK2)
@@ -552,10 +558,11 @@ def _draw_planes(ax, res, exposure, seed=7, label_others='connected', w_in=DOUBL
         for n, (u, v) in zip(nodes, Q / np.array([SX, SY])): pos[n] = to_plane('P', u, v)
     prow = {}
     def half_grid(nodes, side):                     # compact: two rows per half, labels above / below by row
-        k = len(nodes); ncol = int(np.ceil(k / 2)) if k > 1 else 1
+        k = len(nodes); nrow=4 if k>16 else 2;ncol=int(np.ceil(k/nrow)) if k>1 else 1
         for i, n in enumerate(nodes):
-            r_, c_ = (i % 2, i // 2) if k > 1 else (0, 0)
-            u = side * (0.18 + 0.7 * (c_ + 0.5) / ncol); v = (0.45 if r_ == 0 else -0.45) if k > 1 else 0.0
+            r_, c_ = (i % nrow, i // nrow) if k > 1 else (0, 0)
+            u = side * (0.18 + 0.7 * (c_ + 0.5) / ncol)
+            v=np.linspace(.65,-.65,nrow)[r_] if k>16 else (.45 if r_==0 else -.45) if k>1 else 0.
             pos[n] = to_plane('P', u, v); prow[n] = r_
     if compact: half_grid(Z, -1); half_grid(W, +1)
     else: half_scatter(Z, -1); half_scatter(W, +1)
@@ -606,7 +613,8 @@ def _draw_planes(ax, res, exposure, seed=7, label_others='connected', w_in=DOUBL
     for n in names:
         role = 'exposure' if n == exposure else 'Z' if n in Z else 'W' if n in W else 'other'
         big = role != 'other'
-        ax.scatter(*pos[n], s=(150 if big else 30) * (0.7 if compact else 1.0), color=ROLE[role], ec=INK if big else INK2, lw=0.7 if big else 0.4, zorder=4)
+        density=min(1.,12/len(W)) if compact and role=='W' else 1.
+        ax.scatter(*pos[n], s=(150 if big else 30) * (0.7 if compact else 1.0)*density, color=ROLE[role], ec=INK if big else INK2, lw=0.7 if big else 0.4, zorder=4)
     ax.annotate(exposure, pos[exposure], xytext=(10, 0), textcoords='offset points', ha='left', va='center', fontsize=9, fontweight='bold', zorder=5)
     for n in Z + W:                                 # label on the side facing away from the nearest proxy
         if compact: continue                       # compact: labels listed in the margins below
@@ -627,7 +635,8 @@ def _draw_planes(ax, res, exposure, seed=7, label_others='connected', w_in=DOUBL
         for grp, side in ((Z, -1), (W, +1)):
             if not grp: continue
             order_ = sorted(grp, key=lambda n: -pos[n][1] * 10 - side * pos[n][0])
-            ys = np.linspace(cy + 0.42, cy - 0.42, len(order_)) if len(order_) > 1 else [cy]
+            span=max(.84,(len(order_)-1)*.105)
+            ys = np.linspace(cy+span/2,cy-span/2,len(order_)) if len(order_)>1 else [cy]
             xl = 0.5 + side * (A_ + 0.06)
             for n, y in zip(order_, ys):
                 ax.plot([pos[n][0], xl - side * 0.012], [pos[n][1], y], color=INK2, lw=0.4, alpha=0.7, zorder=3.5)
@@ -656,7 +665,8 @@ def _draw_planes(ax, res, exposure, seed=7, label_others='connected', w_in=DOUBL
          plt.Line2D([], [], marker='o', ls='', color=ROLE['Z'], mec=INK, mew=0.6, ms=7, label=f'$Z$ ({len(Z)})'),
          plt.Line2D([], [], marker='o', ls='', color=ROLE['W'], mec=INK, mew=0.6, ms=7, label=f'$W$ ({len(W)})'),
          plt.Line2D([], [], color=BLUE, lw=1.3, label='positive effect'), plt.Line2D([], [], color=ORANGE, lw=1.3, label='negative effect')]
-    ax.text(1.04 if not compact else 1.3, 2.85 + B_ + 0.2, (f'$A$ = {exposure}:  ' if compact else '') + f'$\\nu$ = {row.nu:.2f};  {len(el)} signed edges', ha='right', va='bottom', fontsize=8, color=MUTED)
+    information=f'$\\nu$ = {row.nu:.2f}' if np.isfinite(row.nu) else f'ranks {int(row.r_joint)}/{int(row.r_signal)}'
+    ax.text(1.04 if not compact else 1.3, 2.85 + B_ + 0.2, (f'$A$ = {exposure}:  ' if compact else '') + information + f';  alpha {res["alpha"]:.2f}; {len(el)} signed edges', ha='right', va='bottom', fontsize=8, color=MUTED)
     return h
 
 
@@ -669,7 +679,7 @@ def fig_layered3d(res, exposure, seed=7, label_others='connected'):
     return fig
 
 
-def fig_causal(res, exposures, targets, tags=None, seed=7):
+def fig_causal(res, exposures, targets, tags=None, seed=7, exposure_resolutions=None):
     """(a, b) the network as three stacked planes for two exposures; (c) effect decompositions
     for the exposures and their treatment-inducing proxies, two rows of four."""
     from idop_core import _solve_ode_decomposition
@@ -681,18 +691,23 @@ def fig_causal(res, exposures, targets, tags=None, seed=7):
     hs = None
     for k, e in enumerate(exposures[:2]):
         ax = fig.add_subplot(gs[0:2, 2 * k:2 * k + 2])
-        hs = _draw_planes(ax, res, e, seed, 'connected', w_in=DOUBLE / 2, h_in=4.4, compact=True)
+        selected=(exposure_resolutions or {}).get(e,res)
+        hs = _draw_planes(ax, selected, e, seed, False, w_in=DOUBLE / 2, h_in=4.4, compact=True)
         _panel_label(ax, 'ab'[k], x=-0.02, y=0.99)
     legend_h = [plt.Line2D([], [], marker='o', ls='', color=ROLE['exposure'], mec=INK, mew=0.6, ms=7, label='exposure $A$'),
                 plt.Line2D([], [], marker='o', ls='', color=ROLE['Z'], mec=INK, mew=0.6, ms=7, label='treatment proxy $Z$'),
                 plt.Line2D([], [], marker='o', ls='', color=ROLE['W'], mec=INK, mew=0.6, ms=7, label='outcome proxy $W$'),
                 plt.Line2D([], [], color=BLUE, lw=1.3, label='positive effect'), plt.Line2D([], [], color=ORANGE, lw=1.3, label='negative effect')]
     # ---- decompositions
-    dec = _solve_ode_decomposition(res['qd'], res['samples'], res['supports'], basis_order=res.get('basis_order', 0), ridge=res.get('ode_ridge', 1e-6))
-    tau = np.asarray(dec['sample_tau']); feats = list(dec['features'])
+    def decompose(selected):
+        return _solve_ode_decomposition(selected['qd'],selected['samples'],selected['supports'],basis_order=selected.get('basis_order',0),ridge=selected.get('ode_ridge',1e-6))
+    default_dec=decompose(res)
+    decs={e:decompose(selected) for e,selected in (exposure_resolutions or {}).items()}
     palette = [BLUE, AQUA, YELLOW, '#e87ba4', '#4a3aa7', '#008300', '#d95926']
     first = None
     for k, t in enumerate(targets[:8]):
+        e=exposures[min(k//4,len(exposures)-1)];dec=decs.get(e,default_dec)
+        tau=np.asarray(dec['sample_tau']);feats=list(dec['features'])
         r_, c_ = divmod(k, 4); ax = fig.add_subplot(gs[2 + r_, c_]); first = first or ax
         j_ = feats.index(t)
         obs = np.asarray(dec['response'])[:, j_]; pred = np.asarray(dec['predicted_states'])[:, j_]

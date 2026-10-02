@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "checks": 180,
+  "attempts": 28000,
+  "settings": 7,
+  "methods": 10,
+  "reps": 200,
+  "bootstrap": 100,
+  "valid_joint_roles": true,
+  "source_sha256": {
+    "joint_readout_bridge.py": "a4c9b29a50ffdb877b7233ea5566ef5622100ed46578d0a9bf4abb8b189b0462",
+    "multiscale_bridge.py": "21533f72c6b2bb8c15b50daf7e827cbd117619f94291e10201b3c263c6abc8ca",
+    "probe_overlapping_windows.py": "2946010b1772876e27ac874891fec11267bd3b281a3e69852634484d06970d3f"
+  }
+}

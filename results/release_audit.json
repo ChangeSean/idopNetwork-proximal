@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "checks": 89,
+  "canonical_source": "manuscript.md",
+  "manuscript_sha256": "a431141edf6ed5c745a35a8ee43685aab92c359a2025a3f1d34875016642047d",
+  "builder_idempotent": true,
+  "final_analysis_sources_unchanged": true,
+  "complete_comparisons_retained": true
+}

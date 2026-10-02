@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "checks": 12,
+  "effect": 0.49486042028557564,
+  "truth": 0.5,
+  "estimate_patients": 8000,
+  "design_frozen": true
+}

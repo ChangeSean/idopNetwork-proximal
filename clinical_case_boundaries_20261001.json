@@ -1,0 +1,25 @@
+{
+  "purpose": "Pathway-based structural eligibility for two worked causal targets; no outcome test defines a proxy role",
+  "cases": [
+    {
+      "study": "ov",
+      "exposure": "GAB2",
+      "target": "36-month RMST contrast per declared original protein standard deviation",
+      "exclude_from_both_roles": ["BRAF", "MAP2K1", "MAPK1", "AKT1", "AKT2", "AKT3", "MTOR", "RPS6KB1", "RPS6", "EIF4EBP1"],
+      "exclude_from_treatment": [],
+      "boundary": "Retain GAB2-associated PI3K and RAS-MAPK signaling within the total-effect pathway",
+      "sources": ["https://pubmed.ncbi.nlm.nih.gov/26657155/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC6356928/"],
+      "interpretation": "A pathway eligibility specification, not evidence that remaining proxy errors obey exclusions"
+    },
+    {
+      "study": "luad",
+      "exposure": "KDR",
+      "target": "36-month RMST contrast per declared original protein standard deviation",
+      "exclude_from_both_roles": ["MAP2K1", "MAPK1", "AKT1", "AKT2", "AKT3", "MTOR", "RICTOR", "RPS6KB1", "RPS6", "EIF4EBP1"],
+      "exclude_from_treatment": ["ITGA2"],
+      "boundary": "Retain VEGFR2-associated signaling within the total effect and exclude the documented ITGA2 metastatic branch from treatment proxies",
+      "sources": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC4834253/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC10475762/"],
+      "interpretation": "Residual exclusion for CTNNB1 and parallel readouts remains a specified causal model condition"
+    }
+  ]
+}

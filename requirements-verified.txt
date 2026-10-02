@@ -1,8 +1,0 @@
-# Analysis dependencies in the environment used to verify this upload.
-numpy==2.5.0
-pandas==3.0.3
-scipy==1.18.0
-scikit-learn==1.9.0
-cvxpy==1.9.2
-matplotlib==3.11.0
-networkx==3.6.1

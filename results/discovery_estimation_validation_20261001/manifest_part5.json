@@ -1,0 +1,26 @@
+{
+  "scenario": 5,
+  "setting": {
+    "name": "rank1_n411_p60_branch",
+    "r": 1,
+    "n": 411,
+    "topology": "branch",
+    "latent": 0.25,
+    "seed": 11,
+    "n_o": 47
+  },
+  "reps": 200,
+  "boots": 100,
+  "offset": 140000,
+  "split_fraction": 0.75,
+  "split_seed": 20261200,
+  "source_sha256": {
+    "independent_design_bridge.py": "1e991e6a95d01004e431f6032bd51bb93ae9d506a5ceec998dcafa53fa1be86a",
+    "validate_discovery_estimation.py": "668f87d7473657cb372fd8e6749c7e188c331a29c5fff80fc7e50c6a058a5489",
+    "conditional_design_bridge.py": "b89e223f8376f2f30e7becb7d6dcc8f20121cfc1a81cf3f7207ab442270624d9",
+    "joint_readout_bridge.py": "a4c9b29a50ffdb877b7233ea5566ef5622100ed46578d0a9bf4abb8b189b0462",
+    "fieller_bridge.py": "88316b18ae43166e3799b4b6e2b216a9b15214cd3cdae774ca552680d0c6acec",
+    "multiscale_bridge.py": "21533f72c6b2bb8c15b50daf7e827cbd117619f94291e10201b3c263c6abc8ca",
+    "DISCOVERY_ESTIMATION_PROTOCOL_20261001.md": "b9ac631c15ba1694ab27cd3cef166a8e9191b9d58b0e065653501e534658c721"
+  }
+}

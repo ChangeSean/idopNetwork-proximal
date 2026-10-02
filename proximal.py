@@ -78,13 +78,14 @@ def _descendants(directed, v, block):
     return seen
 
 
-def proxy_roles(undirected, a0, pi_absent, lam_norm, r, lam_tol=1e-8, directed=None):
+def proxy_roles(undirected, a0, pi_absent, lam_norm, r, lam_tol=1e-8, directed=None, limit_to_treatment=True):
     """Nominate Z adjacent to the exposure, optionally filtered by ``pi_absent``.
     When a genuinely causal directed support is supplied, descendants can also be filtered;
     the primary nodewise-support pipeline does not supply such a direction.
     W: no path to the exposure or to any Z, nonzero latent loading.
-    When |W| > |Z|, keep the W candidates with the fewest edges overall (the
-    ones most confidently disconnected), not the most strongly loaded ones.
+    ``limit_to_treatment=True`` retains the earlier balanced-pool rule, selecting
+    low-degree W candidates when |W| > |Z|. The revised primary estimator passes
+    False and retains the complete eligible separated pool.
     """
     p = undirected.shape[0]
     def z_ok(v):
@@ -96,13 +97,13 @@ def proxy_roles(undirected, a0, pi_absent, lam_norm, r, lam_tol=1e-8, directed=N
     comp = components(undirected)
     bad = {comp[a0]} | {comp[z] for z in Z}
     W = [v for v in range(p) if v != a0 and v not in Z and comp[v] not in bad and lam_norm[v] > lam_tol]
-    if len(W) > len(Z):
+    if limit_to_treatment and len(W) > len(Z):
         W = sorted(W, key=lambda w: undirected[w].sum())[:len(Z)]
     return Z, sorted(W)
 
 
-def screen(Z, W, r):
-    return len(W) >= r and len(Z) >= len(W)
+def screen(Z, W, r, overcomplete=False):
+    return len(W) >= r and len(Z) >= (r if overcomplete else len(W))
 
 
 # --------------------------------------------------------------------------- outcome equation
@@ -149,6 +150,56 @@ def outcome_equation(Y, X, F, Cov=None, ridge=1.0, alpha=0.05, equivalence_margi
 
 
 # --------------------------------------------------------------------------- estimators
+def bridge_information_rank(W, Z, A, C=None, alpha=None, rmax=8):
+    """Estimate the rank of Cov(W, Z | 1,A,C) by sequential canonical roots.
+
+    The vanishing default threshold alpha_n=min(0.01,1/n) separates O_p(1)
+    null-root statistics from O(n) identifying signals. Bartlett's calibration
+    supplies a finite-sample reference under Gaussian proxy errors; consistency
+    uses a root-n covariance expansion and separated population roots.
+    This is an outcome-blind rank decision, separate from protein PCA rank.
+    """
+    n = len(W); A = None if A is None else np.asarray(A, float)
+    W = np.asarray(W, float).reshape(n, -1); Z = np.asarray(Z, float).reshape(n, -1)
+    D = np.column_stack([np.ones(n)] + ([] if A is None else [A]) + ([C] if C is not None and C.shape[1] else []))
+    rw = W - D @ _lstsq(D, W); rz = Z - D @ _lstsq(D, Z)
+    def whitening(X):
+        values, vectors = np.linalg.eigh(X.T @ X / n)
+        keep = values > max(float(values.max()) * 1e-10, 1e-12)
+        return vectors[:, keep] / np.sqrt(values[keep])
+    hw, hz = whitening(rw), whitening(rz)
+    if not hw.shape[1] or not hz.shape[1]:
+        return dict(r=0, roots=np.array([]), pvalues=np.array([]), alpha=alpha or min(.01, 1/n))
+    roots = np.clip(np.linalg.svd(hw.T @ (rw.T @ rz / n) @ hz, compute_uv=False), 0, 1-1e-12)
+    pw, pz = hw.shape[1], hz.shape[1]
+    scale = max(n - np.linalg.matrix_rank(D) - (pw+pz+1)/2, 1)
+    level = min(.01, 1/n) if alpha is None else float(alpha)
+    if not 0 < level < 1: raise ValueError('rank alpha must lie in (0,1)')
+    pvalues = np.array([stats.chi2.sf(-scale*np.log1p(-roots[k:]**2).sum(),
+                                    (pw-k)*(pz-k)) for k in range(len(roots))])
+    rank = 0
+    for k in range(min(len(roots), rmax)):
+        if pvalues[k] >= level: break
+        rank += 1
+    return dict(r=rank, roots=roots, pvalues=pvalues, alpha=level)
+
+
+def readout_information_rank(X, undirected, a0, C=None, eligible=None):
+    """Joint rank Cov(W,[A,Z]|C), before exposure residualisation.
+
+    Under P2, W's errors are orthogonal to both A and Z. This joint rank
+    includes a systemic direction primarily measured by A; conditioning on A
+    can make that direction weak in Z. Matching joint and residual ranks
+    checks whether Z supplies the information needed to disentangle it.
+    """
+    eligible=np.ones(X.shape[1],bool) if eligible is None else np.asarray(eligible,bool)
+    Z,W=proxy_roles(undirected,a0,np.ones(X.shape[1],bool),eligible.astype(float),1,limit_to_treatment=False)
+    if not Z or not W:return dict(r=0,views=[W,[a0]+Z],roots=np.array([]),pvalues=np.array([]))
+    info=bridge_information_rank(X[:,W],X[:,[a0]+Z],None,C)
+    info['views']=[W,[a0]+Z]
+    return info
+
+
 def _lstsq(D, y):
     return np.linalg.lstsq(D, y, rcond=None)[0]
 

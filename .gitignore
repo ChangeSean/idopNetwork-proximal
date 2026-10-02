@@ -18,3 +18,11 @@ submission/
 report.html
 manuscript_v1.md
 data/*.csv
+_manuscript_build.md
+_reference.docx
+results/word_render*/
+METHOD_EVIDENCE_SELECTION_*.md
+results/method_evidence_selection_20261001/all_representation_results.csv
+results/method_evidence_selection_20261001/all_final_validation_results.csv
+results/method_evidence_selection_20261001/featured_comparisons.csv
+results/method_evidence_selection_20261001/featured_clinical_cases.csv

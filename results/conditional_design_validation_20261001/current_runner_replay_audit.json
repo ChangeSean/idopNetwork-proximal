@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "datasets": 7,
+  "records": 28,
+  "column_checks": 322,
+  "explanation": "Fixed-selection runner later gained a paired full-construction branch; every shared field replays for the first frozen dataset of all seven systems."
+}

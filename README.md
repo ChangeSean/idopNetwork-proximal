@@ -1,126 +1,73 @@
-# idopNetwork–proximal
+# idopNetwork proximal causal inference
 
-Code and reproducibility materials for **Network-guided proximal causal inference with idopNetwork**.
+This repository accompanies **idopNetwork proximal causal inference for molecular exposures and restricted survival**. The method connects molecular network structure to proxy measurements of latent confounding and estimates total protein-exposure effects on linear outcomes, restricted mean survival time (RMST) and survival probability.
 
-The method connects idop population curves and patient deviations, stability-selected molecular networks, exposure-specific treatment and outcome proxies, and a reduced-rank proximal outcome bridge. The linear bridge estimates total intervention contrasts under the manuscript's latent-factor and structural proxy conditions. A Cox second stage supplies a survival regression extension.
+Read [the manuscript](manuscript.md) for the model, proofs and results. [REPRODUCIBILITY.md](REPRODUCIBILITY.md) gives study settings, data sources and supporting-study provenance.
 
-## Installation
+## Method
 
-Python 3.10 or newer is recommended. Clone the repository and create an isolated environment:
+1. Use 75% of patients to learn molecular preprocessing, niche curves and network supports across windows.
+2. Construct exposure-specific treatment and outcome proxies under the structural coverage and exposure-boundary conditions.
+3. Learn joint readout coordinates and choose a design with complete conditional information.
+4. Freeze the molecular design and estimate concentrated bridge moments in the remaining 25% of patients.
+5. Use inverse censoring weights for survival targets and intersect Fieller confidence sets for the effect.
 
-```bash
-git clone https://github.com/ChangeSean/idopNetwork-proximal.git
-cd idopNetwork-proximal
-python -m venv .venv
-```
+The clinical contrast is a one-discovery-standard-deviation change in protein abundance, expressed as months of RMST or percentage points of survival at 36 months. The causal interpretation uses the proxy exclusions, complete bridge representation and censoring conditions stated in the paper.
 
-Activate the environment with `.venv\Scripts\Activate.ps1` in Windows PowerShell or `source .venv/bin/activate` on macOS/Linux, then install the analysis dependencies:
+## Evidence
+
+The component study evaluates ten estimators in seven molecular systems, with 200 datasets per system. In the modular system, linear-effect RMSE is 0.049 for the joint readout, 0.195 for a global-window design and 0.184 for correlation-selected proxies. Reporting counts are 200/200, 191/200 and 200/200. In the weak two-factor system, joint readout reduces linear bias from 0.203 to 0.013 relative to conditional projection of the same design. Complete comparisons include both outcomes and all ten estimators.
+
+A separate fresh-sample study evaluates the complete independent workflow. Coverage is 0.950–0.995 across seven systems and two targets. Systems II, III and V yield 186–190 bounded linear sets per 200 attempts; weak system IV yields 21/200. Point availability, coverage and bounded-set frequency are reported together.
+
+TCGA ovarian cancer and lung adenocarcinoma provide clinical applications. The ovarian PTEN contrast is 1.02 months of 36-month RMST, with a 95% confidence set of [-2.07, 4.24]. The ovarian panel has two bounded RMST sets; the lung panel has none. All 120 protein records and both endpoint sets are supplied.
+
+## Run the current workflow
+
+Use Python 3.10 or later and install `requirements.txt` in an isolated environment. Document building additionally requires `requirements-documents.txt` and the Pandoc executable.
 
 ```bash
 python -m pip install -r requirements.txt
+python workflow.py verify
+python workflow.py tables
+python workflow.py figures
 ```
 
-`requirements-verified.txt` records the installed analysis dependency versions used to verify this upload. To use those versions instead, run `python -m pip install -r requirements-verified.txt`.
-
-## Analysis workflow
-
-```text
-protein levels X, ordered by the niche index
-  -> protein-specific power curves C(s)
-  -> patient deviations U = X - C(s)
-  -> SVD latent patient space, loadings and rank
-  -> nodewise LASSO support graph, selected across niche windows
-  -> exposure-specific Z (neighbours) and W (separate components)
-  -> reduced-rank proximal bridge or Cox second stage
-  -> estimates, standard errors, proxy strength and reporting diagnostics
-```
-
-The support graph and latent representation are fitted once per cohort; proxy sets and bridge fits change with the exposure. The weak-form ODE gives descriptive signed edge weights and curve decompositions.
-
-## Reproduce the TCGA analyses
-
-Download the public cBioPortal RPPA and clinical data before running the analyses:
+`verify` checks stored simulation records, paired comparisons, bridge algebra and publication consistency without patient data. `tables` refreshes Tables 2–5 from the stored summaries and preserves the manuscript's prose. `figures` regenerates Figures 1, 4, 6 and 7 from current records; the remaining figures are supplied as publication assets.
 
 ```bash
-python fetch_tcga.py ov luad blca stad coadread brca kirc lgg skcm ucec
+# Recompute the final seven-system study (200 datasets per system).
+python workflow.py simulate
+
+# Download public input tables, then run both clinical cohorts.
+python fetch_tcga.py ov luad
+python workflow.py clinical
+
+# Build and check the Word manuscript.
+python -m pip install -r requirements-documents.txt
+python workflow.py word
 ```
 
-The tables are written to `data/` locally. Patient-level tables are not included in this repository. See `data/README.md` for the exact study/profile identifiers. Then run:
+Simulation and clinical commands write to their declared result directories. Committed records provide the reference run in Git history. Detailed component-study commands and fixed seeds are in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
 
-```bash
-python run_application.py ov OS --survival --boot 300 --ode
-python run_application.py luad OS --survival --boot 300
-python run_application.py ov PFS --survival --boot 300
-python run_application.py ov DFS --survival --boot 300
-python run_application.py luad PFS --survival --boot 300
-python screen_cohorts.py
-```
+## Repository layout
 
-The main settings are 60 most variable proteins, `alpha=0.15`, five windows, edge-selection frequency 0.6, proxy-strength floor 0.05, and a truncation cap of estimated latent rank plus one. Use `--p`, `--alpha`, `--k` and `--thr` to specify other settings. Patient bootstrap refits the first stage, projection and Cox stage with proxy roles fixed.
+| Location | Purpose |
+| --- | --- |
+| `manuscript.md`, `manuscript_SiM.docx` | Canonical manuscript and generated Word document |
+| `workflow.py` | Current analysis, verification and document commands |
+| `independent_design_bridge.py` | Discovery-fixed concentrated moment inference |
+| `conditional_design_bridge.py`, `joint_readout_bridge.py`, `multiscale_bridge.py` | Proxy design and molecular representation |
+| `causal_survival.py` | Censoring weights and survival pseudo-outcomes |
+| `results/` | Simulation records, clinical aggregates and source manifests |
+| `figures/` | Publication PDF and PNG figures |
+| `DISCOVERY_ESTIMATION_PROTOCOL_20261001.md` | Frozen final analysis protocol |
+| `release_layout.py` | Explicit publication file inventory and code dependencies |
 
-For the binary linear-outcome analysis, use `python run_application.py ov PFS` without `--survival`.
+The paper builder reads canonical Markdown directly. Revision archives, draft manuscripts and incremental manuscript migration scripts are excluded from the publication inventory. Source manifests retain exact code and protocol fingerprints for each study.
 
-The stored `results/` files retain the original estimates and bootstrap summaries. Rerunning a command writes new output to the corresponding result files; preserve the supplied results if comparing a rerun with the original analysis.
+## Data and attribution
 
-## Reproduce simulations and figures
+TCGA RPPA and clinical tables come from cBioPortal's TCGA PanCancer Atlas studies. `fetch_tcga.py` retrieves them into the local `data/` directory; patient input tables are not distributed. See `data/README.md` in the Git repository and the source identifiers in the download script.
 
-```bash
-python simulate.py all
-python simulate.py violations 1000 100
-python simulate.py safeguards 1000 100
-python simulate.py ablation 1000 60
-python simulate.py breadth
-python simulate.py survival
-python make_figures.py ov OS
-```
-
-| Command | Output and purpose |
-|---|---|
-| `simulate.py all` | Total-effect coverage versus structural perturbation (Table 2), latent-signal/network/proxy-strength trade-off (Table 3) |
-| `simulate.py violations` | Separate P1 and P2 perturbations in Figure 4 |
-| `simulate.py safeguards` | Truncation rank and proxy-strength threshold settings (Table 4) |
-| `simulate.py ablation` | Curve deviations, niche ordering and window comparison |
-| `simulate.py breadth` | Sample size and latent rank grid (Table S2) |
-| `simulate.py survival` | Survival extension, auxiliary Cox reference and bootstrap comparison (Table S3) |
-| `make_figures.py ov OS` | Figures 1–7, S1 and S2; recomputes cohort fits, bootstrap estimates and stability scans |
-| `refresh_figures_from_results.py` | Refreshes figures from saved result tables; requires the supplied cohort data |
-
-Simulation modes `all`, `coverage`, `tradeoff`, `violations`, `safeguards`, `ablation` and `survival` accept sample size and replicate count as the second and third arguments. For example, `python simulate.py coverage 1000 100`. The `breadth` mode uses its built-in sample-size grid; `python simulate.py breadth 1000 60` specifies 60 repeats per setting.
-
-Simulation random seeds are set in `simulate.py`. Coverage summaries are conditional on reported estimates, and reporting/abstention rates are stored alongside them. Full simulations and bootstrap analyses may take substantial time depending on hardware. The survival simulation compares intervals with an auxiliary reference fitted separately within each replicate; its inclusion rate is distinct from coverage of a fixed population parameter.
-
-## Files
-
-| File/directory | Contents |
-|---|---|
-| `idop_core.py` | Transformations, niche ordering, power curves, stable support selection and weak-form ODE |
-| `proximal.py` | Latent representation, proxy construction, linear bridge, proxy strength and BH adjustment |
-| `survival.py` | Breslow Cox model and proximal Cox second stage |
-| `run_application.py` | Shared cohort analysis implementation and application CLI |
-| `dgp.py`, `simulate.py` | Data-generating system and simulation studies |
-| `fetch_tcga.py` | Public cBioPortal API download |
-| `screen_cohorts.py` | Cohort-level network and proxy diagnostics |
-| `figures.py`, `make_figures.py` | Publication figure generation |
-| `refresh_figures_from_results.py` | Figure refresh using saved results |
-| `data/README.md` | Data source, study/profile identifiers and download instructions |
-| `results/` | Original application, network, stability and simulation CSV results |
-| `figures/` | Seven main and two supplementary figures, as PDF and PNG |
-| `third_party/` | Retained upstream idopNetwork license |
-
-## Data source and citation
-
-The data are from cBioPortal's **TCGA PanCancer Atlas** collection, with study IDs `<cohort>_tcga_pan_can_atlas_2018`. The ten analysed cohort prefixes are `ov`, `luad`, `blca`, `stad`, `coadread`, `brca`, `kirc`, `lgg`, `skcm` and `ucec`. See [data/README.md](data/README.md) for provenance and download instructions. Input-data checksums are included there as `SOURCE_DATA.sha256`; downloaded copies may differ if cBioPortal has revised its data since the original analysis.
-
-**Dataset citation:** cBioPortal for Cancer Genomics. *TCGA PanCancer Atlas Studies* [dataset]. Memorial Sloan Kettering Cancer Center; 2018. https://www.cbioportal.org/datasets.
-
-Please also cite the source methodology and data resources:
-
-- Miao W, Geng Z, Tchetgen Tchetgen EJ. Identifying causal effects with proxy variables of an unmeasured confounder. *Biometrika*. 2018;105:987–993.
-- Chen C, et al. An omnidirectional visualization model of personalized gene regulatory networks. *npj Systems Biology and Applications*. 2019;5:38.
-- Dong A, et al. idopNetwork: a network tool to dissect spatial community ecology. *Methods in Ecology and Evolution*. 2023;14:2272–2283.
-- Cerami E, et al. The cBio Cancer Genomics Portal: an open platform for exploring multidimensional cancer genomics data. *Cancer Discovery*. 2012;2:401–404.
-- Li J, et al. TCPA: a resource for cancer functional proteomics data. *Nature Methods*. 2013;10:1046–1047.
-
-## Attribution and licensing
-
-The idop core retains the attribution to Yu Wang and the upstream MIT notice in [third_party/LICENSE.idopnetwork](third_party/LICENSE.idopnetwork). See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). That notice applies to upstream-derived code. The repository does not assign a new blanket license to the manuscript's original proximal extensions, figures or source TCGA datasets.
+The implementation builds on idopNetwork and proximal causal inference. The paper contains methodological and dataset citations. Upstream attribution and licensing are retained in `THIRD_PARTY_NOTICES.md` and `third_party/` in the Git repository.

@@ -1,0 +1,13 @@
+{
+  "scenario": 2,
+  "reps": 200,
+  "boots": 100,
+  "offset": 100000,
+  "molecular_selection": "conditional_design",
+  "inference": "construction-conditioned; joint P and G refit",
+  "source_sha256": {
+    "fieller_bridge.py": "88316b18ae43166e3799b4b6e2b216a9b15214cd3cdae774ca552680d0c6acec",
+    "conditional_design_bridge.py": "b89e223f8376f2f30e7becb7d6dcc8f20121cfc1a81cf3f7207ab442270624d9",
+    "validate_fieller_bridge.py": "9099cd37cc101d04955bd900d9f6c267d9f4efc15189f5c73e2dac3d5dc0eeda"
+  }
+}

@@ -1,6 +1,5 @@
-*.py text eol=lf
-*.md text eol=lf
-*.txt text eol=lf
-*.csv -text
+# Preserve frozen source and result fingerprints on every platform.
+* -text
 *.pdf binary
 *.png binary
+*.docx binary

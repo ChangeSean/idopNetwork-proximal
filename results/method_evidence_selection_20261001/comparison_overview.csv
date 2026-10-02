@@ -1,0 +1,19 @@
+﻿outcome,comparator,systems,paired_mse_lower,paired_mse_higher,note
+linear,conditional_projection_same_design,7,3,4,directional counts only; not a significance test or pooled estimate
+linear,correlation_joint_readout,7,7,0,directional counts only; not a significance test or pooled estimate
+linear,designated_joint_readout,7,4,3,directional counts only; not a significance test or pooled estimate
+linear,designated_proximal,7,4,3,directional counts only; not a significance test or pooled estimate
+linear,factor_adjustment,7,7,0,directional counts only; not a significance test or pooled estimate
+linear,global_joint_readout,7,5,2,directional counts only; not a significance test or pooled estimate
+linear,oracle_factor,7,1,6,directional counts only; not a significance test or pooled estimate
+linear,prior_grid,7,6,1,directional counts only; not a significance test or pooled estimate
+linear,unadjusted,7,7,0,directional counts only; not a significance test or pooled estimate
+rmst,conditional_projection_same_design,7,0,7,directional counts only; not a significance test or pooled estimate
+rmst,correlation_joint_readout,7,5,2,directional counts only; not a significance test or pooled estimate
+rmst,designated_joint_readout,7,3,4,directional counts only; not a significance test or pooled estimate
+rmst,designated_proximal,7,1,6,directional counts only; not a significance test or pooled estimate
+rmst,factor_adjustment,7,7,0,directional counts only; not a significance test or pooled estimate
+rmst,global_joint_readout,7,3,4,directional counts only; not a significance test or pooled estimate
+rmst,oracle_factor,7,0,7,directional counts only; not a significance test or pooled estimate
+rmst,prior_grid,7,1,6,directional counts only; not a significance test or pooled estimate
+rmst,unadjusted,7,5,2,directional counts only; not a significance test or pooled estimate

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "checks": 270,
+  "representation_rows": 140,
+  "paired_rows": 126,
+  "final_rows": 14,
+  "featured_comparisons": 5,
+  "clinical_cases": 2,
+  "selection": "post-result editorial selection; full comparison matrix retained",
+  "method_versions": {
+    "representation_offset": 30000,
+    "final_offset": 140000,
+    "final_split": "75:25"
+  },
+  "source_sha256": {
+    "results\\joint_readout_validation_20261001\\all_summary.csv": "eb70aa91c37b91920dc9923e7b23320d17dafcdc0c69057f114a3717c60eb065",
+    "results\\joint_readout_validation_20261001\\all_replicates.csv": "8cec70841cc7a4013437d163c75dfc4056ccdde28f2e36ad25682e9bbd582455",
+    "results\\joint_readout_validation_20261001\\paired_differences.csv": "28b0f00ece4e707315e4ff7cd42e5fbe706b781a1a3d8cd8e94755a0230f067e",
+    "results\\discovery_estimation_validation_20261001\\all_summary.csv": "fc5a424893d0da4e0bb396c7c435e81e1c6a2628fef591e4b301c16867323f55",
+    "results\\discovery_estimation_application_20261001\\ov_all_exposures.csv": "042dec86c0947adb2eb110537856dfe6ede38c59f6fe08922d0540595f124358",
+    "results\\discovery_estimation_application_20261001\\luad_all_exposures.csv": "e230f12dcf0fdc5d792fa8240ac51448a58dd3d2e21e9ae332cb6aa4e357786c"
+  }
+}

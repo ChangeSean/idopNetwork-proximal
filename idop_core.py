@@ -66,7 +66,7 @@ def data_transformation(
         zscore = (data - mean) / safe_standard_deviation
         # 将 Z-score 值转换为非负值
         return zscore - zscore.min(axis=0) + 1.0
-
+        
     if method == "Log10_1p":
         if (data <= -1.0).any(axis=None):
             row, column = np.argwhere(data.to_numpy() <= -1.0)[0]
@@ -162,7 +162,7 @@ def get_power_function_params(
     Returns
     -------
     power_function_params: (n_features, 2 or 3) | pd.DataFrame
-        The power function parameters for each feature, where
+        The power function parameters for each feature, where 
         rows are features and columns are ["a", "b"] or ["a", "b", "R²"].
 
     """
@@ -272,7 +272,7 @@ def edge_select(
         Number of roughly equal windows to split the idopNetwork into. The default is 10.
     threshold : float, optional
         超过 90 % 以上的 window 中都出现的 source 变量 才会进入支撑集.
-
+        
 
     Returns
     -------

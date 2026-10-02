@@ -16,7 +16,7 @@ warnings.filterwarnings('ignore')
 
 from idop_core import (data_transformation, data_quasi_dynamic, get_power_function_params,
                        get_power_function_samples, power_law, edge_select, ode_solver)
-from proximal import (latent_state, adjacency_from_supports, components, proxy_roles, screen,
+from proximal import (latent_state, bridge_information_rank, adjacency_from_supports, components, proxy_roles, screen,
                       outcome_equation, ols_effect, proximal_bridge, bh)
 from survival import cox_effect, proximal_cox
 
@@ -59,7 +59,7 @@ BASIS_ORDER, ODE_RIDGE = 0, 1e-6   # weak-form ODE basis order and ridge, as in 
 
 def analyse_cohort(coh, alpha=0.15, k=5, threshold=0.6, amplification=0.8, solve_ode=False, support='levels',
                    nu_min=0.05, extra_rank=1, survival=False, equivalence_margin=None,
-                   latent_source='deviations'):
+                   latent_source='deviations', rank_mode='latent', estimate_legacy=True):
     """support: 'levels' learns the support graph from the transformed levels; 'xi' from the
     deviations with the latent state partialled out.
     nu_min: proxy-strength floor; exposures below it abstain (weak proxies give unusable estimates).
@@ -100,20 +100,28 @@ def analyse_cohort(coh, alpha=0.15, k=5, threshold=0.6, amplification=0.8, solve
     ncomp = len(set(components(Und)))
 
     rows = []; n_weak = 0
-    for a0 in range(p):
+    if rank_mode not in ('latent', 'bridge'): raise ValueError('rank_mode must be latent or bridge')
+    for a0 in range(p) if estimate_legacy else []:
         # Nodewise regressions estimate adjacency, not causal direction.  The
         # graph therefore nominates candidates; it does not justify descendant
         # claims from asymmetric regression coefficients.
         Z, W = proxy_roles(Und, a0, pi_absent, lam_norm, r)
-        if not screen(Z, W, r): continue
+        if not screen(Z, W, 1 if rank_mode == 'bridge' else r): continue
+        rank_info = bridge_information_rank(X[:, W], X[:, Z], X[:, a0], Cov) if rank_mode == 'bridge' else None
+        r_fit = rank_info['r'] if rank_info is not None else r
+        if not r_fit: continue
+        truncation = r_fit if rank_mode == 'bridge' else r + extra_rank
         if survival:
-            e, se, nu = proximal_cox(coh['T'], Y, X[:, a0], X[:, W], X[:, Z], r=r + extra_rank, C=Cov, r_nu=r)
+            e, se, nu = proximal_cox(coh['T'], Y, X[:, a0], X[:, W], X[:, Z], r=truncation, C=Cov, r_nu=r_fit,
+                                    min_sv_ratio=1e-8 if rank_mode == 'bridge' else .1)
         else:
-            e, se, nu = proximal_bridge(Y, X[:, a0], X[:, W], X[:, Z], r=r + extra_rank, C=Cov, r_nu=r)
+            e, se, nu = proximal_bridge(Y, X[:, a0], X[:, W], X[:, Z], r=truncation, C=Cov, r_nu=r_fit,
+                                       min_sv_ratio=1e-8 if rank_mode == 'bridge' else .1)
         if nu < nu_min: n_weak += 1; continue
         nb, nse = cox_effect(coh['T'], Y, X[:, a0], C=Cov) if survival else ols_effect(Y, X[:, a0], C=Cov)
         rows.append(dict(exposure=names[a0], nZ=len(Z), nW=len(W), naive=nb, naive_se=nse,
-                         proximal=e, se=se, nu=nu, Z=';'.join(names[z] for z in Z), W=';'.join(names[w] for w in W)))
+                         proximal=e, se=se, nu=nu, Z=';'.join(names[z] for z in Z), W=';'.join(names[w] for w in W),
+                         r_bridge=r_fit, r_pca=r, rank_mode=rank_mode))
     d = pd.DataFrame(rows)
     if len(d):
         d['t_prox'] = d.proximal / d.se; d['t_naive'] = d.naive / d.naive_se
@@ -125,6 +133,7 @@ def analyse_cohort(coh, alpha=0.15, k=5, threshold=0.6, amplification=0.8, solve
                alpha=alpha, k=k, threshold=threshold, support=support, n_weak=n_weak, nu_min=nu_min,
                outcome_screen=outcome_screen, equivalence_margin=equivalence_margin,
                latent_source=latent_source)
+    out['rank_mode'] = rank_mode
     if solve_ode:
         samples = get_power_function_samples(params, qd.index, n_samples=100)
         out['samples'] = samples
@@ -140,7 +149,11 @@ def bootstrap_se(res, coh, n_boot=300, survival=True, extra_rank=1):
         row = d.loc[i]; a0 = names.index(row.exposure)
         Z = [names.index(z) for z in row.Z.split(';')]; W = [names.index(w) for w in row.W.split(';')]
         if survival:
-            _, se, _ = proximal_cox(coh['T'], Y, X[:, a0], X[:, W], X[:, Z], r=r + extra_rank, C=Cov, r_nu=r, n_boot=n_boot)
+            bridge_mode = res.get('rank_mode') == 'bridge'
+            fit_rank = int(row.r_bridge) if bridge_mode else r
+            _, se, _ = proximal_cox(coh['T'], Y, X[:, a0], X[:, W], X[:, Z],
+                                    r=fit_rank if bridge_mode else r+extra_rank, C=Cov, r_nu=fit_rank,
+                                    min_sv_ratio=1e-8 if bridge_mode else .1, n_boot=n_boot)
         else:
             se = row.se
         d.loc[i, 'se_boot'] = se
@@ -156,13 +169,14 @@ if __name__ == '__main__':
     ap.add_argument('--ode', action='store_true', help='also solve the weak-form ODE for signed edge weights')
     ap.add_argument('--survival', action='store_true', help='Cox second stage on follow-up time (log hazard ratios)')
     ap.add_argument('--boot', type=int, default=0, help='bootstrap se (first stage included) for every exposure')
+    ap.add_argument('--rank-mode', choices=['latent','bridge'], default='latent', help='PCA dimension or proxy-information rank')
     ap.add_argument('--equivalence-margin', type=float, default=None,
                     help='optional TOST margin (outcome SD per candidate SD) for a strict Z sensitivity screen')
     a = ap.parse_args()
     coh = load_cohort(a.study, a.outcome, a.p, survival=a.survival)
     res = analyse_cohort(coh, a.alpha, a.k, a.thr, solve_ode=a.ode, survival=a.survival,
-                         equivalence_margin=a.equivalence_margin)
-    tag = f'{a.study}_{a.outcome}' + ('_cox' if a.survival else '')
+                         equivalence_margin=a.equivalence_margin, rank_mode=a.rank_mode)
+    tag = f'{a.study}_{a.outcome}' + ('_cox' if a.survival else '') + ('_bridge_rank' if a.rank_mode == 'bridge' else '')
     d = res['estimates']; lat = res['latent']
     print(f"{a.study}/{a.outcome}: n={len(coh['Y'])} events={int(coh['Y'].sum())} p={len(coh['names'])} "
           f"| r={lat['r']} rho_bar={lat['rho'].mean():.3f} | support {int(res['A'].sum())} edges, {res['ncomp']} components "

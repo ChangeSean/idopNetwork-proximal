@@ -1,0 +1,25 @@
+{
+  "scenario": 1,
+  "setting": {
+    "name": "rank1_n1000_chain",
+    "r": 1,
+    "n": 1000,
+    "topology": "chain",
+    "latent": 0.25,
+    "seed": 23
+  },
+  "reps": 200,
+  "boots": 100,
+  "offset": 120000,
+  "split_fraction": 0.5,
+  "split_seed": 20261200,
+  "source_sha256": {
+    "independent_design_bridge.py": "1e991e6a95d01004e431f6032bd51bb93ae9d506a5ceec998dcafa53fa1be86a",
+    "validate_independent_design.py": "70b8cbaa1a5101d029366c931b0bc714d863e24c1e8e82e89ca1df3a351f4f5d",
+    "conditional_design_bridge.py": "b89e223f8376f2f30e7becb7d6dcc8f20121cfc1a81cf3f7207ab442270624d9",
+    "joint_readout_bridge.py": "a4c9b29a50ffdb877b7233ea5566ef5622100ed46578d0a9bf4abb8b189b0462",
+    "fieller_bridge.py": "88316b18ae43166e3799b4b6e2b216a9b15214cd3cdae774ca552680d0c6acec",
+    "multiscale_bridge.py": "21533f72c6b2bb8c15b50daf7e827cbd117619f94291e10201b3c263c6abc8ca",
+    "INDEPENDENT_DESIGN_PROTOCOL_20261001.md": "1855a39ab468376bfb6e425d385b90e44431cd0b6a81e35ee01724cb914c7cb0"
+  }
+}

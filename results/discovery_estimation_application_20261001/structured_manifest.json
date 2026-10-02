@@ -1,0 +1,10 @@
+{
+  "boots": 300,
+  "split": "75:25",
+  "source_sha256": {
+    "run_independent_structured_cases.py": "00959631dc0fdfcb616df3d33ace42b0561116a36fe94915ba5bb3ba00ccf5a3",
+    "clinical_case_boundaries_20261001.json": "ec5bf0a04ee4a8370a9af58512cbf3967ac72825c51a245d76e28d3adba8608e",
+    "run_discovery_estimation_application.py": "3c9892cb794919c90d0e74a681484ba4d7932900d9808132a3d7f8ac03ab9b18",
+    "independent_design_bridge.py": "1e991e6a95d01004e431f6032bd51bb93ae9d506a5ceec998dcafa53fa1be86a"
+  }
+}

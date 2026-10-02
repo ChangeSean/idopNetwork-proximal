@@ -1,0 +1,38 @@
+{
+  "scenario": 3,
+  "setting": {
+    "name": "rank2_n1000_branch",
+    "r": 2,
+    "n": 1000,
+    "topology": "branch",
+    "latent": 0.25,
+    "seed": 41
+  },
+  "reps": 200,
+  "boots": 100,
+  "offset": 30000,
+  "source_sha256": {
+    "joint_readout_bridge.py": "a4c9b29a50ffdb877b7233ea5566ef5622100ed46578d0a9bf4abb8b189b0462",
+    "multiscale_bridge.py": "21533f72c6b2bb8c15b50daf7e827cbd117619f94291e10201b3c263c6abc8ca",
+    "probe_overlapping_windows.py": "2946010b1772876e27ac874891fec11267bd3b281a3e69852634484d06970d3f"
+  },
+  "parameters": {
+    "widths": [
+      0.2,
+      0.4
+    ],
+    "penalties": [
+      0.15,
+      0.2,
+      0.25,
+      0.3
+    ],
+    "rank_level": "min(.05,n**(-.5))",
+    "selection": "maximum retained joint root",
+    "projection": "first-stage W on (1,A,Z), centered on (1) before SVD",
+    "conditional_completeness": "identification assumption; measured conditional rank is reported",
+    "strength": "reported quantitatively; no fixed strength cutoff"
+  },
+  "bootstrap": "fixed roles/rank; projection and censoring re-estimated",
+  "independence": "new patient seeds after rule freeze; does not validate full construction intervals"
+}

@@ -1,0 +1,24 @@
+{
+  "scenario": 0,
+  "setting": {
+    "name": "rank1_n400_branch",
+    "r": 1,
+    "n": 400,
+    "topology": "branch",
+    "latent": 0.25,
+    "seed": 11
+  },
+  "reps": 200,
+  "boots": 100,
+  "offset": 50000,
+  "mode": "fixed",
+  "seed_boot": 20261100,
+  "selection": "full conditional rank; maximum smallest conditional root",
+  "exposure_units": "original raw generating exposure unit in every draw",
+  "source_sha256": {
+    "conditional_design_bridge.py": "b89e223f8376f2f30e7becb7d6dcc8f20121cfc1a81cf3f7207ab442270624d9",
+    "validate_conditional_design.py": "ee37f756265031057ab35f269ab51a9df2800a865a2e37a6056df26cad5f9b30",
+    "joint_readout_bridge.py": "a4c9b29a50ffdb877b7233ea5566ef5622100ed46578d0a9bf4abb8b189b0462",
+    "multiscale_bridge.py": "21533f72c6b2bb8c15b50daf7e827cbd117619f94291e10201b3c263c6abc8ca"
+  }
+}

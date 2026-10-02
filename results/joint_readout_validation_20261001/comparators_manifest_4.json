@@ -1,0 +1,18 @@
+{
+  "parts": [
+    4,
+    5,
+    6
+  ],
+  "reps": 200,
+  "boots": 100,
+  "offset": 30000,
+  "paired_with": "validate_joint_readout_bridge.py; identical patients and bootstrap indices",
+  "methods": [
+    "global_joint_readout",
+    "correlation_joint_readout",
+    "designated_joint_readout",
+    "designated_proximal"
+  ],
+  "source_sha256": "de1a0ba32ef597206e60ee09b8b1d182853003216365dcd259358e63f0c17914"
+}

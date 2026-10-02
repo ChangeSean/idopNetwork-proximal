@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "checks": 516,
+  "cohorts": 2,
+  "exposures": 120,
+  "endpoint_sets": 240,
+  "discovery_isolation": "Held-out molecular values and survival labels perturbed; discovery panel, scaling, imputation and quasi-dynamic data exactly unchanged",
+  "patient_identifiers": "Not included in audit outputs"
+}
