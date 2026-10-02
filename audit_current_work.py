@@ -14,7 +14,9 @@ def main():
              'algebra': 'independent_design_validation_20261001/algebra_audit.json',
              'document': 'causal_revision_document_audit.json',
              'evidence': 'method_evidence_selection_20261001/evidence_audit.json',
-             'release': 'release_audit.json'}
+             'release': 'release_audit.json',
+             'clinical_extension': 'additional_cohorts_application_20261002/extension_audit.json',
+             'clinical_reporting': 'additional_cohorts_application_20261002/reporting_audit.json'}
     audits = {name: json.loads((ROOT / 'results' / path).read_text(encoding='utf-8')) for name, path in paths.items()}
     assert all(a['passed'] for a in audits.values())
     text = (ROOT / 'manuscript.md').read_text(encoding='utf-8')
@@ -32,7 +34,7 @@ def main():
               'references': audits['document']['references'], 'word_native_equations': audits['document']['native_equations'],
               'word_page_rendering': audits['document']['word_page_rendering'],
               'final_protocol': 'DISCOVERY_ESTIMATION_PROTOCOL_20261001.md',
-              'version': '2026-10-02 consolidated manuscript and workflow', 'author_declarations': 'Awaiting author input'}
+              'version': '2026-10-02 ten-cohort point estimates with complete uncertainty', 'author_declarations': 'Awaiting author input'}
     (ROOT / 'results/work_completion_audit_20261001.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
     print(json.dumps(result, indent=2))
 

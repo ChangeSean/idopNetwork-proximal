@@ -9,6 +9,7 @@ The published workflow is the 75:25 independent discovery/estimation procedure. 
 | Molecular representation | Seven systems × 200 datasets, ten estimators, two outcomes; seed offset 30000 | `joint_readout_validation_20261001/` |
 | Complete independent workflow | Seven systems × 200 fresh datasets, two outcomes; offset 140000; 75:25 split; 100 resamples | `discovery_estimation_validation_20261001/` |
 | Clinical application | One split per cohort, seed 20261201; OV 308/103 and LUAD 264/88 discovery/estimation patients; 300 resamples | `discovery_estimation_application_20261001/` |
+| Eight-cohort extension | Same implementation, split seed, 36-month targets and 300 resamples; all eight remaining cohorts | `additional_cohorts_application_20261002/` |
 
 The representation study uses joint-information design selection and evaluates components with molecular roles and dimension fixed during resampling. The independent study evaluates conditional-information selection and discovery-fixed moment inference. These are distinct experiments. Their results are not pooled.
 
@@ -29,9 +30,9 @@ python summarize_joint_readout.py
 python select_method_evidence.py
 ```
 
-For PowerShell, use `0..6 | ForEach-Object { python validate_joint_readout_bridge.py --scenario $_ --reps 200 --boot 100 --offset 30000 }` for the loop. The final study is `python workflow.py simulate`; the clinical analysis is `python workflow.py clinical` after `python fetch_tcga.py ov luad`. Set `OPENBLAS_NUM_THREADS`, `OMP_NUM_THREADS` and `MKL_NUM_THREADS` to 1 for consistent resource use. The workflow supplies these defaults to its subprocesses.
+For PowerShell, use `0..6 | ForEach-Object { python validate_joint_readout_bridge.py --scenario $_ --reps 200 --boot 100 --offset 30000 }` for the loop. The final study is `python workflow.py simulate`. Download all ten cohorts with `python fetch_tcga.py blca brca coadread kirc lgg luad ov skcm stad ucec`, then run `python workflow.py clinical --cohort all`. Use `--cohort remaining` to recompute only the eight-cohort extension. Set `OPENBLAS_NUM_THREADS`, `OMP_NUM_THREADS` and `MKL_NUM_THREADS` to 1 for consistent resource use. The workflow supplies these defaults to its subprocesses.
 
-`python workflow.py tables` preserves editorial text and regenerates Tables 2–5. `python workflow.py word` builds native Word equations and checks all fifteen tables and source equations. Word page rendering is an additional visual check; its latest status is recorded in `results/causal_revision_document_audit.json`. `python workflow.py package` assembles the publication inventory with file hashes.
+`python workflow.py tables` preserves editorial text and regenerates Tables 2–5 and S1. It also exports all completed clinical point estimates with their original confidence sets. `python workflow.py word` builds native Word equations and checks all fifteen tables and source equations. Word page rendering is an additional visual check; its latest status is recorded in `results/causal_revision_document_audit.json`. `python workflow.py package` assembles the publication inventory with file hashes.
 
 ## Supporting studies
 
@@ -49,6 +50,6 @@ Each study directory supplies aggregate results and execution/source manifests. 
 
 ## Clinical inputs and interpretation
 
-Inputs are RPPA and clinical survival tables from `ov_tcga_pan_can_atlas_2018` and `luad_tcga_pan_can_atlas_2018`. Discovery alone determines panel filtering, imputation, protein scales, network roles, rank and readout coordinates. Estimation outcomes enter the survival moments and censoring model. The pathway-boundary JSON specifies separate GAB2 and KDR analyses.
+Inputs are RPPA and clinical survival tables from the ten TCGA PanCancer Atlas study identifiers in `fetch_tcga.py`: BLCA, BRCA, COADREAD, KIRC, LGG, LUAD, OV, SKCM, STAD and UCEC. Discovery alone determines panel filtering, imputation, protein scales, network roles, rank and readout coordinates. Estimation outcomes enter the survival moments and censoring model. The pathway-boundary JSON specifies separate GAB2 and KDR analyses. The original frozen protocol remains unchanged; `additional_cohorts_application_20261002/EXTENSION_PROTOCOL.md` records the extension requested on 2026-10-02, and `extension_plan.json` contains pre-run source and input hashes.
 
-The repository contains cohort-level preprocessing parameters, effect records, role sets and aggregate diagnostics, not patient input rows. PTEN and HSPA1A are the two bounded OV RMST examples; complete OV/LUAD exposure tables accompany them. Biological exclusions and censoring conditions are given in Sections 4 and 6 of the paper.
+The repository contains cohort-level preprocessing parameters, effect records, role sets and aggregate diagnostics, not patient input rows. All 600 exposure records and 1200 endpoint sets are supplied. `point_estimates.csv` contains all 58 completed coefficients with unchanged confidence sets and flags for coefficients outside the intervention-target ranges; Figure 6 displays all 58. Worked examples in Table 5 and Figure 7 were chosen after analysis to show both bounded OV cases, PTEN in two cohorts and a completed LUAD contrast within the target ranges. Point directions are exploratory. Biological exclusions and censoring conditions are given in Sections 4 and 6 of the paper.

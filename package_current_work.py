@@ -16,7 +16,7 @@ def main():
     assert document['word_sha256'] == hashlib.sha256((ROOT / 'manuscript_SiM.docx').read_bytes()).hexdigest()
     assert document['source_sha256'] == hashlib.sha256((ROOT / 'manuscript.md').read_text(encoding='utf-8').encode()).hexdigest()
     files = publication_files()
-    manifest = {'version': '2026-10-02 consolidated manuscript and workflow',
+    manifest = {'version': '2026-10-02 ten-cohort point estimates with complete uncertainty',
                 'primary_allocation': '75:25', 'simulation_offset': 140000,
                 'files': {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in files},
                 'patient_inputs_included': False, 'publication_source': 'manuscript.md',

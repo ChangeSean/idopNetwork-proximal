@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": 613,
+  "cohorts": 10,
+  "attempted_exposures": 600,
+  "displayed_point_estimates": 58,
+  "all_point_estimates_retained": true,
+  "all_confidence_sets_retained": true,
+  "missing_estimates_imputed": false,
+  "exploratory_interpretation": true,
+  "source_sha256": "c318ff6518b9346929def618817f494c4f1a4aae69063cdaf98e0cf65a391b57"
+}

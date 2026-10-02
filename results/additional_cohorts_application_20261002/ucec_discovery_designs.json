@@ -1,0 +1,4416 @@
+{
+  "MYH11": {
+    "row": {
+      "exposure": "MYH11",
+      "nZ": 3,
+      "nW": 47,
+      "Z": "CAV1;RICTOR;BCL2L11",
+      "W": "VHL;IGFBP2;CASP7;CCNB1;GAPDH;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;ATM;ERBB2;CDH1;FASN;TP53;HSPA1A;PTEN;STAT5A;EEF2;SYK;ACACA;ASNS;MAP2K1;GAB2;RAB25;EEF2K;SERPINE1;ETS1;FN1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;DIABLO;MYC;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.25,
+      "joint_pvalues": "1.1354660869834364e-58;1.0743650808839127e-27;4.327210042891484e-10;0.013818803369555146",
+      "conditional_pvalues": "7.3612922373388946e-34;7.256660237689161e-16;9.585814994544818e-07",
+      "status": "proxy_dimensions",
+      "r_grid": 4,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 0,
+    "Z": [
+      2,
+      8,
+      53
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      24,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "ESR1": {
+    "row": {
+      "exposure": "ESR1",
+      "nZ": 2,
+      "nW": 47,
+      "Z": "AR;PGR",
+      "W": "VHL;IGFBP2;CASP7;CCNB1;GAPDH;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;ATM;ERBB2;CDH1;FASN;TP53;HSPA1A;PTEN;STAT5A;EEF2;SYK;ACACA;ASNS;MAP2K1;GAB2;RAB25;EEF2K;SERPINE1;ETS1;FN1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;DIABLO;MYC;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.25,
+      "joint_pvalues": "6.487336576913281e-45;6.659879246816466e-20;0.0005415652754002373",
+      "conditional_pvalues": "1.0518580300026682e-21;0.00014014162546674682",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 1,
+    "Z": [
+      26,
+      55
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      24,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "CAV1": {
+    "row": {
+      "exposure": "CAV1",
+      "nZ": 4,
+      "nW": 47,
+      "Z": "MYH11;RICTOR;KDR;RPS6",
+      "W": "VHL;IGFBP2;CASP7;CCNB1;GAPDH;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;ATM;ERBB2;CDH1;FASN;TP53;HSPA1A;PTEN;STAT5A;EEF2;SYK;ACACA;ASNS;MAP2K1;GAB2;RAB25;EEF2K;SERPINE1;ETS1;FN1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;DIABLO;MYC;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.25,
+      "joint_pvalues": "1.8165960574119538e-87;2.935752609940049e-42;1.9269462364015426e-19;2.0569365139832167e-08;0.014165682451090568",
+      "conditional_pvalues": "5.8956925512618555e-65;2.271165010615847e-30;1.895858292630656e-17;2.4859522158231585e-06",
+      "status": "proxy_dimensions",
+      "r_grid": 5,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 2,
+    "Z": [
+      0,
+      8,
+      46,
+      54
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      24,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "VHL": {
+    "row": {
+      "exposure": "VHL",
+      "nZ": 0,
+      "nW": 0,
+      "Z": "",
+      "W": "",
+      "r_pca": 3,
+      "r_bridge": 0,
+      "r_joint": 0,
+      "r_signal": 0,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "status": "no_shared_direction",
+      "r_grid": 0,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 3,
+    "Z": [],
+    "W": [],
+    "ready": false
+  },
+  "IGFBP2": {
+    "row": {
+      "exposure": "IGFBP2",
+      "nZ": 2,
+      "nW": 1,
+      "Z": "TGM2;CCNE1",
+      "W": "VHL",
+      "r_pca": 3,
+      "r_bridge": 1,
+      "r_joint": 1,
+      "r_signal": 0,
+      "nu": 0.07351806559031102,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "0.009846017344951144",
+      "conditional_pvalues": "0.2024353605793141",
+      "status": "conditional_information_dimension",
+      "r_grid": 1,
+      "conditional_root": 0.10158098292958696,
+      "conditional_roots": "0.10158098292958696",
+      "nu_raw": 0.07351806559031102,
+      "conditional_rank_agreement": false,
+      "eligible_designs": 0
+    },
+    "a": 4,
+    "Z": [
+      15,
+      16
+    ],
+    "W": [
+      3
+    ],
+    "ready": false
+  },
+  "CASP7": {
+    "row": {
+      "exposure": "CASP7",
+      "nZ": 1,
+      "nW": 58,
+      "Z": "PREX1",
+      "W": "MYH11;ESR1;CAV1;VHL;IGFBP2;CCNB1;GAPDH;RICTOR;TFRC;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;CCNE1;ATM;ERBB2;CDH1;FASN;TP53;HSPA1A;PRKCA;PTEN;STAT5A;AR;EEF2;SYK;ACACA;ASNS;MAP2K1;BCL2;GAB2;RAB25;EEF2K;SERPINE1;ETS1;FN1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;RBM15;KDR;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;BCL2L11;RPS6;PGR;DIABLO;MYC;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "2.9419903252258095e-35;7.393147369573703e-09",
+      "conditional_pvalues": "3.8901831878015216e-25",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 5,
+    "Z": [
+      47
+    ],
+    "W": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "CCNB1": {
+    "row": {
+      "exposure": "CCNB1",
+      "nZ": 5,
+      "nW": 24,
+      "Z": "TFRC;PDCD4;CCNE1;SQSTM1;FOXM1",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;CLDN7;CTNNB1;ERBB2;CDH1;FASN;HSPA1A;PTEN;STAT5A;ACACA;MAP2K1;RAB25;SERPINE1;FN1;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4EBP1;MYC",
+      "r_pca": 3,
+      "r_bridge": 6,
+      "r_joint": 6,
+      "r_signal": 5,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.3,
+      "joint_pvalues": "2.817102642334245e-54;3.0455787303708082e-34;7.8243947410390925e-22;4.525027664455653e-14;1.9297794283345503e-07;0.0005143652681891304",
+      "conditional_pvalues": "3.2382021796055405e-39;5.988823715577749e-27;2.553638971996691e-15;6.663189105196372e-09;0.0004200044148713514",
+      "status": "proxy_dimensions",
+      "r_grid": 6,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 6,
+    "Z": [
+      9,
+      13,
+      16,
+      40,
+      51
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      12,
+      14,
+      18,
+      19,
+      20,
+      22,
+      24,
+      25,
+      29,
+      31,
+      34,
+      36,
+      38,
+      43,
+      44,
+      45,
+      47,
+      48,
+      50,
+      57
+    ],
+    "ready": false
+  },
+  "GAPDH": {
+    "row": {
+      "exposure": "GAPDH",
+      "nZ": 4,
+      "nW": 24,
+      "Z": "TFRC;ATM;EEF2;DIABLO",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;CLDN7;CTNNB1;ERBB2;CDH1;FASN;HSPA1A;PTEN;STAT5A;ACACA;MAP2K1;RAB25;SERPINE1;FN1;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4EBP1;MYC",
+      "r_pca": 3,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 4,
+      "nu": 0.05699430525478508,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.3,
+      "joint_pvalues": "4.756018336486336e-38;3.0142040319801504e-16;1.5617414711969204e-07;0.016212376913816023;0.626735175516089",
+      "conditional_pvalues": "8.720408778337375e-43;3.403176298525307e-26;4.227911895275959e-13;3.021392401364472e-07",
+      "status": "reported",
+      "r_grid": 4,
+      "conditional_root": 0.28687033845108423,
+      "conditional_roots": "0.5320863010332683;0.4756393671778231;0.3408955044811879;0.28687033845108423",
+      "nu_raw": 0.031177183488892195,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 7,
+    "Z": [
+      9,
+      17,
+      27,
+      56
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      12,
+      14,
+      18,
+      19,
+      20,
+      22,
+      24,
+      25,
+      29,
+      31,
+      34,
+      36,
+      38,
+      43,
+      44,
+      45,
+      47,
+      48,
+      50,
+      57
+    ],
+    "ready": true,
+    "P": [
+      [
+        -0.17110784732910891,
+        0.024059117671516243,
+        -0.17027941829496865,
+        -0.10750525829104209
+      ],
+      [
+        -0.2170148733865481,
+        0.12371587371635363,
+        0.14694631235640096,
+        0.02632222431549459
+      ],
+      [
+        0.08319677955522549,
+        -0.09670557559621741,
+        0.3137745523715644,
+        0.17392378986979132
+      ],
+      [
+        -0.09057238141612474,
+        -0.07606674384335006,
+        0.20370947933982614,
+        -0.38322630624600657
+      ],
+      [
+        -0.23430649594845682,
+        0.323026584971929,
+        -0.12316566993272521,
+        -0.15412679493165676
+      ],
+      [
+        0.24167256286267003,
+        0.25468719794052797,
+        0.4524308426830493,
+        -0.13205451757090392
+      ],
+      [
+        0.10496469835111123,
+        0.18555197735405848,
+        -0.077339181482766,
+        0.004350024107789846
+      ],
+      [
+        -0.06321342211994209,
+        0.07923961189551726,
+        0.022921113897300623,
+        -0.1751593574434261
+      ],
+      [
+        -0.5169559507413225,
+        -0.11159416646900196,
+        0.14383550159071345,
+        0.2024702751016079
+      ],
+      [
+        -0.14746289410311356,
+        0.1685293464660809,
+        -0.22606482345343995,
+        -0.09198231394036639
+      ],
+      [
+        0.16511318437217956,
+        -0.42319796266294835,
+        -0.036749816241015185,
+        -0.08048293868289087
+      ],
+      [
+        0.05637628589770953,
+        -0.4121279628959231,
+        -0.3590800705697279,
+        0.26948671374203154
+      ],
+      [
+        -0.43966342143975157,
+        -0.09149836913804929,
+        0.289001404725352,
+        0.27208979308932435
+      ],
+      [
+        -0.038074099740614896,
+        0.3787148859859538,
+        -0.22790999409168258,
+        0.2519804300819166
+      ],
+      [
+        -0.13872750897628,
+        -0.03423140098765267,
+        -0.07401268043440708,
+        -0.14534841903705872
+      ],
+      [
+        -0.259358573084664,
+        0.12977723621208506,
+        -0.0710115252027048,
+        0.041118983869550554
+      ],
+      [
+        -0.007147752301129769,
+        0.07615037100577793,
+        0.09483338219481208,
+        0.14493065620264162
+      ],
+      [
+        0.11844422229109834,
+        -0.07107775164395179,
+        0.12033366252404865,
+        0.03015259447905668
+      ],
+      [
+        0.08108976996781521,
+        0.021082703389994826,
+        0.09363593311425736,
+        -0.3952544813501826
+      ],
+      [
+        0.1327139839437023,
+        -0.09556662525161275,
+        0.277893756863045,
+        0.3297635674976706
+      ],
+      [
+        -0.32029608243122265,
+        -0.4069054969881178,
+        0.045599423469918375,
+        -0.3328189013260137
+      ],
+      [
+        -0.10001033703293169,
+        0.014229267331498142,
+        0.22939195374459298,
+        -0.16128964729098724
+      ],
+      [
+        -0.107936502472502,
+        0.1145387324033517,
+        0.19322738181642843,
+        0.1432101501511675
+      ],
+      [
+        -0.13029630766324626,
+        0.011088585430936649,
+        -0.18307983105176956,
+        -0.07529343001345198
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "RICTOR": {
+    "row": {
+      "exposure": "RICTOR",
+      "nZ": 4,
+      "nW": 47,
+      "Z": "MYH11;CAV1;PRKCA;KDR",
+      "W": "VHL;IGFBP2;CASP7;CCNB1;GAPDH;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;ATM;ERBB2;CDH1;FASN;TP53;HSPA1A;PTEN;STAT5A;EEF2;SYK;ACACA;ASNS;MAP2K1;GAB2;RAB25;EEF2K;SERPINE1;ETS1;FN1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;DIABLO;MYC;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.25,
+      "joint_pvalues": "2.5785293609138167e-65;3.724655611417045e-29;2.0507704394857375e-11;8.296726553590353e-05;0.011645467692253868",
+      "conditional_pvalues": "6.379566121594465e-41;8.27499282176187e-17;1.2505785960856453e-07;0.013263952545260567",
+      "status": "proxy_dimensions",
+      "r_grid": 5,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 8,
+    "Z": [
+      0,
+      2,
+      23,
+      46
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      24,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "TFRC": {
+    "row": {
+      "exposure": "TFRC",
+      "nZ": 4,
+      "nW": 24,
+      "Z": "CCNB1;GAPDH;CCNE1;PRKCA",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;CLDN7;CTNNB1;ERBB2;CDH1;FASN;HSPA1A;PTEN;STAT5A;ACACA;MAP2K1;RAB25;SERPINE1;FN1;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4EBP1;MYC",
+      "r_pca": 3,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.3,
+      "joint_pvalues": "5.532355382180256e-48;8.49304138000457e-27;4.806077352074611e-13;9.313492320001367e-07;0.003314920177875362",
+      "conditional_pvalues": "3.763943427316176e-40;5.906486859941214e-24;1.4362299919598935e-10;0.0004713693756086678",
+      "status": "proxy_dimensions",
+      "r_grid": 5,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 9,
+    "Z": [
+      6,
+      7,
+      16,
+      23
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      12,
+      14,
+      18,
+      19,
+      20,
+      22,
+      24,
+      25,
+      29,
+      31,
+      34,
+      36,
+      38,
+      43,
+      44,
+      45,
+      47,
+      48,
+      50,
+      57
+    ],
+    "ready": false
+  },
+  "ANXA1": {
+    "row": {
+      "exposure": "ANXA1",
+      "nZ": 2,
+      "nW": 4,
+      "Z": "INPP4B;MSH6",
+      "W": "VHL;IGFBP2;PTEN;STAT5A",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "2.600693138019983e-09;0.00013527508575028548;0.02130944325983533",
+      "conditional_pvalues": "3.0090726588308756e-06;0.00027317140353225834",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 10,
+    "Z": [
+      39,
+      42
+    ],
+    "W": [
+      3,
+      4,
+      24,
+      25
+    ],
+    "ready": false
+  },
+  "TUBA1B": {
+    "row": {
+      "exposure": "TUBA1B",
+      "nZ": 2,
+      "nW": 4,
+      "Z": "ESR1;PGR",
+      "W": "VHL;IGFBP2;PTEN;STAT5A",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "4.993579286517773e-09;0.0031546335077642634;0.035278247101893014",
+      "conditional_pvalues": "1.3183056574741249e-08;0.02341850215440419",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 11,
+    "Z": [
+      1,
+      55
+    ],
+    "W": [
+      3,
+      4,
+      24,
+      25
+    ],
+    "ready": false
+  },
+  "CLDN7": {
+    "row": {
+      "exposure": "CLDN7",
+      "nZ": 1,
+      "nW": 13,
+      "Z": "CDH1",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "5.86328899848171e-18;4.177094793790337e-07",
+      "conditional_pvalues": "4.5627168891670135e-11",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 12,
+    "Z": [
+      19
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "PDCD4": {
+    "row": {
+      "exposure": "PDCD4",
+      "nZ": 2,
+      "nW": 24,
+      "Z": "CCNB1;CCNE1",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;CLDN7;CTNNB1;ERBB2;CDH1;FASN;HSPA1A;PTEN;STAT5A;ACACA;MAP2K1;RAB25;SERPINE1;FN1;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4EBP1;MYC",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.3,
+      "joint_pvalues": "4.765289258241755e-34;8.705641461297371e-18;0.00010136678347776214",
+      "conditional_pvalues": "1.3451983308066665e-20;6.175101357176559e-05",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 13,
+    "Z": [
+      6,
+      16
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      12,
+      14,
+      18,
+      19,
+      20,
+      22,
+      24,
+      25,
+      29,
+      31,
+      34,
+      36,
+      38,
+      43,
+      44,
+      45,
+      47,
+      48,
+      50,
+      57
+    ],
+    "ready": false
+  },
+  "CTNNB1": {
+    "row": {
+      "exposure": "CTNNB1",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "CDH1;SERPINE1",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "1.3487475656491223e-36;2.0057058365061175e-09;0.035129542910110854",
+      "conditional_pvalues": "1.2155998752515154e-18;8.180927924626947e-07",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 14,
+    "Z": [
+      19,
+      36
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "TGM2": {
+    "row": {
+      "exposure": "TGM2",
+      "nZ": 3,
+      "nW": 13,
+      "Z": "INPP4B;FOXM1;MSH2",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "2.3230231777253544e-33;5.717561465143786e-17;2.9088463181053902e-08;0.0010894559048920634",
+      "conditional_pvalues": "2.6836474478553863e-19;7.72722734469756e-10;0.001390252859155135",
+      "status": "proxy_dimensions",
+      "r_grid": 4,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 15,
+    "Z": [
+      39,
+      51,
+      58
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "CCNE1": {
+    "row": {
+      "exposure": "CCNE1",
+      "nZ": 4,
+      "nW": 24,
+      "Z": "CCNB1;TFRC;PDCD4;PGR",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;CLDN7;CTNNB1;ERBB2;CDH1;FASN;HSPA1A;PTEN;STAT5A;ACACA;MAP2K1;RAB25;SERPINE1;FN1;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4EBP1;MYC",
+      "r_pca": 3,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.3,
+      "joint_pvalues": "2.0986941353610557e-51;6.305780615006524e-31;9.156453751545027e-17;5.651645603783655e-08;0.0005446564584817561",
+      "conditional_pvalues": "5.291796754649103e-44;8.198448067554002e-26;4.247890608008625e-15;5.401287316046965e-06",
+      "status": "proxy_dimensions",
+      "r_grid": 5,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 16,
+    "Z": [
+      6,
+      9,
+      13,
+      55
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      12,
+      14,
+      18,
+      19,
+      20,
+      22,
+      24,
+      25,
+      29,
+      31,
+      34,
+      36,
+      38,
+      43,
+      44,
+      45,
+      47,
+      48,
+      50,
+      57
+    ],
+    "ready": false
+  },
+  "ATM": {
+    "row": {
+      "exposure": "ATM",
+      "nZ": 2,
+      "nW": 51,
+      "Z": "GAPDH;SYK",
+      "W": "MYH11;ESR1;CAV1;VHL;IGFBP2;CASP7;CCNB1;RICTOR;TFRC;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;CCNE1;ERBB2;CDH1;TP53;HSPA1A;PRKCA;PTEN;STAT5A;AR;ASNS;MAP2K1;BCL2;GAB2;RAB25;EEF2K;SERPINE1;FN1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;RBM15;KDR;PREX1;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;BCL2L11;RPS6;PGR;MYC;MSH2",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.25,
+      "joint_pvalues": "1.266516801164104e-44;1.2039341382219042e-10;0.001339631782099506",
+      "conditional_pvalues": "3.0888276868206084e-24;8.404512687002134e-08",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 17,
+    "Z": [
+      7,
+      28
+    ],
+    "W": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      18,
+      19,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      57,
+      58
+    ],
+    "ready": false
+  },
+  "ERBB2": {
+    "row": {
+      "exposure": "ERBB2",
+      "nZ": 1,
+      "nW": 58,
+      "Z": "TP53BP1",
+      "W": "MYH11;ESR1;CAV1;VHL;IGFBP2;CASP7;CCNB1;GAPDH;RICTOR;TFRC;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;CCNE1;ATM;CDH1;FASN;TP53;HSPA1A;PRKCA;PTEN;STAT5A;AR;EEF2;SYK;ACACA;ASNS;MAP2K1;BCL2;GAB2;RAB25;EEF2K;SERPINE1;ETS1;FN1;INPP4B;SQSTM1;BRAF;MSH6;ITGA2;RBM15;KDR;PREX1;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;BCL2L11;RPS6;PGR;DIABLO;MYC;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "3.375382376572206e-40;7.281549484780316e-07",
+      "conditional_pvalues": "3.321798965135402e-24",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 18,
+    "Z": [
+      43
+    ],
+    "W": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "CDH1": {
+    "row": {
+      "exposure": "CDH1",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "CLDN7;CTNNB1",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "3.54958927917229e-29;9.778563718351258e-10;0.003650521817624837",
+      "conditional_pvalues": "2.9102097684750346e-18;2.4223465353470514e-06",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 19,
+    "Z": [
+      12,
+      14
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "FASN": {
+    "row": {
+      "exposure": "FASN",
+      "nZ": 2,
+      "nW": 51,
+      "Z": "ACACA;RAD50",
+      "W": "MYH11;ESR1;CAV1;VHL;IGFBP2;CASP7;CCNB1;RICTOR;TFRC;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;CCNE1;ERBB2;CDH1;TP53;HSPA1A;PRKCA;PTEN;STAT5A;AR;ASNS;MAP2K1;BCL2;GAB2;RAB25;EEF2K;SERPINE1;FN1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;RBM15;KDR;PREX1;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;BCL2L11;RPS6;PGR;MYC;MSH2",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 2,
+      "nu": 0.0953607414673701,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.25,
+      "joint_pvalues": "1.7140221450514857e-28;1.7302995200201813e-06;0.9260849361904144",
+      "conditional_pvalues": "2.8980379606567633e-22;0.0009281555568620437",
+      "status": "reported",
+      "r_grid": 2,
+      "conditional_root": 0.18716931526006206,
+      "conditional_roots": "0.518347605125686;0.18716931526006206",
+      "nu_raw": 0.04471440079067021,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 20,
+    "Z": [
+      29,
+      59
+    ],
+    "W": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      18,
+      19,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      57,
+      58
+    ],
+    "ready": true,
+    "P": [
+      [
+        -0.16189444932946587,
+        -0.1080666994626943
+      ],
+      [
+        -0.08933564292773422,
+        -0.09453412780625292
+      ],
+      [
+        -0.19889814181771642,
+        -0.03234875244174418
+      ],
+      [
+        0.08043635620116804,
+        -0.01822373408507926
+      ],
+      [
+        0.0826603281921938,
+        -0.06233028927589177
+      ],
+      [
+        0.03134476764076218,
+        -0.0464934208760447
+      ],
+      [
+        0.2636090106968865,
+        -0.10007931500101824
+      ],
+      [
+        -0.05596660416222424,
+        0.11831663864392251
+      ],
+      [
+        0.20506482923373018,
+        -0.3300160080874899
+      ],
+      [
+        -0.02522097488293523,
+        -0.0768470225058859
+      ],
+      [
+        0.027876484952777586,
+        -0.23241713928379334
+      ],
+      [
+        0.2141699699997085,
+        -0.001605518107289171
+      ],
+      [
+        -0.15568907718530048,
+        0.06373938400322048
+      ],
+      [
+        -0.12095095534552482,
+        -0.28553234316887477
+      ],
+      [
+        -0.24393305757771744,
+        -0.05918422032165253
+      ],
+      [
+        0.1629908528237917,
+        -0.2135950982667938
+      ],
+      [
+        -0.014820385702704641,
+        -0.01734833651523755
+      ],
+      [
+        0.07650824526877137,
+        -0.15691367578967763
+      ],
+      [
+        0.050307156174933074,
+        0.053945582666958924
+      ],
+      [
+        -0.07129037766381542,
+        0.18086902252231965
+      ],
+      [
+        -0.17271474688325703,
+        -0.09730605267692136
+      ],
+      [
+        -0.16907026443193746,
+        -0.05704866292863449
+      ],
+      [
+        -0.059596381949713735,
+        0.07863935512456077
+      ],
+      [
+        -0.08383019668712935,
+        0.07007351640229895
+      ],
+      [
+        0.2998250430429959,
+        0.07083215684627314
+      ],
+      [
+        0.0430429048577469,
+        0.24903791582459076
+      ],
+      [
+        -0.21738393621336285,
+        -0.00028484291102153034
+      ],
+      [
+        -0.010144288036212378,
+        0.17733649709889746
+      ],
+      [
+        0.13092074806450116,
+        0.031070232122022805
+      ],
+      [
+        0.03526943112666387,
+        0.05292602325687216
+      ],
+      [
+        0.07339113702417624,
+        0.23387366688487443
+      ],
+      [
+        -0.012501982847251264,
+        0.09784863186797084
+      ],
+      [
+        -0.005321641139987055,
+        0.08842959425597904
+      ],
+      [
+        0.16065152344684064,
+        -0.20218094300266432
+      ],
+      [
+        0.1458507119320513,
+        0.16613619756080414
+      ],
+      [
+        0.09391744164723849,
+        -0.07401946814503073
+      ],
+      [
+        -0.0353817513561372,
+        -0.1543471778096196
+      ],
+      [
+        0.02728764220426774,
+        0.041107523969681876
+      ],
+      [
+        -0.06755639780382172,
+        -0.33904760421687735
+      ],
+      [
+        -0.10181440609968602,
+        -0.08064250848423625
+      ],
+      [
+        0.13637804568308898,
+        -0.029813012077745237
+      ],
+      [
+        0.080947460139659,
+        -0.022163926140069203
+      ],
+      [
+        0.11545895900841378,
+        0.2218558889147401
+      ],
+      [
+        0.21725752500328946,
+        -0.022425185045838365
+      ],
+      [
+        0.2610120490215851,
+        0.1354186163909934
+      ],
+      [
+        0.08029120976617721,
+        0.15097704761077924
+      ],
+      [
+        0.05886789272997386,
+        -0.11834150480130397
+      ],
+      [
+        0.21772592460371157,
+        -0.07566455623991308
+      ],
+      [
+        -0.1549695258247985,
+        -0.08779117124156112
+      ],
+      [
+        -0.06654832904496803,
+        0.17229625163513246
+      ],
+      [
+        0.25870593347737203,
+        -0.12409483154424801
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        0,
+        2
+      ],
+      "contrasts": [
+        1
+      ]
+    }
+  },
+  "TP53": {
+    "row": {
+      "exposure": "TP53",
+      "nZ": 1,
+      "nW": 24,
+      "Z": "MSH2",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;CLDN7;CTNNB1;ERBB2;CDH1;FASN;HSPA1A;PTEN;STAT5A;ACACA;MAP2K1;RAB25;SERPINE1;FN1;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4EBP1;MYC",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.3,
+      "joint_pvalues": "1.9391223162500453e-23;1.282627034589112e-06",
+      "conditional_pvalues": "1.1819678777413117e-19",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 21,
+    "Z": [
+      58
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      12,
+      14,
+      18,
+      19,
+      20,
+      22,
+      24,
+      25,
+      29,
+      31,
+      34,
+      36,
+      38,
+      43,
+      44,
+      45,
+      47,
+      48,
+      50,
+      57
+    ],
+    "ready": false
+  },
+  "HSPA1A": {
+    "row": {
+      "exposure": "HSPA1A",
+      "nZ": 3,
+      "nW": 13,
+      "Z": "FN1;RPS6;MYC",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 3,
+      "nu": 0.038832017000556024,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "4.066667473935814e-23;3.6700350295661373e-06;0.02344821213502337;0.3554995269784393",
+      "conditional_pvalues": "1.4173970714138618e-20;5.746521791240071e-07;0.013187075584312771",
+      "status": "reported",
+      "r_grid": 3,
+      "conditional_root": 0.1408743466595942,
+      "conditional_roots": "0.48043236309431187;0.29751356624676584;0.1408743466595942",
+      "nu_raw": 0.03339205587849737,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 22,
+    "Z": [
+      38,
+      54,
+      57
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": true,
+    "P": [
+      [
+        0.10034055647645117,
+        -0.07585652138391312,
+        -0.35813526630251785
+      ],
+      [
+        -0.035064006826866945,
+        0.12082893812941803,
+        0.36305233680355453
+      ],
+      [
+        0.012421504990942508,
+        0.038090777413116325,
+        0.09494748084338131
+      ],
+      [
+        0.29131842237898264,
+        0.21571246101232025,
+        0.5062159745626426
+      ],
+      [
+        0.27017800687326415,
+        -0.04975121772225234,
+        -0.19754489523074645
+      ],
+      [
+        -0.06532882403291676,
+        0.5050295819248639,
+        0.005831583128937199
+      ],
+      [
+        -0.16598981291187365,
+        -0.04628378818316822,
+        0.22656061905531083
+      ],
+      [
+        0.3388719621091666,
+        -0.08555919584337565,
+        -0.15432356240459288
+      ],
+      [
+        0.48923119924285935,
+        -0.05682928417983485,
+        0.3482214672895838
+      ],
+      [
+        0.6425454176281817,
+        0.07396642538657222,
+        -0.11475564814008621
+      ],
+      [
+        0.027648331185896234,
+        0.03402772626709434,
+        0.2404427511696382
+      ],
+      [
+        -0.1591781431148485,
+        0.36950891455622026,
+        0.20595170481512504
+      ],
+      [
+        0.07560981626360526,
+        0.7199134890192282,
+        -0.3546874051469318
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        2,
+        0,
+        1
+      ],
+      "contrasts": [
+        3
+      ]
+    }
+  },
+  "PRKCA": {
+    "row": {
+      "exposure": "PRKCA",
+      "nZ": 3,
+      "nW": 47,
+      "Z": "RICTOR;TFRC;BCL2",
+      "W": "VHL;IGFBP2;CASP7;CCNB1;GAPDH;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;ATM;ERBB2;CDH1;FASN;TP53;HSPA1A;PTEN;STAT5A;EEF2;SYK;ACACA;ASNS;MAP2K1;GAB2;RAB25;EEF2K;SERPINE1;ETS1;FN1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;DIABLO;MYC;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.25,
+      "joint_pvalues": "6.447409075262324e-61;1.3364578785991227e-24;1.5672863973315077e-12;0.004216176978631034",
+      "conditional_pvalues": "2.1960800727407543e-37;4.564527359503646e-19;3.430488026818586e-09",
+      "status": "proxy_dimensions",
+      "r_grid": 4,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 23,
+    "Z": [
+      8,
+      9,
+      32
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      24,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "PTEN": {
+    "row": {
+      "exposure": "PTEN",
+      "nZ": 1,
+      "nW": 1,
+      "Z": "ANXA1",
+      "W": "VHL",
+      "r_pca": 3,
+      "r_bridge": 1,
+      "r_joint": 1,
+      "r_signal": 1,
+      "nu": 0.20244818330017225,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "0.0012759196615559816",
+      "conditional_pvalues": "0.00032676712439273683",
+      "status": "reported",
+      "r_grid": 1,
+      "conditional_root": 0.20244818330017228,
+      "conditional_roots": "0.20244818330017228",
+      "nu_raw": 0.20244818330017225,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 24,
+    "Z": [
+      10
+    ],
+    "W": [
+      3
+    ],
+    "ready": true,
+    "P": [
+      [
+        1.0
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        1
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "STAT5A": {
+    "row": {
+      "exposure": "STAT5A",
+      "nZ": 2,
+      "nW": 1,
+      "Z": "PRKCA;EEF2K",
+      "W": "VHL",
+      "r_pca": 3,
+      "r_bridge": 0,
+      "r_joint": 0,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.15,
+      "joint_pvalues": "0.05462265677891108",
+      "conditional_pvalues": "0.02231762880924559",
+      "status": "no_shared_direction",
+      "r_grid": 0,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 25,
+    "Z": [
+      23,
+      35
+    ],
+    "W": [
+      3
+    ],
+    "ready": false
+  },
+  "AR": {
+    "row": {
+      "exposure": "AR",
+      "nZ": 1,
+      "nW": 47,
+      "Z": "ESR1",
+      "W": "VHL;IGFBP2;CASP7;CCNB1;GAPDH;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;ATM;ERBB2;CDH1;FASN;TP53;HSPA1A;PTEN;STAT5A;EEF2;SYK;ACACA;ASNS;MAP2K1;GAB2;RAB25;EEF2K;SERPINE1;ETS1;FN1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;DIABLO;MYC;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.25,
+      "joint_pvalues": "1.6968106131888564e-27;0.0002629313959253103",
+      "conditional_pvalues": "9.675391251180835e-16",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 26,
+    "Z": [
+      1
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      24,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "EEF2": {
+    "row": {
+      "exposure": "EEF2",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "GAPDH;ETS1",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "1.0287228446398967e-13;0.0005389444562023308;0.04766436419242553",
+      "conditional_pvalues": "0.0007880536210936398;0.0677083666881959",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 27,
+    "Z": [
+      7,
+      37
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "SYK": {
+    "row": {
+      "exposure": "SYK",
+      "nZ": 1,
+      "nW": 13,
+      "Z": "ATM",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "5.943995490333701e-13;0.005803610706978286",
+      "conditional_pvalues": "3.642903998589803e-06",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 28,
+    "Z": [
+      17
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "ACACA": {
+    "row": {
+      "exposure": "ACACA",
+      "nZ": 1,
+      "nW": 58,
+      "Z": "FASN",
+      "W": "MYH11;ESR1;CAV1;VHL;IGFBP2;CASP7;CCNB1;GAPDH;RICTOR;TFRC;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;CCNE1;ATM;ERBB2;CDH1;TP53;HSPA1A;PRKCA;PTEN;STAT5A;AR;EEF2;SYK;ASNS;MAP2K1;BCL2;GAB2;RAB25;EEF2K;SERPINE1;ETS1;FN1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;RBM15;KDR;PREX1;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;BCL2L11;RPS6;PGR;DIABLO;MYC;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 1,
+      "r_joint": 1,
+      "r_signal": 1,
+      "nu": 0.4178382788715844,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.3,
+      "joint_pvalues": "1.0375390438632193e-17;0.6159232587584553",
+      "conditional_pvalues": "1.4294043684652657e-14",
+      "status": "reported",
+      "r_grid": 1,
+      "conditional_root": 0.4178382788715843,
+      "conditional_roots": "0.4178382788715843",
+      "nu_raw": 0.11846661756443334,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 5
+    },
+    "a": 29,
+    "Z": [
+      20
+    ],
+    "W": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": true,
+    "P": [
+      [
+        -0.13108628764838645
+      ],
+      [
+        -0.06810458168272482
+      ],
+      [
+        -0.17142121093809282
+      ],
+      [
+        0.07186348018567595
+      ],
+      [
+        0.07928080103662109
+      ],
+      [
+        0.03447390728272048
+      ],
+      [
+        0.2529901551877259
+      ],
+      [
+        -0.07572631796540437
+      ],
+      [
+        -0.06587878640988232
+      ],
+      [
+        0.22877899656831616
+      ],
+      [
+        -0.015023956907126337
+      ],
+      [
+        0.058159574037741114
+      ],
+      [
+        0.18652251827662103
+      ],
+      [
+        -0.15469279314000342
+      ],
+      [
+        -0.06802272096725476
+      ],
+      [
+        -0.21215459016318827
+      ],
+      [
+        0.17380935865402908
+      ],
+      [
+        0.17193371994042517
+      ],
+      [
+        -0.01677608679834352
+      ],
+      [
+        0.08576944152901213
+      ],
+      [
+        0.0377155994977864
+      ],
+      [
+        -0.08908000498824342
+      ],
+      [
+        -0.1404849859056677
+      ],
+      [
+        -0.14826595415981983
+      ],
+      [
+        -0.06773483335325066
+      ],
+      [
+        -0.08574859034763567
+      ],
+      [
+        -0.11940983244605051
+      ],
+      [
+        0.08956134749104162
+      ],
+      [
+        0.2584606265078688
+      ],
+      [
+        0.003587205501013674
+      ],
+      [
+        -0.18926960633430162
+      ],
+      [
+        -0.02826994855623716
+      ],
+      [
+        0.11481587197553651
+      ],
+      [
+        0.02458252078301354
+      ],
+      [
+        0.03781176220601662
+      ],
+      [
+        -0.26782432305599047
+      ],
+      [
+        -0.016693734487136312
+      ],
+      [
+        -0.02115777977145399
+      ],
+      [
+        0.17273198025475486
+      ],
+      [
+        0.11086240217397934
+      ],
+      [
+        0.09937786732591646
+      ],
+      [
+        -0.008353058775193727
+      ],
+      [
+        0.019371741286051382
+      ],
+      [
+        -0.016379174965175804
+      ],
+      [
+        -0.07790396635096496
+      ],
+      [
+        0.12653178599046497
+      ],
+      [
+        0.08221735284033585
+      ],
+      [
+        0.07621852966046734
+      ],
+      [
+        0.2011233544048288
+      ],
+      [
+        0.21985651161055378
+      ],
+      [
+        0.05715824212535351
+      ],
+      [
+        0.07293887579827618
+      ],
+      [
+        0.2035447660448613
+      ],
+      [
+        -0.12333358103772399
+      ],
+      [
+        -0.044788802464618124
+      ],
+      [
+        -0.0818223841526826
+      ],
+      [
+        0.2523664834100476
+      ],
+      [
+        -0.20046093186055736
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        1
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "ASNS": {
+    "row": {
+      "exposure": "ASNS",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "SQSTM1;EIF4EBP1",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "1.3429894526052998e-15;2.6402009985159707e-07;0.02004289109300678",
+      "conditional_pvalues": "1.1558539369453632e-10;0.028672767093253938",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 30,
+    "Z": [
+      40,
+      50
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "MAP2K1": {
+    "row": {
+      "exposure": "MAP2K1",
+      "nZ": 1,
+      "nW": 13,
+      "Z": "ATM",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "2.355096524241536e-13;3.6802212989096227e-05",
+      "conditional_pvalues": "2.6845471699448373e-10",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 31,
+    "Z": [
+      17
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "BCL2": {
+    "row": {
+      "exposure": "BCL2",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "PRKCA;BCL2L11",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "1.3850085816257631e-22;8.265790152380965e-07;0.00785507752324356",
+      "conditional_pvalues": "1.2336798519043257e-17;0.0037277509808858944",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 32,
+    "Z": [
+      23,
+      53
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "GAB2": {
+    "row": {
+      "exposure": "GAB2",
+      "nZ": 1,
+      "nW": 13,
+      "Z": "BRAF",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "3.165313860033054e-31;0.0004084738511900972",
+      "conditional_pvalues": "2.0781382182889027e-23",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 33,
+    "Z": [
+      41
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "RAB25": {
+    "row": {
+      "exposure": "RAB25",
+      "nZ": 2,
+      "nW": 4,
+      "Z": "CCNB1;ITGA2",
+      "W": "VHL;IGFBP2;PTEN;STAT5A",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 2,
+      "nu": 0.10384292407491197,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "8.728860488320867e-11;0.00010369332456054853;0.13840700832097663",
+      "conditional_pvalues": "8.152305406992208e-12;0.00013256141837487138",
+      "status": "reported",
+      "r_grid": 2,
+      "conditional_root": 0.2153733775286902,
+      "conditional_roots": "0.36225730114646143;0.2153733775286902",
+      "nu_raw": 0.07979874153754749,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 34,
+    "Z": [
+      6,
+      44
+    ],
+    "W": [
+      3,
+      4,
+      24,
+      25
+    ],
+    "ready": true,
+    "P": [
+      [
+        0.4160982225353667,
+        0.7252167896751825
+      ],
+      [
+        0.41946592042929054,
+        0.2796634390734498
+      ],
+      [
+        0.3033425376459978,
+        -0.5242726574976604
+      ],
+      [
+        0.7475920783795151,
+        -0.3478320707168532
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        2,
+        1
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "EEF2K": {
+    "row": {
+      "exposure": "EEF2K",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "SERPINE1;EIF4G1",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "1.9304136571659443e-58;2.5934422008570526e-15;9.249093983846828e-05",
+      "conditional_pvalues": "1.2092456050238059e-32;5.204564138462102e-13",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 35,
+    "Z": [
+      36,
+      49
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "SERPINE1": {
+    "row": {
+      "exposure": "SERPINE1",
+      "nZ": 5,
+      "nW": 13,
+      "Z": "PDCD4;CTNNB1;EEF2K;FN1;ITGA2",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 5,
+      "nu": 0.027721847603725404,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "7.185858925078266e-57;1.3726246260969973e-21;8.627588252759238e-12;1.808893383428419e-06;0.0025262946621551984;0.0603573174441205",
+      "conditional_pvalues": "2.5935047603514095e-50;9.269526781933676e-24;1.4278592788745e-14;4.358727627382689e-08;0.0027821033359467498",
+      "status": "reported",
+      "r_grid": 5,
+      "conditional_root": 0.17014452306509206,
+      "conditional_roots": "0.6349807985709929;0.43640530540964434;0.37181199299994233;0.31131133562606056;0.17014452306509206",
+      "nu_raw": 0.027397314201801064,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 36,
+    "Z": [
+      13,
+      14,
+      35,
+      38,
+      44
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": true,
+    "P": [
+      [
+        0.05411367681488508,
+        -0.0014823300512582472,
+        -0.29655467378590294,
+        0.666848350421527,
+        -0.32527286982473524
+      ],
+      [
+        -0.05818255016791318,
+        -0.2531048341462874,
+        -0.12173411642964888,
+        0.5177954814205923,
+        0.5101811452775474
+      ],
+      [
+        -0.1804142514506119,
+        0.07952876031322816,
+        -0.48105493626029344,
+        0.030733253343889627,
+        0.0042564747153726185
+      ],
+      [
+        0.20972596188160253,
+        0.14336727336937438,
+        0.1528693376292543,
+        -0.024080962329750842,
+        0.3897446824175396
+      ],
+      [
+        0.40295071248889613,
+        0.16370500055991585,
+        0.04816651744655201,
+        0.23064411283721342,
+        0.10714577623136617
+      ],
+      [
+        -0.16223461468486133,
+        0.18028785557903954,
+        -0.12096555331129327,
+        0.11392528807327235,
+        0.19860484732361267
+      ],
+      [
+        -0.016998097070571642,
+        -0.4359552730125262,
+        0.21238460805772616,
+        0.11322263966355772,
+        0.41707819764895154
+      ],
+      [
+        0.34313825781167967,
+        -0.05155280048916078,
+        -0.6657750878508467,
+        -0.3902693151368637,
+        0.2700312770877543
+      ],
+      [
+        0.443756188420648,
+        -0.01704787518642946,
+        0.04978374214468327,
+        -0.023581158411350167,
+        0.1205067086327444
+      ],
+      [
+        0.537947300397416,
+        -0.08159824042005594,
+        -0.10462828846801855,
+        0.11436500327184701,
+        -0.251046051805564
+      ],
+      [
+        -0.23048481699114054,
+        -0.009577736593670012,
+        -0.2879532372127227,
+        0.0732354962599999,
+        -0.045347302847717166
+      ],
+      [
+        -0.2525659602598386,
+        0.2836220237390311,
+        -0.16064082843540722,
+        -0.06699358191363833,
+        0.2852108281993366
+      ],
+      [
+        0.08491410681783976,
+        0.7546899556636868,
+        0.12242889414014624,
+        0.1757398813542232,
+        0.1524825447543007
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        3,
+        2,
+        5,
+        1,
+        4
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "ETS1": {
+    "row": {
+      "exposure": "ETS1",
+      "nZ": 3,
+      "nW": 24,
+      "Z": "EEF2;MSH2;RAD50",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;CLDN7;CTNNB1;ERBB2;CDH1;FASN;HSPA1A;PTEN;STAT5A;ACACA;MAP2K1;RAB25;SERPINE1;FN1;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4EBP1;MYC",
+      "r_pca": 3,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.3,
+      "joint_pvalues": "1.7270688089019077e-49;1.9551677730695723e-28;1.7199540888721407e-09;0.0004462081497285598",
+      "conditional_pvalues": "9.714855142419511e-33;6.8955264198777884e-12;0.00016411748066749994",
+      "status": "proxy_dimensions",
+      "r_grid": 4,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 37,
+    "Z": [
+      27,
+      58,
+      59
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      12,
+      14,
+      18,
+      19,
+      20,
+      22,
+      24,
+      25,
+      29,
+      31,
+      34,
+      36,
+      38,
+      43,
+      44,
+      45,
+      47,
+      48,
+      50,
+      57
+    ],
+    "ready": false
+  },
+  "FN1": {
+    "row": {
+      "exposure": "FN1",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "HSPA1A;SERPINE1",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "2.3120798691818157e-23;7.557138117000826e-05;0.032294655853528",
+      "conditional_pvalues": "1.6427041186610693e-16;0.027029278420323",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 38,
+    "Z": [
+      22,
+      36
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "INPP4B": {
+    "row": {
+      "exposure": "INPP4B",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "ANXA1;TGM2",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 2,
+      "nu": 0.13679144184358571,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "2.887794919735627e-26;1.2525506565419756e-10;0.4020908589261143",
+      "conditional_pvalues": "7.183195061901015e-22;1.904924709978795e-08",
+      "status": "reported",
+      "r_grid": 2,
+      "conditional_root": 0.3124554685045616,
+      "conditional_roots": "0.46177474336910146;0.3124554685045616",
+      "nu_raw": 0.07172395464897643,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 39,
+    "Z": [
+      10,
+      15
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": true,
+    "P": [
+      [
+        -0.22610900870389541,
+        -0.44343624049301433
+      ],
+      [
+        0.1813304336462177,
+        -0.47869701412982946
+      ],
+      [
+        -0.4092461984285837,
+        0.11282602203781072
+      ],
+      [
+        0.11633774944666718,
+        -0.1915023051624769
+      ],
+      [
+        0.04539919362146884,
+        -0.24791221434647456
+      ],
+      [
+        0.0698083327388669,
+        -0.026441455139852924
+      ],
+      [
+        -0.2181064156943706,
+        0.23225932868386773
+      ],
+      [
+        0.04194622440453177,
+        0.4172410559921018
+      ],
+      [
+        0.32412696677153097,
+        -0.05928539123779475
+      ],
+      [
+        0.4685809265875692,
+        0.2557674648154934
+      ],
+      [
+        -0.2683921187374796,
+        -0.35395264343256017
+      ],
+      [
+        -0.5191719312571605,
+        0.15395185197597328
+      ],
+      [
+        0.11186010806400475,
+        -0.12923278925615628
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        2,
+        1
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "SQSTM1": {
+    "row": {
+      "exposure": "SQSTM1",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "CCNB1;ASNS",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "5.493862108591373e-18;1.964160031556016e-09;0.0002271521186506235",
+      "conditional_pvalues": "7.577237428161087e-10;0.00017686460914036005",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 40,
+    "Z": [
+      6,
+      30
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "BRAF": {
+    "row": {
+      "exposure": "BRAF",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "GAB2;EIF4G1",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "5.707477030795367e-44;9.123541817746671e-08;0.00024180719431416515",
+      "conditional_pvalues": "1.2019866829130468e-16;0.0003204690947045819",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 41,
+    "Z": [
+      33,
+      49
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "MSH6": {
+    "row": {
+      "exposure": "MSH6",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "ANXA1;MSH2",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "2.5904380798536625e-33;2.7608410768022284e-15;0.0001570834071342878",
+      "conditional_pvalues": "5.577342039291872e-22;1.061950984099315e-05",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 42,
+    "Z": [
+      10,
+      58
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "TP53BP1": {
+    "row": {
+      "exposure": "TP53BP1",
+      "nZ": 1,
+      "nW": 58,
+      "Z": "ERBB2",
+      "W": "MYH11;ESR1;CAV1;VHL;IGFBP2;CASP7;CCNB1;GAPDH;RICTOR;TFRC;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;CCNE1;ATM;CDH1;FASN;TP53;HSPA1A;PRKCA;PTEN;STAT5A;AR;EEF2;SYK;ACACA;ASNS;MAP2K1;BCL2;GAB2;RAB25;EEF2K;SERPINE1;ETS1;FN1;INPP4B;SQSTM1;BRAF;MSH6;ITGA2;RBM15;KDR;PREX1;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;BCL2L11;RPS6;PGR;DIABLO;MYC;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "3.3753823765719175e-40;7.28154948478053e-07",
+      "conditional_pvalues": "1.0336733540280681e-09",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 43,
+    "Z": [
+      18
+    ],
+    "W": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "ITGA2": {
+    "row": {
+      "exposure": "ITGA2",
+      "nZ": 3,
+      "nW": 4,
+      "Z": "CCNE1;RAB25;SERPINE1",
+      "W": "VHL;IGFBP2;PTEN;STAT5A",
+      "r_pca": 3,
+      "r_bridge": 4,
+      "r_joint": 4,
+      "r_signal": 3,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "9.37110907817562e-16;4.8483135176133045e-09;0.003754362510261841;0.03598956982440755",
+      "conditional_pvalues": "5.463961024689969e-09;0.0015493441029178834;0.010526736815742468",
+      "status": "proxy_dimensions",
+      "r_grid": 4,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 44,
+    "Z": [
+      16,
+      34,
+      36
+    ],
+    "W": [
+      3,
+      4,
+      24,
+      25
+    ],
+    "ready": false
+  },
+  "RBM15": {
+    "row": {
+      "exposure": "RBM15",
+      "nZ": 2,
+      "nW": 54,
+      "Z": "SERPINE1;G6PD",
+      "W": "MYH11;ESR1;CAV1;VHL;IGFBP2;CASP7;CCNB1;GAPDH;RICTOR;TFRC;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;CCNE1;ATM;ERBB2;CDH1;FASN;TP53;PRKCA;PTEN;STAT5A;AR;EEF2;SYK;ACACA;ASNS;MAP2K1;BCL2;GAB2;RAB25;EEF2K;ETS1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;KDR;PREX1;EIF4G1;EIF4EBP1;FOXM1;ERBB3;BCL2L11;RPS6;PGR;DIABLO;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.3,
+      "joint_pvalues": "4.2155030080338356e-69;2.2404335342737374e-22;7.449536656971688e-10",
+      "conditional_pvalues": "4.382812670628326e-27;5.51910177126851e-10",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 45,
+    "Z": [
+      36,
+      48
+    ],
+    "W": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      37,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      46,
+      47,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "KDR": {
+    "row": {
+      "exposure": "KDR",
+      "nZ": 2,
+      "nW": 47,
+      "Z": "CAV1;RICTOR",
+      "W": "VHL;IGFBP2;CASP7;CCNB1;GAPDH;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;ATM;ERBB2;CDH1;FASN;TP53;HSPA1A;PTEN;STAT5A;EEF2;SYK;ACACA;ASNS;MAP2K1;GAB2;RAB25;EEF2K;SERPINE1;ETS1;FN1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;DIABLO;MYC;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.25,
+      "joint_pvalues": "3.953247054848867e-45;3.3551915479890307e-16;8.729350596171827e-09",
+      "conditional_pvalues": "4.455629949001195e-24;1.0797303978883025e-08",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 46,
+    "Z": [
+      2,
+      8
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      24,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "PREX1": {
+    "row": {
+      "exposure": "PREX1",
+      "nZ": 1,
+      "nW": 58,
+      "Z": "CASP7",
+      "W": "MYH11;ESR1;CAV1;VHL;IGFBP2;CCNB1;GAPDH;RICTOR;TFRC;ANXA1;TUBA1B;CLDN7;PDCD4;CTNNB1;TGM2;CCNE1;ATM;ERBB2;CDH1;FASN;TP53;HSPA1A;PRKCA;PTEN;STAT5A;AR;EEF2;SYK;ACACA;ASNS;MAP2K1;BCL2;GAB2;RAB25;EEF2K;SERPINE1;ETS1;FN1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;RBM15;KDR;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;BCL2L11;RPS6;PGR;DIABLO;MYC;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "2.941990325226147e-35;7.393147369573703e-09",
+      "conditional_pvalues": "4.4926390792135054e-09",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 47,
+    "Z": [
+      5
+    ],
+    "W": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "G6PD": {
+    "row": {
+      "exposure": "G6PD",
+      "nZ": 2,
+      "nW": 4,
+      "Z": "TGM2;RBM15",
+      "W": "VHL;IGFBP2;PTEN;STAT5A",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 2,
+      "nu": 0.10338894947470093,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "2.6156698548378956e-14;0.0007286363280834279;0.36270086355128733",
+      "conditional_pvalues": "1.4933403316889193e-15;7.886231814438713e-05",
+      "status": "reported",
+      "r_grid": 2,
+      "conditional_root": 0.22230862674166765,
+      "conditional_roots": "0.4210508786307932;0.22230862674166765",
+      "nu_raw": 0.07539781166511732,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 48,
+    "Z": [
+      15,
+      45
+    ],
+    "W": [
+      3,
+      4,
+      24,
+      25
+    ],
+    "ready": true,
+    "P": [
+      [
+        0.28328550854176576,
+        -0.10360805197250181
+      ],
+      [
+        -0.2956547359726063,
+        -0.7394500039746983
+      ],
+      [
+        0.4174990436034263,
+        0.4670138643379017
+      ],
+      [
+        0.8111918061330661,
+        -0.4736846141732515
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        2,
+        1
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "EIF4G1": {
+    "row": {
+      "exposure": "EIF4G1",
+      "nZ": 4,
+      "nW": 24,
+      "Z": "EEF2K;BRAF;FOXM1;ERBB3",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;CLDN7;CTNNB1;ERBB2;CDH1;FASN;HSPA1A;PTEN;STAT5A;ACACA;MAP2K1;RAB25;SERPINE1;FN1;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4EBP1;MYC",
+      "r_pca": 3,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.3,
+      "joint_pvalues": "5.570869129586912e-73;1.4228165547225936e-40;1.4917898116961046e-24;7.59635405700856e-13;0.005442737875181175",
+      "conditional_pvalues": "4.615541377594788e-46;6.940305353700311e-30;6.1448074521644146e-18;1.2708055126663706e-07",
+      "status": "proxy_dimensions",
+      "r_grid": 5,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 49,
+    "Z": [
+      35,
+      41,
+      51,
+      52
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      12,
+      14,
+      18,
+      19,
+      20,
+      22,
+      24,
+      25,
+      29,
+      31,
+      34,
+      36,
+      38,
+      43,
+      44,
+      45,
+      47,
+      48,
+      50,
+      57
+    ],
+    "ready": false
+  },
+  "EIF4EBP1": {
+    "row": {
+      "exposure": "EIF4EBP1",
+      "nZ": 1,
+      "nW": 13,
+      "Z": "ASNS",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "2.6683834506527385e-07;0.014292829432409013",
+      "conditional_pvalues": "8.341838379907325e-07",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 50,
+    "Z": [
+      30
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "FOXM1": {
+    "row": {
+      "exposure": "FOXM1",
+      "nZ": 4,
+      "nW": 13,
+      "Z": "CCNB1;TGM2;EIF4G1;MSH2",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 4,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "1.1317446681537345e-60;2.710865838147008e-28;2.3075688657003845e-13;2.32527666469821e-06;0.0026427778586535482",
+      "conditional_pvalues": "6.398054648090397e-49;1.4032751934035145e-19;3.9263676710482414e-09;0.00017936616688413369",
+      "status": "proxy_dimensions",
+      "r_grid": 5,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 51,
+    "Z": [
+      6,
+      15,
+      49,
+      58
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "ERBB3": {
+    "row": {
+      "exposure": "ERBB3",
+      "nZ": 1,
+      "nW": 4,
+      "Z": "EIF4G1",
+      "W": "VHL;IGFBP2;PTEN;STAT5A",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.25,
+      "joint_pvalues": "1.318089889311873e-15;0.0005008432039925467",
+      "conditional_pvalues": "2.7617594499479917e-14",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 52,
+    "Z": [
+      49
+    ],
+    "W": [
+      3,
+      4,
+      24,
+      25
+    ],
+    "ready": false
+  },
+  "BCL2L11": {
+    "row": {
+      "exposure": "BCL2L11",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "MYH11;BCL2",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 2,
+      "nu": 0.0792153278063265,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "3.1775634405657905e-19;6.978525669409899e-06;0.1352095166550214",
+      "conditional_pvalues": "5.224542409701843e-20;0.00032053453315337467",
+      "status": "reported",
+      "r_grid": 2,
+      "conditional_root": 0.2030472324628218,
+      "conditional_roots": "0.48801687611922595;0.2030472324628218",
+      "nu_raw": 0.04625681105985224,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 53,
+    "Z": [
+      0,
+      32
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": true,
+    "P": [
+      [
+        0.2184900126381939,
+        0.5082237678286762
+      ],
+      [
+        0.1861270693642897,
+        0.3107996879822764
+      ],
+      [
+        0.09885736346626928,
+        0.21554362438989075
+      ],
+      [
+        0.1102094189703614,
+        -0.5354517572917816
+      ],
+      [
+        0.2771312047053975,
+        0.1947170739393494
+      ],
+      [
+        0.26308974239224925,
+        -0.1638365477837252
+      ],
+      [
+        -0.3988942088024956,
+        0.0919147277481765
+      ],
+      [
+        -0.26160105909959674,
+        -0.16606126695964007
+      ],
+      [
+        0.1957642930142952,
+        -0.28547617016929244
+      ],
+      [
+        0.39923875368897027,
+        0.03629337225188872
+      ],
+      [
+        0.11154988840396113,
+        -0.3339325956425635
+      ],
+      [
+        -0.07746052956087185,
+        0.04954999598927362
+      ],
+      [
+        0.5531469613628508,
+        -0.11992776737955654
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        1,
+        2
+      ],
+      "contrasts": [
+        0
+      ]
+    }
+  },
+  "RPS6": {
+    "row": {
+      "exposure": "RPS6",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "CAV1;HSPA1A",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "1.9221638472914703e-33;9.944135682040888e-16;0.0005373335263322329",
+      "conditional_pvalues": "3.579023041166503e-17;9.256655212422854e-06",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 54,
+    "Z": [
+      2,
+      22
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "PGR": {
+    "row": {
+      "exposure": "PGR",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "ESR1;CCNE1",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "1.3701678396225702e-23;1.3625134652240062e-08;0.00014316804551776251",
+      "conditional_pvalues": "7.849867987135576e-12;4.560699006058627e-06",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 55,
+    "Z": [
+      1,
+      16
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "DIABLO": {
+    "row": {
+      "exposure": "DIABLO",
+      "nZ": 1,
+      "nW": 13,
+      "Z": "GAPDH",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "8.190811097781675e-10;0.006836851564548283",
+      "conditional_pvalues": "2.891417000635817e-08",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 56,
+    "Z": [
+      7
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  },
+  "MYC": {
+    "row": {
+      "exposure": "MYC",
+      "nZ": 1,
+      "nW": 55,
+      "Z": "HSPA1A",
+      "W": "MYH11;ESR1;CAV1;VHL;IGFBP2;CASP7;CCNB1;GAPDH;RICTOR;TFRC;ANXA1;TUBA1B;CLDN7;CTNNB1;TGM2;CCNE1;ATM;ERBB2;CDH1;FASN;TP53;PRKCA;PTEN;STAT5A;AR;EEF2;SYK;ACACA;ASNS;MAP2K1;BCL2;GAB2;RAB25;EEF2K;ETS1;INPP4B;SQSTM1;BRAF;MSH6;TP53BP1;ITGA2;RBM15;KDR;PREX1;G6PD;EIF4G1;EIF4EBP1;FOXM1;ERBB3;BCL2L11;RPS6;PGR;DIABLO;MSH2;RAD50",
+      "r_pca": 3,
+      "r_bridge": 2,
+      "r_joint": 2,
+      "r_signal": 1,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.25,
+      "joint_pvalues": "9.885555959148087e-18;0.04854075792321655",
+      "conditional_pvalues": "5.8067678358003036e-11",
+      "status": "proxy_dimensions",
+      "r_grid": 2,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 57,
+    "Z": [
+      22
+    ],
+    "W": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      37,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      58,
+      59
+    ],
+    "ready": false
+  },
+  "MSH2": {
+    "row": {
+      "exposure": "MSH2",
+      "nZ": 5,
+      "nW": 24,
+      "Z": "TGM2;TP53;ETS1;MSH6;FOXM1",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;CLDN7;CTNNB1;ERBB2;CDH1;FASN;HSPA1A;PTEN;STAT5A;ACACA;MAP2K1;RAB25;SERPINE1;FN1;TP53BP1;ITGA2;RBM15;PREX1;G6PD;EIF4EBP1;MYC",
+      "r_pca": 3,
+      "r_bridge": 5,
+      "r_joint": 5,
+      "r_signal": 5,
+      "nu": 0.03792031822068758,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.4,
+      "alpha": 0.3,
+      "joint_pvalues": "1.1411507755634008e-70;1.571123257456585e-42;1.2384034449805249e-20;1.603992176907512e-09;0.0011685538615632451;0.28140980408553123",
+      "conditional_pvalues": "9.771704492999822e-71;1.0459303930277762e-41;3.446044815389301e-26;2.906203867655271e-16;1.727637126129929e-08",
+      "status": "reported",
+      "r_grid": 5,
+      "conditional_root": 0.31480585845000447,
+      "conditional_roots": "0.6520439643093856;0.5210141893892978;0.43341025301169345;0.3788295776199715;0.31480585845000447",
+      "nu_raw": 0.026499211803989356,
+      "conditional_rank_agreement": true,
+      "eligible_designs": 1
+    },
+    "a": 58,
+    "Z": [
+      15,
+      21,
+      37,
+      42,
+      51
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      12,
+      14,
+      18,
+      19,
+      20,
+      22,
+      24,
+      25,
+      29,
+      31,
+      34,
+      36,
+      38,
+      43,
+      44,
+      45,
+      47,
+      48,
+      50,
+      57
+    ],
+    "ready": true,
+    "P": [
+      [
+        -0.0472647283571066,
+        -0.10506247520036789,
+        -0.23026025713115078,
+        -0.05214991884551537,
+        0.15079569145658536
+      ],
+      [
+        0.1898138028947543,
+        -0.025770685492033027,
+        -0.024654296568545606,
+        0.281869308639491,
+        -0.0190769221664636
+      ],
+      [
+        -0.28319189596661937,
+        -0.047814143437208384,
+        0.014521506263138528,
+        -0.20457201891315482,
+        0.39425247304028405
+      ],
+      [
+        0.1715461117683666,
+        -0.13751592485598246,
+        0.21801873512538938,
+        -0.12021667991016227,
+        0.039865749353522294
+      ],
+      [
+        -0.007849865933256338,
+        -0.069620306410873,
+        -0.21552441315936194,
+        0.10187229010323857,
+        -0.26996492954770096
+      ],
+      [
+        0.15053037189649401,
+        0.2218726463808132,
+        0.4291611740335766,
+        0.08588000075502566,
+        0.1407547820485241
+      ],
+      [
+        0.20079722783584,
+        0.1716996299626602,
+        -0.03266539528036832,
+        -0.08144012731450112,
+        -0.0032529660546366324
+      ],
+      [
+        0.10863099679287504,
+        -0.10785223880103581,
+        0.13245270525883526,
+        0.02597275864168854,
+        -0.28292390584956617
+      ],
+      [
+        0.202753470208108,
+        -0.46722447083198776,
+        -0.21523307808615533,
+        -0.020304875760468917,
+        0.001064078614144699
+      ],
+      [
+        -0.2384108302724316,
+        0.2013356709381087,
+        -0.08683752906860871,
+        0.11306712634391552,
+        -0.07378215036854846
+      ],
+      [
+        -0.1161422829872215,
+        0.12025859419156192,
+        0.1328162553433607,
+        -0.2101839102027882,
+        -0.04849627860673476
+      ],
+      [
+        0.11538465967616289,
+        0.11415094351552452,
+        -0.3093544273869939,
+        -0.4902025129333007,
+        -0.013686165775594238
+      ],
+      [
+        0.12952015996416333,
+        -0.40087527128970707,
+        -0.08050984266288673,
+        -0.012309384761990885,
+        -0.09972518607991568
+      ],
+      [
+        0.034097936742314275,
+        0.3325370620802575,
+        -0.4375313116827495,
+        0.020558101669020203,
+        -0.10267278370445951
+      ],
+      [
+        -0.023184800186297073,
+        -0.14036602563324757,
+        0.11924526147797397,
+        0.19227677744503588,
+        -0.33194243122944656
+      ],
+      [
+        -0.1769670774797547,
+        0.004218738190435704,
+        -0.24568198154110435,
+        0.36827254018062056,
+        -0.055021812464862124
+      ],
+      [
+        -0.092527010602828,
+        0.20129506197824837,
+        0.05639102342191861,
+        0.37968053910852273,
+        -0.02401538582322871
+      ],
+      [
+        0.37438217141832153,
+        0.15378165274256236,
+        0.013596646032848657,
+        -0.1277332589501922,
+        -0.11775093389878494
+      ],
+      [
+        -0.1413343785980985,
+        -0.14212503084995934,
+        0.21474945268811624,
+        0.19974666529989318,
+        -0.05619868828533019
+      ],
+      [
+        0.3156228635433412,
+        0.01946905937480569,
+        -0.05167285320818239,
+        0.3317148905533377,
+        0.6102869646170038
+      ],
+      [
+        -0.2594877166499187,
+        -0.418801500128089,
+        -0.01655417737005254,
+        -0.003979316178893767,
+        0.058305478173072287
+      ],
+      [
+        -0.40088538352086645,
+        -0.048403037694106636,
+        0.058440422213049556,
+        -0.12595904629748864,
+        0.2405462294838624
+      ],
+      [
+        0.20946536101441096,
+        -0.12045513206541615,
+        -0.27787347491082426,
+        0.1456015487207021,
+        0.23176238778776692
+      ],
+      [
+        -0.24998057561264647,
+        0.13262698506743023,
+        -0.27682553803763477,
+        0.13467945448575916,
+        -0.02031025190096136
+      ]
+    ],
+    "pivots": {
+      "nuisance": [
+        1,
+        3,
+        2,
+        5,
+        0
+      ],
+      "contrasts": [
+        4
+      ]
+    }
+  },
+  "RAD50": {
+    "row": {
+      "exposure": "RAD50",
+      "nZ": 2,
+      "nW": 13,
+      "Z": "FASN;ETS1",
+      "W": "VHL;IGFBP2;CASP7;TUBA1B;ERBB2;TP53;PTEN;STAT5A;TP53BP1;RBM15;PREX1;G6PD;ERBB3",
+      "r_pca": 3,
+      "r_bridge": 3,
+      "r_joint": 3,
+      "r_signal": 2,
+      "nu": NaN,
+      "rank_test_level": 0.05,
+      "window_fraction": 0.2,
+      "alpha": 0.2,
+      "joint_pvalues": "5.6432999439654375e-12;1.7978145272542407e-07;0.0005406799212822767",
+      "conditional_pvalues": "4.5604491954192604e-08;0.0010084145165101155",
+      "status": "proxy_dimensions",
+      "r_grid": 3,
+      "conditional_root": NaN,
+      "eligible_designs": 0
+    },
+    "a": 59,
+    "Z": [
+      20,
+      37
+    ],
+    "W": [
+      3,
+      4,
+      5,
+      11,
+      18,
+      21,
+      24,
+      25,
+      43,
+      45,
+      47,
+      48,
+      52
+    ],
+    "ready": false
+  }
+}

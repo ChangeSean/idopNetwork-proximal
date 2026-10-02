@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "checks": 4441,
+  "additional_cohorts": 8,
+  "additional_exposures": 480,
+  "additional_endpoint_sets": 960,
+  "all_final_cohorts": 10,
+  "all_final_exposures": 600,
+  "source_and_input_hashes": "match extension plan",
+  "original_implementation": "unchanged",
+  "discovery_isolation": "Held-out protein values and survival labels perturbed in all eight added cohorts; discovery construction unchanged",
+  "patient_identifiers_in_outputs": false,
+  "confidence_level": "95% per exposure and endpoint; no cross-protein or cross-cohort multiplicity adjustment",
+  "output_sha256": {
+    "all_ten_cohorts_summary.csv": "54bbea298a2437a659a66541692cb579e1c7713a5795b01d5a26a56226b0324e",
+    "bounded_effect_sets.csv": "65a189ef8ca8066f19363aefb3c6e26652cd80256537fd629df02e8f7481168f",
+    "inference_status_counts.csv": "09abf095f11a21940fc34c358d10b315738425649679b0fe5ccf35fb52f29430"
+  }
+}

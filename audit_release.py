@@ -34,6 +34,8 @@ def main():
     check('component precision tradeoff retained', 'RMSE increases from 0.884 to 1.356' in text)
     check('weak-system bounded fraction retained', '21/200 linear sets' in text)
     check('clinical uncertainty retained', '[-2.07, 4.24]' in text and 'Both proteins\' sets include zero' in text)
+    check('ten final clinical cohorts retained', '600 cohort-specific protein contrasts' in text and '58/600' in text)
+    check('point directions identified as exploratory', 'exploratory signals' in text and 'All endpoint sets include zero' in text)
     check('post-result example selection identified', 'examples were chosen after analysis' in text)
     before = (ROOT / 'manuscript.md').read_bytes()
     subprocess.run([sys.executable, str(ROOT / 'build_current_manuscript.py')], cwd=ROOT, check=True, capture_output=True)

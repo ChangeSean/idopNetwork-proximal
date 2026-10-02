@@ -1,11 +1,11 @@
 {
-  "checks": 2411,
+  "checks": 2401,
   "passed": true,
-  "numeric_table_cells": 2312,
+  "numeric_table_cells": 2302,
   "tables": 15,
   "references": 34,
   "native_equations": 424,
   "word_page_rendering": "unverified: packaged renderer cannot find soffice.exe",
-  "source_sha256": "a431141edf6ed5c745a35a8ee43685aab92c359a2025a3f1d34875016642047d",
-  "word_sha256": "f7019cccb56f8ca04e70b08b2c5c92bd4fb64a42e67b7227e4d5fdac292ee8db"
+  "source_sha256": "c318ff6518b9346929def618817f494c4f1a4aae69063cdaf98e0cf65a391b57",
+  "word_sha256": "a69f937992d27fde3ad111026bf60d466a0a97530e981d49de061d6eac8b0b97"
 }

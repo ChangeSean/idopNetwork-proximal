@@ -15,7 +15,7 @@ def run(script, *args):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('stage', choices=['verify', 'tables', 'figures', 'word', 'simulate', 'clinical', 'package'])
-    parser.add_argument('--cohort', choices=['ov', 'luad', 'both'], default='both')
+    parser.add_argument('--cohort', choices=['ov', 'luad', 'both', 'remaining', 'all'], default='both')
     args = parser.parse_args()
     for key in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS'):
         os.environ.setdefault(key, '1')
@@ -24,7 +24,9 @@ def main():
         run('summarize_discovery_estimation.py')
         run('select_method_evidence.py')
         run('audit_release.py')
+        run('audit_clinical_reporting.py')
     elif args.stage == 'tables':
+        run('clinical_reporting.py')
         run('build_current_manuscript.py')
     elif args.stage == 'figures':
         run('make_independent_design_figures.py')
@@ -37,11 +39,16 @@ def main():
             run('validate_discovery_estimation.py', '--scenario', scenario, '--reps', 200, '--boot', 100)
         run('summarize_discovery_estimation.py')
     elif args.stage == 'clinical':
-        for cohort in (('ov', 'luad') if args.cohort == 'both' else (args.cohort,)):
+        base_cohorts = ('ov', 'luad') if args.cohort in ('both', 'all') else (() if args.cohort == 'remaining' else (args.cohort,))
+        for cohort in base_cohorts:
             run('run_discovery_estimation_application.py', cohort, '--boot', 300)
-        if args.cohort == 'both':
+        if args.cohort in ('both', 'all'):
             run('run_independent_structured_cases.py')
             run('audit_discovery_estimation_application.py')
+        if args.cohort in ('remaining', 'all'):
+            run('run_remaining_clinical.py')
+            run('summarize_additional_clinical.py')
+        run('clinical_reporting.py')
     elif args.stage == 'package':
         run('audit_current_work.py')
         run('package_current_work.py')

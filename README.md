@@ -20,7 +20,7 @@ The component study evaluates ten estimators in seven molecular systems, with 20
 
 A separate fresh-sample study evaluates the complete independent workflow. Coverage is 0.950–0.995 across seven systems and two targets. Systems II, III and V yield 186–190 bounded linear sets per 200 attempts; weak system IV yields 21/200. Point availability, coverage and bounded-set frequency are reported together.
 
-TCGA ovarian cancer and lung adenocarcinoma provide clinical applications. The ovarian PTEN contrast is 1.02 months of 36-month RMST, with a 95% confidence set of [-2.07, 4.24]. The ovarian panel has two bounded RMST sets; the lung panel has none. All 120 protein records and both endpoint sets are supplied.
+Ten TCGA cohorts provide 600 cohort-specific protein contrasts and 58 completed point estimates. Figure 6 presents all completed coefficients; Table 5 and Figure 7 give worked contrasts with their uncertainty. The ovarian PTEN contrast is 1.02 months of 36-month RMST, with a 95% confidence set of [-2.07, 4.24]. Two ovarian contrasts have bounded RMST sets; all endpoint sets include zero. Point directions are exploratory signals. Complete exposure records retain every confidence-set shape and estimation status.
 
 ## Run the current workflow
 
@@ -33,15 +33,15 @@ python workflow.py tables
 python workflow.py figures
 ```
 
-`verify` checks stored simulation records, paired comparisons, bridge algebra and publication consistency without patient data. `tables` refreshes Tables 2–5 from the stored summaries and preserves the manuscript's prose. `figures` regenerates Figures 1, 4, 6 and 7 from current records; the remaining figures are supplied as publication assets.
+`verify` checks stored simulation records, paired comparisons, bridge algebra, complete clinical reporting and publication consistency without patient data. `tables` refreshes Tables 2–5 and S1 from stored results and preserves the manuscript's prose. `figures` regenerates Figures 1, 4, 6 and 7 from current records; the remaining figures are supplied as publication assets.
 
 ```bash
 # Recompute the final seven-system study (200 datasets per system).
 python workflow.py simulate
 
-# Download public input tables, then run both clinical cohorts.
-python fetch_tcga.py ov luad
-python workflow.py clinical
+# Download public input tables, then run all ten clinical cohorts.
+python fetch_tcga.py blca brca coadread kirc lgg luad ov skcm stad ucec
+python workflow.py clinical --cohort all
 
 # Build and check the Word manuscript.
 python -m pip install -r requirements-documents.txt
@@ -49,6 +49,8 @@ python workflow.py word
 ```
 
 Simulation and clinical commands write to their declared result directories. Committed records provide the reference run in Git history. Detailed component-study commands and fixed seeds are in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+
+`clinical --cohort both` runs OV/LUAD; `clinical --cohort remaining` applies the same frozen implementation to the other eight cohorts. `results/additional_cohorts_application_20261002/point_estimates.csv` contains every completed coefficient with its original confidence sets and off-range flags. The original implementation and frozen OV/LUAD protocol remain unchanged; the eight-cohort extension has its own protocol and source/input hashes.
 
 ## Repository layout
 

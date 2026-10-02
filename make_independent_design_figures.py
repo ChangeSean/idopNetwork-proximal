@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 import figures as F
 from paper_tables import SCENARIOS, ROMAN
+from clinical_reporting import STUDIES, CASES, records, point_records, case_records, EXTENSION
 
 ROOT=Path(__file__).resolve().parent
 SIM=ROOT/'results/discovery_estimation_validation_20261001'
@@ -67,11 +68,57 @@ def simulation():
     F.save(fig,'fig4_simulation')
 
 
-def forest(study,name):
+def clinical_points():
+    """Every completed coefficient is displayed, including off-range values."""
     F.set_style()
-    d=pd.read_csv(APP/f'{study}_all_exposures.csv')
-    d=d[d.design_ready].sort_values('exposure',ascending=False).reset_index(drop=True)
-    fig,axes=plt.subplots(1,2,figsize=(F.DOUBLE,max(4.5,.25*len(d)+1.9)),sharey=True)
+    data = records()
+    points = point_records(data)
+    fig, axes = plt.subplots(1, 2, figsize=(F.DOUBLE, 5.5), sharey=True)
+    for j, (target, scale, limit, title) in enumerate([
+            ('rmst', 1, 36, 'RMST contrast (months)'),
+            ('survival', 100, 100, 'Survival contrast (percentage points)')]):
+        ax = axes[j]
+        shown = 0
+        for i, study in enumerate(STUDIES):
+            cohort = points[points.study.eq(study)].sort_values('exposure')
+            offsets = np.linspace(-.24, .24, len(cohort)) if len(cohort) > 1 else np.zeros(len(cohort))
+            for offset, (_, row) in zip(offsets, cohort.iterrows()):
+                value = row[target + '_estimate'] * scale
+                off_range = abs(value) > limit
+                color = F.ORANGE if (study, row.exposure) in CASES else F.BLUE
+                marker = '<' if value < -limit else '>' if value > limit else 'o'
+                displayed = np.clip(value, -.97 * limit, .97 * limit) if off_range else value
+                ax.plot(displayed, i + offset,
+                        marker=marker, ms=5 if off_range else 4, linestyle='none',
+                        color=color, markerfacecolor='none' if off_range else color,
+                        markeredgewidth=.8, alpha=.9)
+                shown += 1
+        assert shown == len(points)
+        ax.set_xlim(-limit, limit)
+        ax.set_ylim(len(STUDIES) - .5, -.5)
+        ax.set_yticks(range(len(STUDIES)),
+                      [f'{study.upper()}  {int(points.study.eq(study).sum())}/60' for study in STUDIES])
+        ax.axvline(0, color=F.INK2, lw=.7, ls='--')
+        ax.grid(axis='x', color=F.GRID, lw=.4)
+        ax.set_xlabel(title)
+        F._panel_label(ax, 'ab'[j], x=-.15)
+    from matplotlib.lines import Line2D
+    handles = [Line2D([], [], marker='o', color=F.BLUE, ls='none', ms=4, label='Completed estimate'),
+               Line2D([], [], marker='o', color=F.ORANGE, ls='none', ms=4, label='Worked contrast'),
+               Line2D([], [], marker='>', color=F.BLUE, markerfacecolor='none', ls='none', ms=5,
+                      label='Off-range estimate')]
+    fig.legend(handles=handles, loc='lower center', ncol=3, frameon=False, fontsize=8,
+               bbox_to_anchor=(.53, .035))
+    fig.suptitle('Independent point estimates across ten TCGA cohorts', fontsize=10, y=.975)
+    fig.subplots_adjust(left=.20, right=.98, top=.91, bottom=.18, wspace=.30)
+    F.save(fig, 'fig6_application')
+    return points
+
+
+def clinical_cases():
+    F.set_style()
+    d=pd.DataFrame(case_records()).reset_index(drop=True)
+    fig,axes=plt.subplots(1,2,figsize=(F.DOUBLE,3.5),sharey=True)
     for j,(target,scale,limit,title) in enumerate([('rmst',1,36,'RMST contrast (months)'),
                                                 ('survival',100,100,'Survival contrast (percentage points)')]):
         ax=axes[j]
@@ -99,19 +146,26 @@ def forest(study,name):
                         color=F.INK2,bbox=dict(fc='white',ec='none',pad=.5))
         ax.axvline(0,color=F.INK2,lw=.6,ls='--')
         ax.set_xlabel(title);ax.grid(axis='x',color=F.GRID,lw=.4)
-        ax.set_yticks(range(len(d)),[f'{r.exposure}  r={int(r.r_grid)}' for r in d.itertuples()])
+        ax.set_yticks(range(len(d)),[f'{r.study.upper()} {r.exposure}  r={int(r.r_grid)}' for r in d.itertuples()])
+        ax.set_ylim(len(d)-.6,-.6)
         F._panel_label(ax,'ab'[j],x=-.13)
-    meta=json.loads((APP/f'{study}_manifest.json').read_text())
-    fig.suptitle(f'{study.upper()}: discovery n={meta["n_discovery"]}; estimation n={meta["n_estimation"]}',
-                 fontsize=9,y=.985)
-    fig.text(.52,.035,'Arrows: infinite or off-scale endpoints. Triangles: off-scale point estimates.\nGrey: unavailable calculation. Orange: estimated confidence set.',
+    fig.suptitle('Worked molecular contrasts with 95% confidence sets', fontsize=10,y=.975)
+    fig.text(.55,.035,'Dots: point estimates. Lines: 95% sets.\nArrows: confidence set continues beyond the displayed range.',
              ha='center',fontsize=7.5,linespacing=1.4)
-    fig.subplots_adjust(left=.18,right=.98,top=.90,bottom=.23 if len(d)<=14 else .16,wspace=.2)
-    F.save(fig,name)
+    fig.subplots_adjust(left=.23,right=.98,top=.85,bottom=.28,wspace=.3)
+    F.save(fig,'fig7_clinical_cases')
 
 
 def main():
-    schematic();simulation();forest('ov','fig6_application');forest('luad','fig7_luad')
+    schematic();simulation()
+    points=clinical_points();clinical_cases()
+    provenance=dict(cohorts=10,attempted_exposures=600,point_estimates_per_panel=len(points),
+                    worked_cases=[dict(study=study,exposure=protein) for study,protein in CASES],
+                    rmst_off_range=int(points.rmst_outside_target_range.sum()),
+                    survival_off_range=int(points.survival_outside_target_range.sum()),
+                    point_selection='Every estimated coefficient; no filtering by direction or interval exclusion',
+                    confidence_sets='Retained in source records, worked-case table and Figure 7')
+    (EXTENSION/'clinical_figures_provenance.json').write_text(json.dumps(provenance,indent=2),encoding='utf-8')
 
 
 if __name__=='__main__':main()

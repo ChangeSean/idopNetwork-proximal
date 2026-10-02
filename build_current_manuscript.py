@@ -7,6 +7,7 @@ from pathlib import Path
 import re
 import pandas as pd
 from paper_tables import SCENARIOS, ROMAN, metric, table, renumber_references
+from clinical_reporting import case_table_rows, cohort_table_rows
 
 ROOT = Path(__file__).resolve().parent
 
@@ -50,22 +51,16 @@ def main():
             rows.append([outcome.upper(), ROMAN[scenario], f'{int(r.point_fits)}/{int(r.attempts)}', f'{r.rank_correct:.3f}',
                          metric(r.bias, r.bias_mcse), metric(r.rmse, r.rmse_mcse), metric(r.coverage, r.coverage_mcse), f'{int(r.bounded)}/{int(r.attempts)}'])
     replace(4, ['Target', 'System', 'Point fits', 'Correct rank', 'Bias (MCSE)', 'RMSE (MCSE)', 'Set coverage', 'Bounded sets'], rows)
-    rows = []
-    for study in ('ov', 'luad'):
-        cohort = pd.read_csv(ROOT / f'results/discovery_estimation_application_20261001/{study}_all_exposures.csv')
-        for target, label in (('rmst', 'RMST'), ('survival', 'Survival')):
-            kinds = cohort[target + '_kind'].value_counts()
-            rows.append([study.upper(), label, f'{int(cohort.design_ready.sum())}/{len(cohort)}',
-                         f'{cohort[target + "_estimate"].notna().sum()}/{len(cohort)}',
-                         kinds.get('bounded', 0), kinds.get('disconnected', 0), kinds.get('all_real', 0)])
-    replace(5, ['Cohort', 'Target', 'Discovery designs', 'Point fits', 'Bounded', 'Disconnected', 'All real'], rows)
+    replace(5, ['Cohort', 'Protein', 'Rank', 'RMST months and set', 'Survival points and set'], case_table_rows())
+    replace('S1', ['Cohort', 'Discovery / estimation', 'Estimation deaths', 'Designs', 'Point fits',
+                   'RMST B/D/R', 'Survival B/D/R'], cohort_table_rows())
     text = renumber_references(re.sub(r'\n{3,}', '\n\n', text))
     (ROOT / 'manuscript.md').write_text(text, encoding='utf-8', newline='\n')
     section = text.split('## 4 Identification and estimation', 1)[1].split('## 5 Simulation', 1)[0]
     appendix = text.split('## Appendix A', 1)[1].split('## Supplementary tables', 1)[0]
     if (ROOT / 'revised_theory.md').exists():
         (ROOT / 'revised_theory.md').write_text('# Identification and independent bridge inference\n\n' + section + '\n## Appendix A' + appendix, encoding='utf-8')
-    print('Refreshed Tables 2–5 from aggregate results; canonical prose preserved.')
+    print('Refreshed Tables 2–5 and S1 from aggregate results; canonical prose preserved.')
 
 
 if __name__ == '__main__':

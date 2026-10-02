@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Protein abundance reflects molecular regulation and systemic variation that can confound survival associations. We develop idopNetwork–proximal inference for total molecular exposure effects. Niche-ordered curves and patient deviations guide network-based proxy construction. Structural conditions connect these roles to proximal exclusions, and a linear outcome bridge preserves downstream contributions to the total effect. Joint information learns systemic readout coordinates; conditional information selects an identifying design. Independent discovery and estimation combine this construction with concentrated moment inference. Inverse censoring weights extend the bridge to restricted mean survival time (RMST) and survival probability. A ten-estimator study compares seven molecular systems. In the modular system, linear-effect RMSE is 0.049, compared with 0.195 for a global-window design and 0.184 for correlation-selected proxies. Joint readout reduces linear bias from 0.203 to 0.013 in a weak two-factor system. Separate validation of the complete 75:25 discovery/estimation workflow uses 200 fresh datasets per system; coverage is 0.950–0.995, with bounded-set frequency quantifying precision. TCGA ovarian cancer and lung adenocarcinoma illustrate 36-month intervention contrasts. The ovarian PTEN estimate is 1.02 months of RMST per standard deviation, with a 95% set of [-2.07, 4.24]. The framework links molecular network construction to interpretable survival effects and their identifying information.
+Protein abundance reflects molecular regulation and systemic variation that can confound survival associations. We develop idopNetwork–proximal inference for total molecular exposure effects. Niche-ordered curves and patient deviations guide network-based proxy construction. Structural conditions connect these roles to proximal exclusions, and a linear outcome bridge preserves downstream contributions to the total effect. Joint information learns systemic readout coordinates; conditional information selects an identifying design. Independent discovery and estimation combine this construction with concentrated moment inference. Inverse censoring weights extend the bridge to restricted mean survival time (RMST) and survival probability. A ten-estimator study compares seven molecular systems. In the modular system, linear-effect RMSE is 0.049, compared with 0.195 for a global-window design and 0.184 for correlation-selected proxies. Joint readout reduces linear bias from 0.203 to 0.013 in a weak two-factor system. Separate validation of the complete 75:25 discovery/estimation workflow uses 200 fresh datasets per system; coverage is 0.950–0.995, with bounded-set frequency quantifying precision. Ten TCGA cohorts supply 600 protein contrasts, with 58 completed point estimates. Ovarian PTEN has an estimated RMST contrast of 1.02 months per standard deviation and a 95% set of [-2.07, 4.24]. Two protein contrasts have bounded RMST sets, and all sets include zero. The application provides candidate molecular contrasts with quantified identifying information.
 
 **Keywords:** proximal causal inference; idopNetwork; molecular networks; latent confounding; restricted mean survival time; outcome bridge
 
@@ -512,28 +512,30 @@ Weak system IV supplies 136/200 point fits, with linear bias 0.074, RMSE 0.353 a
 
 ### 6.1 Cohorts and discovery construction
 
-We use TCGA PanCancer Atlas RPPA and clinical tables from cBioPortal [25, 26, 27]. OV includes 411 patients and 245 deaths; LUAD includes 352 patients and 140 deaths. One fixed split assigns OV 308 discovery and 103 estimation patients, and LUAD 264 and 88. Discovery defines missingness and duplicate-antibody filtering, the 60 most variable proteins, imputations and standardisation. Covariates are age in OV and age and sex in LUAD, with discovery imputations applied to estimation patients. The intervention unit is one discovery-cohort protein standard deviation.
+We use TCGA PanCancer Atlas RPPA and clinical tables from cBioPortal [25, 26, 27]. OV includes 411 patients and 245 deaths; LUAD includes 352 patients and 140 deaths. One fixed split assigns OV 308 discovery and 103 estimation patients, and LUAD 264 and 88. The same fixed procedure is extended to BLCA, BRCA, COADREAD, KIRC, LGG, SKCM, STAD and UCEC, giving ten cohorts and 600 cohort-specific protein contrasts. Table S1 gives all discovery and estimation sample sizes. Discovery defines missingness and duplicate-antibody filtering, the 60 most variable proteins, imputations and standardisation. Covariates are age and, where represented in discovery, sex and tumour subtype; OV uses age and LUAD uses age and sex. The intervention unit is one discovery-cohort protein standard deviation.
 
-The causal interpretation uses the structural coverage, exposure boundary, mean bridge and censoring conditions in Section 4. Discovery ranks describe information within that model. Figure 5 and Table S1 retain the full-cohort ten-cohort molecular screen. Figures 2–3 illustrate LCK and CDH2 molecular representation; those descriptive examples do not determine independent clinical eligibility.
+The causal interpretation uses the structural coverage, exposure boundary, mean bridge and censoring conditions in Section 4. Discovery ranks describe information within that model. Figure 5 supplies the full-cohort molecular screen; independent clinical eligibility and precision are reported in Table S1. Figures 2–3 illustrate LCK and CDH2 molecular representation.
 
-### 6.2 Independent restricted survival contrasts
+### 6.2 Point estimates of restricted survival contrasts
 
-Each discovery-selected exposure is analysed only in estimation patients. Three hundred patient resamples refit censoring and concentrated moments, holding molecular decisions fixed. The horizon is 36 months. Table 5 summarises both complete 60-protein panels; Figures 6–7 display every discovery-eligible design. The aggregate records retain all 120 exposures and both endpoint sets, including unavailable designs.
+Each discovery-selected exposure is analysed only in estimation patients. Three hundred patient resamples refit censoring and concentrated moments, holding molecular decisions fixed. The horizon is 36 months. Figure 6 displays all 58 completed point estimates from the ten cohorts, in months of RMST and survival percentage points. Table 5 and Figure 7 give worked protein contrasts together with their confidence sets. The complete records retain all 600 attempted exposures and both endpoint sets; Table S1 summarises design availability, point fits and set shapes.
 
-**Table 5.** Independent clinical estimation. Shape counts include unavailable calculations returned as real-line sets. Point fits and finite confidence information have separate denominators.
+**Table 5.** Worked molecular contrasts per discovery-cohort standard deviation. Entries give the point estimate followed by its 95% confidence set; survival contrasts are in percentage points. Rank is the discovery-selected readout dimension.
 
-| Cohort | Target | Discovery designs | Point fits | Bounded | Disconnected | All real |
-| --- | --- | --- | --- | --- | --- | --- |
-| OV | RMST | 26/60 | 24/60 | 2 | 3 | 55 |
-| OV | Survival | 26/60 | 24/60 | 2 | 1 | 57 |
-| LUAD | RMST | 10/60 | 2/60 | 0 | 0 | 60 |
-| LUAD | Survival | 10/60 | 2/60 | 0 | 0 | 60 |
+| Cohort | Protein | Rank | RMST months and set | Survival points and set |
+| --- | --- | --- | --- | --- |
+| OV | PTEN | 1 | 1.02; [-2.07, 4.24] | 6.47; [-6.77, 19.31] |
+| KIRC | PTEN | 3 | 1.47; All real values | 2.21; All real values |
+| OV | HSPA1A | 2 | -0.62; [-21.97, 10.19] | -7.54; [-80.32, 36.00] |
+| LUAD | TGM2 | 3 | 2.01; All real values | 12.06; All real values |
 
-The sets are per exposure and endpoint, under its specified proximal model. No familywise or false-discovery claim is made for the panel. Real-line sets express weak information or unavailable calculation; the recorded status distinguishes these cases.
+Point estimates describe the fitted intervention contrast under the specified proximal model and provide candidate directions for subsequent biological investigation. The 95% sets quantify uncertainty per exposure and endpoint. Complete panels preserve the distinction between an estimated effect with weak information and an unavailable calculation. Across all ten cohorts, 58/600 exposures complete point estimation; two have bounded RMST sets, three have disconnected sets and 595 have real-line sets. All endpoint sets include zero, so the point directions serve as exploratory signals. The panel scan does not supply multiplicity-adjusted discoveries.
 
-PTEN provides a worked ovarian-cancer contrast on both clinical scales. Its discovery design uses CHEK2 as the treatment proxy and an eight-protein outcome-proxy pool with one shared direction. For a one-discovery-standard-deviation increase in PTEN, the estimated 36-month RMST contrast is 1.02 months, with a 95% set of [-2.07, 4.24]; the survival-probability contrast is 6.5 percentage points, with set [-6.77, 19.31]. These ranges quantify the plausible benefit and harm under the specified proxy and censoring model. The required exclusion for CHEK2 is the exposure-specific condition in Section 4.1.
+PTEN provides a worked ovarian-cancer contrast on both clinical scales. Its discovery design uses CHEK2 as the treatment proxy and an eight-protein outcome-proxy pool with one shared direction. For a one-discovery-standard-deviation increase in PTEN, the estimated 36-month RMST contrast is 1.02 months, with a 95% set of [-2.07, 4.24]; the survival-probability contrast is 6.5 percentage points, with set [-6.77, 19.31]. The point estimates suggest a favourable candidate direction and give its fitted magnitude. The sets accommodate both benefit and harm. The required exclusion for CHEK2 is the exposure-specific condition in Section 4.1.
 
-HSPA1A supplies the other bounded ovarian RMST set: -0.62 months with set [-21.97, 10.19], and -7.5 survival percentage points with set [-80.32, 36.00]. Both proteins' sets include zero. LUAD supplies completed point calculations for HSPA1A and TGM2, with real-line sets for both targets. Estimation uses 67 OV and 33 LUAD deaths; Table 5 and Figures 6–7 place these examples within the complete panels.
+The KIRC PTEN estimates are 1.47 RMST months and 2.2 survival percentage points, with real-line sets on both scales. The matching positive point directions motivate examining PTEN in these two tumour settings; their precision does not establish a shared benefit. Each cohort has its own exposure scale and proxy model. Ovarian HSPA1A gives -0.62 RMST months with set [-21.97, 10.19], and -7.5 survival percentage points with set [-80.32, 36.00]. Both proteins' sets include zero. LUAD TGM2 gives 2.01 RMST months and 12.1 survival percentage points, with real-line sets. These worked examples were chosen after analysis to illustrate the two bounded cases, a repeated protein across cohorts and a completed LUAD contrast within the target ranges; all completed estimates appear in Figure 6 and the accompanying point-estimate file.
+
+The eight additional cohorts supply 32 completed point estimates and real-line sets for all 480 exposures on both endpoints. Their recorded statuses locate the information loss: COADREAD and STAD have no completed calculations because the eligible designs fail 36-month censoring support; BRCA, LGG and UCEC chiefly encounter insufficient complete moment resamples. KIRC completes all 14 eligible designs, but its effect information still yields real-line sets. Off-range calculations also occur: LUAD HSPA1A gives a survival contrast of 379 percentage points and SKCM BRAF gives an RMST contrast of -53.66 months. Figure 6 marks these values outside the ranges of the intervention targets, retaining their numerical values in the complete records.
 
 ### 6.3 Pathway-defined intervention boundaries
 
@@ -547,7 +549,7 @@ idopNetwork–proximal uses molecular structure to construct measurements for a 
 
 The simulations identify where these components contribute. Niche-window construction improves linear-effect estimation over global-window and correlation designs in modular and 60-protein two-factor systems. Joint readout reduces bias relative to conditional projection in the weak two-factor system. Performance varies with structure and target: the global design performs similarly in some systems, and joint readout can trade RMST precision for coverage. The separate fresh-sample study evaluates the complete workflow and reports finite-set frequency together with coverage.
 
-The TCGA application expresses protein contrasts in months of restricted survival and percentage points of survival probability. PTEN illustrates both scales with a bounded independent confidence set; the complete panels show the information available for the other targets. Clinical interpretation rests on the exposure-specific proxy model, including its exclusion relations, complete readout dimension and censoring assumptions. Larger estimation cohorts and measurements chosen for explicit biological proxy roles would improve the opportunity for precise molecular intervention estimates.
+The ten-cohort TCGA application expresses protein contrasts in months of restricted survival and percentage points of survival probability. Its 58 completed point estimates describe fitted directions and magnitudes for biological follow-up. PTEN illustrates this interpretation in OV and KIRC, while the confidence sets show the precision available in each cohort. The two bounded RMST sets occur in OV and include zero; the remaining cohorts chiefly supply weak-information sets or unavailable calculations. Clinical interpretation rests on the exposure-specific proxy model, including its exclusion relations, complete readout dimension and censoring assumptions. Larger estimation cohorts and measurements chosen for explicit biological proxy roles would improve the opportunity for precise molecular intervention estimates.
 
 The resulting method provides a constructive route from a cross-sectional molecular panel to a causal survival target. Network design determines the available proxy measurements, the bridge identifies the effect under the stated structural model, and concentrated moment inference quantifies its uncertainty.
 
@@ -565,11 +567,11 @@ The manuscript, analysis code, frozen study protocols, aggregate results and rep
 
 **Figure 4.** Final independent-sample validation across seven systems, each with 200 fresh datasets. Point error uses available estimates; coverage uses all 200 sets. Bars give 1.96 Monte Carlo standard errors.
 
-**Figure 5.** Ten-cohort proxy-information screen. Labels give cohort and eligible exposure count; marker area also encodes that count. Orange identifies OV and LUAD. Eligibility uses positive joint dimension and sufficient treatment- and outcome-proxy dimensions. Strength is shown for reduced readouts; counts use all eight designs; the component count in Table S1 refers to the reference graph.
+**Figure 5.** Full-cohort proxy-information screen. Labels give cohort and eligible exposure count; marker area also encodes that count. Orange identifies the original OV and LUAD cohorts. Strength is shown for reduced readouts and counts use all eight designs. Independent discovery/estimation records for all ten cohorts are summarised separately in Table S1.
 
-**Figure 6.** OV independent-estimation contrasts and confidence sets for every discovery-eligible exposure, per discovery-cohort SD. Arrows retain unbounded sets; unavailable calculations are distinguished from weak-information sets. All exposure records accompany the analysis.
+**Figure 6.** All 58 completed point estimates from ten TCGA cohorts, per discovery-cohort standard deviation. Horizontal position gives RMST months or survival percentage points; cohort labels give the point-fit count out of 60 attempted proteins. Dots show estimates within the target ranges. Open triangles mark off-range estimates at the display boundary; numerical values and confidence sets are retained in the aggregate files. This overview displays fitted effects; Figure 7 shows uncertainty for worked contrasts.
 
-**Figure 7.** LUAD independent-estimation contrasts and confidence sets for every discovery-eligible exposure, per discovery-cohort SD. Arrows retain unbounded sets; unavailable calculations are distinguished from weak-information sets. All exposure records accompany the analysis.
+**Figure 7.** Worked PTEN, HSPA1A and TGM2 contrasts on both clinical scales. Points are independent-estimation coefficients and lines are their 95% confidence sets. Arrows indicate real-line sets. PTEN is shown in OV and KIRC; HSPA1A is shown in OV and TGM2 in LUAD. The four examples illustrate fitted magnitudes together with their precision.
 
 **Figure S1.** Full TCGA-OV network on 140 filtered proteins, with 261 signed ODE edges and 18 components. The ten largest hubs are emphasised.
 
@@ -713,20 +715,20 @@ KDR encodes VEGFR2. NSCLC experiments connect amplified KDR to VEGF-induced mTOR
 
 Under this model the estimated 36-month RMST contrast is -1.50 months per declared standard deviation, with 95% Fieller set [-4.29, 0.44]. The survival contrast is -8.1 percentage points, with set [-26.33, 2.61]. Complete reconstruction of the boundary-constrained KDR design completes 36/300 attempts (0.120); its complete construction interval remains unavailable. The example specifies a molecular abundance intervention and a survival target. Its estimand differs from a drug-treatment contrast and retains the stated structural measurement conditions.
 
-**Table S1.** Ten-cohort conditional-information screen using the current eight-design rule.
+**Table S1.** Complete independent analysis across ten cohorts, with 60 attempted proteins per cohort. B/D/R denotes bounded, disconnected and real-line confidence-set counts; real-line counts include unavailable calculations with recorded reasons. Point fits apply to both endpoints.
 
-| Cohort | Patients | Proteins | Spectrum rank | Residual fraction | Eligible designs | Median strength |
+| Cohort | Discovery / estimation | Estimation deaths | Designs | Point fits | RMST B/D/R | Survival B/D/R |
 | --- | --- | --- | --- | --- | --- | --- |
-| BLCA | 342 | 60 | 1 | 0.915 | 21 | 0.047 |
-| BRCA | 876 | 60 | 2 | 0.854 | 21 | 0.025 |
-| COADREAD | 460 | 60 | 2 | 0.820 | 21 | 0.024 |
-| KIRC | 455 | 60 | 2 | 0.854 | 9 | 0.053 |
-| LGG | 427 | 60 | 1 | 0.882 | 19 | 0.035 |
-| LUAD | 352 | 60 | 1 | 0.917 | 17 | 0.049 |
-| OV | 411 | 60 | 1 | 0.929 | 8 | 0.078 |
-| SKCM | 317 | 60 | 3 | 0.832 | 24 | 0.056 |
-| STAD | 349 | 60 | 2 | 0.801 | 19 | 0.049 |
-| UCEC | 422 | 60 | 3 | 0.827 | 11 | 0.059 |
+| BLCA | 256/86 | 39 | 19/60 | 8/60 | 0/0/60 | 0/0/60 |
+| BRCA | 657/219 | 33 | 18/60 | 1/60 | 0/0/60 | 0/0/60 |
+| COADREAD | 345/115 | 17 | 14/60 | 0/60 | 0/0/60 | 0/0/60 |
+| KIRC | 341/114 | 42 | 14/60 | 14/60 | 0/0/60 | 0/0/60 |
+| LGG | 320/107 | 16 | 18/60 | 0/60 | 0/0/60 | 0/0/60 |
+| LUAD | 264/88 | 33 | 10/60 | 2/60 | 0/0/60 | 0/0/60 |
+| OV | 308/103 | 67 | 26/60 | 24/60 | 2/3/55 | 2/1/57 |
+| SKCM | 237/80 | 37 | 17/60 | 9/60 | 0/0/60 | 0/0/60 |
+| STAD | 261/88 | 38 | 23/60 | 0/60 | 0/0/60 | 0/0/60 |
+| UCEC | 316/106 | 23 | 11/60 | 0/60 | 0/0/60 | 0/0/60 |
 
 **Table S2.** Complete LINEAR comparison; entries are estimate (MCSE). All 200 attempts enter reporting denominators; generating-DAG role validity concerns the selected proxy pair.
 
