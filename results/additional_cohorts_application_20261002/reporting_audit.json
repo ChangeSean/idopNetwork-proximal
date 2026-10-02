@@ -1,12 +1,14 @@
 {
   "passed": true,
-  "checks": 613,
+  "checks": 619,
   "cohorts": 10,
   "attempted_exposures": 600,
-  "displayed_point_estimates": 58,
+  "primary_cohort": "ov",
+  "main_displayed_point_estimates": 24,
+  "supplementary_displayed_point_estimates": 58,
   "all_point_estimates_retained": true,
   "all_confidence_sets_retained": true,
   "missing_estimates_imputed": false,
   "exploratory_interpretation": true,
-  "source_sha256": "c318ff6518b9346929def618817f494c4f1a4aae69063cdaf98e0cf65a391b57"
+  "source_sha256": "2ef7eb39775dbcfefc89b09315c58f644b54b442b61c2bf9b81e10b88e112001"
 }

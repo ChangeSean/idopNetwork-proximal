@@ -68,7 +68,7 @@ def simulation():
     F.save(fig,'fig4_simulation')
 
 
-def clinical_points():
+def cohort_overview():
     """Every completed coefficient is displayed, including off-range values."""
     F.set_style()
     data = records()
@@ -101,7 +101,7 @@ def clinical_points():
         ax.axvline(0, color=F.INK2, lw=.7, ls='--')
         ax.grid(axis='x', color=F.GRID, lw=.4)
         ax.set_xlabel(title)
-        F._panel_label(ax, 'ab'[j], x=-.15)
+        F._panel_label(ax, 'ab'[j], x=-.15, y=1.01)
     from matplotlib.lines import Line2D
     handles = [Line2D([], [], marker='o', color=F.BLUE, ls='none', ms=4, label='Completed estimate'),
                Line2D([], [], marker='o', color=F.ORANGE, ls='none', ms=4, label='Worked contrast'),
@@ -111,6 +111,70 @@ def clinical_points():
                bbox_to_anchor=(.53, .035))
     fig.suptitle('Independent point estimates across ten TCGA cohorts', fontsize=10, y=.975)
     fig.subplots_adjust(left=.20, right=.98, top=.91, bottom=.18, wspace=.30)
+    F.save(fig, 'figS5_cohort_estimates')
+    return points
+
+
+def ovarian_designs():
+    """Display selected roles without implying directed biological edges."""
+    F.set_style()
+    cases = case_records()
+    assert all(row.study == 'ov' for row in cases)
+    assert len({row.W for row in cases}) == 1
+    fig, ax = plt.subplots(figsize=(F.DOUBLE, 4.3))
+    ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
+    def box(x, y, w, h, title, body, color):
+        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle='round,pad=.5',
+                                   fc='white', ec=color, lw=.9))
+        ax.text(x+w/2, y+h-5, title, ha='center', va='center', fontsize=9,
+                fontweight='bold', color=color)
+        ax.text(x+w/2, y+(h-9)/2, body, ha='center', va='center', fontsize=8,
+                linespacing=1.6)
+    ax.text(50, 97, 'Ovarian discovery: 308 patients; window width 0.4; penalty 0.2',
+            ha='center', fontsize=9)
+    for row, y in zip(cases, (66, 39, 12)):
+        box(2, y, 17, 21, 'Exposure A', row.exposure, F.ORANGE)
+        box(25, y, 38, 21, 'Treatment proxies Z', row.Z.replace(';', '   '), F.BLUE)
+        ax.plot([19.5, 24.5], [y+10.5]*2, color=F.INK2, lw=.7)
+        ax.text(69, y+15, f'r = {int(row.r_grid)}', ha='center', fontsize=8)
+        ax.text(69, y+6, f'root {row.conditional_root:.3f}', ha='center', fontsize=8)
+    shared = '\n'.join(['VHL     GAPDH', 'IGFBP2     RAB25', 'GAB2     EEF2K', 'TP53     MAP2K1'])
+    box(78, 28, 20, 44, 'Readout pool W', shared, F.AQUA)
+    ax.text(88, 20, 'Separated pool\nExposure-specific roles', ha='center', va='center', fontsize=8)
+    ax.text(50, 2, 'Lines indicate selected neighbourhood roles; causal exclusions are specified in Section 4.1.',
+            ha='center', fontsize=8)
+    F.save(fig, 'fig5_ovarian_designs')
+
+
+def ovarian_points():
+    """All completed ovarian contrasts, including coefficients outside target ranges."""
+    F.set_style()
+    points = point_records()
+    points = points[points.study.eq('ov')].reset_index(drop=True)
+    assert len(points) == 24
+    fig, axes = plt.subplots(1, 2, figsize=(F.DOUBLE, 7.2), sharey=True)
+    for j, (target, scale, limit, title) in enumerate([
+            ('rmst', 1, 36, 'RMST contrast (months)'),
+            ('survival', 100, 100, 'Survival contrast (percentage points)')]):
+        ax = axes[j]
+        for i, row in points.iterrows():
+            value = row[target+'_estimate'] * scale
+            outside = abs(value) > limit
+            color = F.ORANGE if ('ov', row.exposure) in CASES else F.BLUE
+            marker = '<' if value < -limit else '>' if value > limit else 'o'
+            displayed = np.clip(value, -.97*limit, .97*limit) if outside else value
+            ax.plot(displayed, i, marker=marker, linestyle='none', ms=5,
+                    color=color, markerfacecolor='none' if outside else color)
+        ax.set_xlim(-limit, limit); ax.set_ylim(len(points)-.5, -.5)
+        ax.set_yticks(range(len(points)), points.exposure)
+        ax.axvline(0, color=F.INK2, lw=.7, ls='--')
+        ax.grid(axis='x', color=F.GRID, lw=.4)
+        ax.set_xlabel(title)
+        F._panel_label(ax, 'ab'[j], x=-.15, y=1.01)
+    fig.suptitle('Ovarian cancer: 24 completed protein contrasts', fontsize=10, y=.985)
+    fig.text(.55, .028, 'Orange: PTEN, SERPINE1 and CCNE1. Open triangles: off-range estimates.\n'
+             'Confidence sets: Figure 7 and complete exposure records.', ha='center', fontsize=8)
+    fig.subplots_adjust(left=.18, right=.98, top=.93, bottom=.12, wspace=.30)
     F.save(fig, 'fig6_application')
     return points
 
@@ -149,7 +213,7 @@ def clinical_cases():
         ax.set_yticks(range(len(d)),[f'{r.study.upper()} {r.exposure}  r={int(r.r_grid)}' for r in d.itertuples()])
         ax.set_ylim(len(d)-.6,-.6)
         F._panel_label(ax,'ab'[j],x=-.13)
-    fig.suptitle('Worked molecular contrasts with 95% confidence sets', fontsize=10,y=.975)
+    fig.suptitle('Three ovarian protein analyses with 95% confidence sets', fontsize=10,y=.975)
     fig.text(.55,.035,'Dots: point estimates. Lines: 95% sets.\nArrows: confidence set continues beyond the displayed range.',
              ha='center',fontsize=7.5,linespacing=1.4)
     fig.subplots_adjust(left=.23,right=.98,top=.85,bottom=.28,wspace=.3)
@@ -157,9 +221,13 @@ def clinical_cases():
 
 
 def main():
-    schematic();simulation()
-    points=clinical_points();clinical_cases()
+    schematic();simulation();ovarian_designs()
+    points=cohort_overview();ovarian=ovarian_points();clinical_cases()
     provenance=dict(cohorts=10,attempted_exposures=600,point_estimates_per_panel=len(points),
+                    main_cohort='ov',main_attempted_exposures=60,main_point_estimates_per_panel=len(ovarian),
+                    main_point_figure='fig6_application',supplementary_point_figure='figS5_cohort_estimates',
+                    main_rmst_off_range=int(ovarian.rmst_outside_target_range.sum()),
+                    main_survival_off_range=int(ovarian.survival_outside_target_range.sum()),
                     worked_cases=[dict(study=study,exposure=protein) for study,protein in CASES],
                     rmst_off_range=int(points.rmst_outside_target_range.sum()),
                     survival_off_range=int(points.survival_outside_target_range.sum()),

@@ -51,7 +51,7 @@ def main():
             rows.append([outcome.upper(), ROMAN[scenario], f'{int(r.point_fits)}/{int(r.attempts)}', f'{r.rank_correct:.3f}',
                          metric(r.bias, r.bias_mcse), metric(r.rmse, r.rmse_mcse), metric(r.coverage, r.coverage_mcse), f'{int(r.bounded)}/{int(r.attempts)}'])
     replace(4, ['Target', 'System', 'Point fits', 'Correct rank', 'Bias (MCSE)', 'RMSE (MCSE)', 'Set coverage', 'Bounded sets'], rows)
-    replace(5, ['Cohort', 'Protein', 'Rank', 'RMST months and set', 'Survival points and set'], case_table_rows())
+    replace(5, ['Protein', 'Treatment proxies', 'Rank', 'RMST months and set', 'Survival points and set'], case_table_rows())
     replace('S1', ['Cohort', 'Discovery / estimation', 'Estimation deaths', 'Designs', 'Point fits',
                    'RMST B/D/R', 'Survival B/D/R'], cohort_table_rows())
     text = renumber_references(re.sub(r'\n{3,}', '\n\n', text))

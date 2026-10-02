@@ -44,10 +44,20 @@ def main():
     assert provenance['point_estimates_per_panel'] == len(points)
     assert provenance['rmst_off_range'] == points.rmst_outside_target_range.sum()
     assert provenance['survival_off_range'] == points.survival_outside_target_range.sum()
-    assert len(case_records(data)) == len(CASES) == 4
+    assert len(case_records(data)) == len(CASES) == 3
     checks += 4
+    main_text = text.split('## Figure legends', 1)[0]
+    ovarian = points[points.study.eq('ov')]
+    assert len(ovarian) == provenance['main_point_estimates_per_panel'] == 24
+    assert provenance['main_cohort'] == 'ov' and provenance['main_attempted_exposures'] == 60
+    assert provenance['main_rmst_off_range'] == ovarian.rmst_outside_target_range.sum()
+    assert provenance['main_survival_off_range'] == ovarian.survival_outside_target_range.sum()
+    assert '24/60' in main_text and '55 real-line RMST sets' in main_text
+    assert CASES == (('ov', 'PTEN'), ('ov', 'SERPINE1'), ('ov', 'CCNE1'))
+    checks += 6
     result = dict(passed=True, checks=checks, cohorts=10, attempted_exposures=600,
-                  displayed_point_estimates=58, all_point_estimates_retained=True,
+                  primary_cohort='ov', main_displayed_point_estimates=24,
+                  supplementary_displayed_point_estimates=58, all_point_estimates_retained=True,
                   all_confidence_sets_retained=True, missing_estimates_imputed=False,
                   exploratory_interpretation=True,
                   source_sha256=hashlib.sha256(text.encode()).hexdigest())

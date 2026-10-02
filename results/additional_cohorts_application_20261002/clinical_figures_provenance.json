@@ -2,22 +2,25 @@
   "cohorts": 10,
   "attempted_exposures": 600,
   "point_estimates_per_panel": 58,
+  "main_cohort": "ov",
+  "main_attempted_exposures": 60,
+  "main_point_estimates_per_panel": 24,
+  "main_point_figure": "fig6_application",
+  "supplementary_point_figure": "figS5_cohort_estimates",
+  "main_rmst_off_range": 1,
+  "main_survival_off_range": 4,
   "worked_cases": [
     {
       "study": "ov",
       "exposure": "PTEN"
     },
     {
-      "study": "kirc",
-      "exposure": "PTEN"
+      "study": "ov",
+      "exposure": "SERPINE1"
     },
     {
       "study": "ov",
-      "exposure": "HSPA1A"
-    },
-    {
-      "study": "luad",
-      "exposure": "TGM2"
+      "exposure": "CCNE1"
     }
   ],
   "rmst_off_range": 2,

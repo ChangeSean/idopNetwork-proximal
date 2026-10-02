@@ -20,9 +20,9 @@ ENTRY_POINTS = ('workflow.py', 'build_current_manuscript.py', 'build_docx.py', '
 DOCUMENTS = ('manuscript.md', 'manuscript_SiM.docx', 'README.md', 'REPRODUCIBILITY.md', 'requirements.txt',
              'requirements-documents.txt', 'DISCOVERY_ESTIMATION_PROTOCOL_20261001.md',
              'clinical_case_boundaries_20261001.json', 'THIRD_PARTY_NOTICES.md', 'third_party/LICENSE.idopnetwork')
-FIGURES = ('fig1_schematic', 'fig2_fits', 'fig3_causal', 'fig4_simulation', 'fig5_cohorts',
+FIGURES = ('fig1_schematic', 'fig2_fits', 'fig3_causal', 'fig4_simulation', 'fig5_ovarian_designs',
            'fig6_application', 'fig7_clinical_cases', 'figS1_full_network', 'figS2_network',
-           'figS3_report_rates', 'figS4_proxy_construction')
+           'figS3_report_rates', 'figS4_proxy_construction', 'figS5_cohort_estimates', 'figS6_cohort_information')
 
 
 def source_dependencies(seeds):

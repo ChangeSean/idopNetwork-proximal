@@ -15,7 +15,7 @@ def run(script, *args):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('stage', choices=['verify', 'tables', 'figures', 'word', 'simulate', 'clinical', 'package'])
-    parser.add_argument('--cohort', choices=['ov', 'luad', 'both', 'remaining', 'all'], default='both')
+    parser.add_argument('--cohort', choices=['ov', 'luad', 'both', 'remaining', 'all'], default='ov')
     args = parser.parse_args()
     for key in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS'):
         os.environ.setdefault(key, '1')

@@ -20,7 +20,9 @@ The component study evaluates ten estimators in seven molecular systems, with 20
 
 A separate fresh-sample study evaluates the complete independent workflow. Coverage is 0.950–0.995 across seven systems and two targets. Systems II, III and V yield 186–190 bounded linear sets per 200 attempts; weak system IV yields 21/200. Point availability, coverage and bounded-set frequency are reported together.
 
-Ten TCGA cohorts provide 600 cohort-specific protein contrasts and 58 completed point estimates. Figure 6 presents all completed coefficients; Table 5 and Figure 7 give worked contrasts with their uncertainty. The ovarian PTEN contrast is 1.02 months of 36-month RMST, with a 95% confidence set of [-2.07, 4.24]. Two ovarian contrasts have bounded RMST sets; all endpoint sets include zero. Point directions are exploratory signals. Complete exposure records retain every confidence-set shape and estimation status.
+The primary medical application is TCGA ovarian cancer: 411 patients, 60 attempted proteins and 24 completed point estimates. Figure 6 names all 24 proteins; Table 5 and Figures 5 and 7 focus on PTEN, SERPINE1 and CCNE1, showing their selected proxy roles, fitted magnitudes and uncertainty. Their RMST point contrasts are +1.02, -11.55 and -10.22 months per discovery standard deviation. PTEN has a 95% set of [-2.07, 4.24]; SERPINE1 and CCNE1 have real-line sets. HSPA1A is the other bounded ovarian RMST contrast. All endpoint sets include zero, and point directions are exploratory signals. These examples were chosen after analysis for precision and ovarian-cancer biological relevance.
+
+The complete ten-cohort results remain in the supplement: 600 cohort-specific contrasts, 58 completed point estimates and all 1200 endpoint sets. Figure S5 displays every completed coefficient, Figure S6 retains the full-cohort information screen, and Table S1 summarises every cohort.
 
 ## Run the current workflow
 
@@ -33,13 +35,17 @@ python workflow.py tables
 python workflow.py figures
 ```
 
-`verify` checks stored simulation records, paired comparisons, bridge algebra, complete clinical reporting and publication consistency without patient data. `tables` refreshes Tables 2–5 and S1 from stored results and preserves the manuscript's prose. `figures` regenerates Figures 1, 4, 6 and 7 from current records; the remaining figures are supplied as publication assets.
+`verify` checks stored simulation records, paired comparisons, bridge algebra, complete clinical reporting and publication consistency without patient data. `tables` refreshes Tables 2–5 and S1 from stored results and preserves the manuscript's prose. `figures` regenerates Figures 1, 4–7 and S5 from current records; the remaining figures are supplied as publication assets.
 
 ```bash
 # Recompute the final seven-system study (200 datasets per system).
 python workflow.py simulate
 
-# Download public input tables, then run all ten clinical cohorts.
+# Recompute the primary ovarian application.
+python fetch_tcga.py ov
+python workflow.py clinical --cohort ov
+
+# Recompute all ten cohorts, including the supplementary applications.
 python fetch_tcga.py blca brca coadread kirc lgg luad ov skcm stad ucec
 python workflow.py clinical --cohort all
 

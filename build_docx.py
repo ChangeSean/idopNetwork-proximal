@@ -113,7 +113,7 @@ back = f"""
 {PAGE_BREAK}
 {legends.strip()}
 
-Figures 1–7 and S1–S4 are supplied as separate vector PDF files. Main text labels use 8 pt or larger type at the 175 mm canvas; dense supplementary network labels use smaller type.
+Figures 1–7 and S1–S6 are supplied as separate vector PDF files. Main text labels use 8 pt or larger type at the 175 mm canvas; dense supplementary network labels use smaller type.
 
 {PAGE_BREAK}
 ## Tables
@@ -163,7 +163,7 @@ for sec in doc.sections:
 def column_weights(table):
     headers=[cell.text for cell in table.rows[0].cells]
     if 'Discovery / estimation' in headers:return [.65,1.0,.7,.65,.65,1.0,1.0]
-    if len(headers)==5 and 'RMST months and set' in headers:return [.6,.8,.35,1.8,1.8]
+    if len(headers)==5 and 'RMST months and set' in headers:return [.7,1.2,.35,1.55,1.55]
     if len(headers)==3:return [1.5,2.4,2.1]
     if 'Survival points (95% CI)' in headers:return [0.65,0.95,0.45,1.85,1.85,0.6]
     if 'Survival points and set' in headers:return [0.65,0.9,0.4,1.8,1.8,0.7]
@@ -221,8 +221,9 @@ submission = os.path.join(HERE, 'submission')
 os.makedirs(submission, exist_ok=True)
 shutil.copy2(OUT, os.path.join(submission, os.path.basename(OUT)))
 for name in ('fig1_schematic', 'fig2_fits', 'fig3_causal', 'fig4_simulation',
-             'fig5_cohorts', 'fig6_application', 'fig7_clinical_cases',
-             'figS1_full_network', 'figS2_network', 'figS3_report_rates', 'figS4_proxy_construction'):
+             'fig5_ovarian_designs', 'fig6_application', 'fig7_clinical_cases',
+             'figS1_full_network', 'figS2_network', 'figS3_report_rates', 'figS4_proxy_construction',
+             'figS5_cohort_estimates', 'figS6_cohort_information'):
     src = os.path.join(HERE, 'figures', name + '.pdf')
     if os.path.exists(src):
         shutil.copy2(src, os.path.join(submission, name + '.pdf'))

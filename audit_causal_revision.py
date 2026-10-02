@@ -61,7 +61,8 @@ def main():
         check('no unconverted TeX','\\hat' not in plain and '\\operatorname' not in plain and '\\mathrm' not in plain)
         check('all method headings in Word',all(f'3.{n} ' in plain for n in range(1,11)))
     check('Word submission identical',(ROOT/'manuscript_SiM.docx').read_bytes()==(ROOT/'submission/manuscript_SiM.docx').read_bytes())
-    for name in ['fig1_schematic','fig2_fits','fig3_causal','fig4_simulation','fig5_cohorts','fig6_application','fig7_clinical_cases','figS1_full_network','figS2_network','figS3_report_rates','figS4_proxy_construction']:
+    from release_layout import FIGURES
+    for name in FIGURES:
         check(name+' copies',(ROOT/f'figures/{name}.pdf').read_bytes()==(ROOT/f'submission/{name}.pdf').read_bytes())
     result=dict(checks=len(checks),passed=True,numeric_table_cells=numeric_cells,tables=len(tables),references=len(numbers),native_equations=len(maths),
                 word_page_rendering='unverified: packaged renderer cannot find soffice.exe',

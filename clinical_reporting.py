@@ -8,9 +8,9 @@ ROOT = Path(__file__).resolve().parent
 BASE = ROOT / 'results/discovery_estimation_application_20261001'
 EXTENSION = ROOT / 'results/additional_cohorts_application_20261002'
 STUDIES = ('blca', 'brca', 'coadread', 'kirc', 'lgg', 'luad', 'ov', 'skcm', 'stad', 'ucec')
-# Worked examples chosen after results: two OV bounded cases, the same PTEN
-# exposure in KIRC, and a completed LUAD contrast within both target ranges.
-CASES = (('ov', 'PTEN'), ('kirc', 'PTEN'), ('ov', 'HSPA1A'), ('luad', 'TGM2'))
+# Post-analysis ovarian examples: one bounded contrast and two biologically
+# motivated point directions. Every exposure and confidence set remains stored.
+CASES = (('ov', 'PTEN'), ('ov', 'SERPINE1'), ('ov', 'CCNE1'))
 
 
 def folder(study):
@@ -57,7 +57,7 @@ def case_records(data=None):
 
 
 def case_table_rows():
-    return [[row.study.upper(), row.exposure, int(row.r_grid), format_set(row, 'rmst'),
+    return [[row.exposure, row.Z.replace(';', ', '), int(row.r_grid), format_set(row, 'rmst'),
              format_set(row, 'survival', 100)] for row in case_records()]
 
 

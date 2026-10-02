@@ -34,7 +34,7 @@ def main():
               'references': audits['document']['references'], 'word_native_equations': audits['document']['native_equations'],
               'word_page_rendering': audits['document']['word_page_rendering'],
               'final_protocol': 'DISCOVERY_ESTIMATION_PROTOCOL_20261001.md',
-              'version': '2026-10-02 ten-cohort point estimates with complete uncertainty', 'author_declarations': 'Awaiting author input'}
+              'version': '2026-10-02 ovarian application with three focused protein analyses', 'author_declarations': 'Awaiting author input'}
     (ROOT / 'results/work_completion_audit_20261001.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
     print(json.dumps(result, indent=2))
 
