@@ -21,25 +21,24 @@
       "window_fraction": 0.4,
       "alpha": 0.2,
       "support_edges": 75,
-      "signed_ode_edges": 118,
+      "displayed_support_edges": 118,
+      "signed_ode_edges": 0,
       "decomposition_diagnostics": {
-        "rmse": 0.9809503411993503,
-        "r_squared": 0.037736428100878294,
-        "mean_residual": 1.4072437299144842e-15,
-        "closure_error": 1.7763568394002505e-15,
-        "intrinsic_rms": 5.033547204293692,
-        "max_cross_rms": 0.18308544153836848,
-        "max_cross_to_intrinsic_rms": 0.036373045509972335,
-        "intrinsic_variation_rms": 0.35333022251339075,
-        "max_cross_variation_rms": 0.07855951543855118,
-        "cancellation_index": 1.1953538476231909,
-        "ridge_effective_df": 2.9992968425180386,
-        "fixed_design_gcv": 0.9812819197716912,
+        "rmse": 0.9814895521998843,
+        "r_squared": 0.03667825892247045,
+        "mean_residual": 6.401805492643759e-16,
+        "closure_error": 0.0,
+        "intrinsic_rms": 4.799544267672028,
+        "max_cross_rms": 0.0,
+        "max_cross_to_intrinsic_rms": 0.0,
+        "intrinsic_variation_rms": 0.40704166325376323,
+        "max_cross_variation_rms": 0.0,
+        "cancellation_index": 1.0,
+        "ridge_effective_df": 1.9996743731683488,
+        "fixed_design_gcv": 0.9759532568026867,
         "source_groups": 1,
         "coefficients": [
-          1.1996724030593136,
-          -0.0409737623378254,
-          1.013261719128352
+          1.3821094589831204
         ]
       }
     },
@@ -55,26 +54,24 @@
       "window_fraction": 0.4,
       "alpha": 0.2,
       "support_edges": 75,
-      "signed_ode_edges": 118,
+      "displayed_support_edges": 118,
+      "signed_ode_edges": 0,
       "decomposition_diagnostics": {
-        "rmse": 0.9845858627976579,
-        "r_squared": 0.030590678778991465,
-        "mean_residual": -1.325058389130544e-15,
-        "closure_error": 8.881784197001252e-16,
-        "intrinsic_rms": 3.423828912054619,
-        "max_cross_rms": 0.49754997157048314,
-        "max_cross_to_intrinsic_rms": 0.14531975292886537,
-        "intrinsic_variation_rms": 0.4765978922730817,
-        "max_cross_variation_rms": 0.2135799820715,
-        "cancellation_index": 1.6790678824929524,
-        "ridge_effective_df": 3.0000762637059872,
-        "fixed_design_gcv": 0.9885739514927713,
+        "rmse": 0.9878528925302085,
+        "r_squared": 0.02414666271970045,
+        "mean_residual": -3.892989826607692e-16,
+        "closure_error": 0.0,
+        "intrinsic_rms": 3.084691526919791,
+        "max_cross_rms": 0.0,
+        "max_cross_to_intrinsic_rms": 0.0,
+        "intrinsic_variation_rms": 0.33026539138500205,
+        "max_cross_variation_rms": 0.0,
+        "cancellation_index": 1.0,
+        "ridge_effective_df": 1.9996743731683488,
+        "fixed_design_gcv": 0.9886491730324495,
         "source_groups": 2,
         "coefficients": [
-          -1.5688347338965198,
-          -1.523990000385137,
-          1.8860166335488908,
-          2.754630842299193
+          -1.1214157237840288
         ]
       }
     },
@@ -90,26 +87,24 @@
       "window_fraction": 0.4,
       "alpha": 0.2,
       "support_edges": 75,
-      "signed_ode_edges": 118,
+      "displayed_support_edges": 118,
+      "signed_ode_edges": 0,
       "decomposition_diagnostics": {
-        "rmse": 0.9778771372936749,
-        "r_squared": 0.043756304358327336,
-        "mean_residual": 1.2688263138573218e-15,
-        "closure_error": 8.881784197001252e-16,
-        "intrinsic_rms": 2.808289757884851,
-        "max_cross_rms": 0.16957957466571238,
-        "max_cross_to_intrinsic_rms": 0.060385355246759295,
-        "intrinsic_variation_rms": 0.5740260161554793,
-        "max_cross_variation_rms": 0.07284754495050616,
-        "cancellation_index": 1.1240502151924976,
-        "ridge_effective_df": 2.9998359171655578,
-        "fixed_design_gcv": 0.9751465126621345,
+        "rmse": 0.9835826591856246,
+        "r_squared": 0.03256515254933534,
+        "mean_residual": -4.469729060179202e-17,
+        "closure_error": 0.0,
+        "intrinsic_rms": 3.2436547317186113,
+        "max_cross_rms": 0.0,
+        "max_cross_to_intrinsic_rms": 0.0,
+        "intrinsic_variation_rms": 0.3835403557343694,
+        "max_cross_variation_rms": 0.0,
+        "cancellation_index": 1.0,
+        "ridge_effective_df": 1.9996743731683488,
+        "fixed_design_gcv": 0.980120296109769,
         "source_groups": 2,
         "coefficients": [
-          1.8976114461592557,
-          -1.7274674325249857,
-          -0.9395452780513218,
-          -0.49059045041895033
+          1.302310798665699
         ]
       }
     }
@@ -120,7 +115,7 @@
       "n": 411,
       "n_proteins": 140,
       "support_edges": 261,
-      "ode_edges": 261,
+      "ode_edges": 0,
       "components": 18
     },
     {
@@ -131,30 +126,31 @@
       "W": "VHL;GAPDH;TUBA1B;TFRC;SYK;ANXA1;RAB25;GAB2;ATM;STAT5A;BCL2L11;EEF2K;PDCD4;MAPK1;NF2;MAP2K1;PTEN;TP53;CHEK2;PEA15;EEF2;CDH2",
       "alpha": 0.2,
       "window_fraction": 0.2,
-      "ode_edges": 71,
+      "support_edges": 71,
+      "ode_edges": 0,
       "components": 19,
       "selection": "saved full-cohort reference roles"
     }
   ],
   "ode_settings": {
-    "smoothing": "GCV cubic smoothing spline",
+    "smoothing": "not needed for constant basis",
     "basis": "shifted Legendre",
-    "degree": 1,
+    "degree": 0,
     "ridge": 0.1,
     "integration": "normalised niche time",
     "grid_points": 50,
     "selection": "fixed molecular support",
-    "intrinsic": "intercept + linear time baseline + own state group"
+    "intrinsic": "intercept + shared linear time baseline"
   },
-  "edge_interpretation": "Mean cumulative source contributions to molecular niche curves",
+  "edge_interpretation": "Directed LASSO regression supports; degree-zero source terms merged into baseline",
   "figures": {
-    "pdf": "17d1e2fdb4111c2dfd03e09f2e63ccb4760c242ef12dde96d1d67262d03104ad",
-    "png": "4bcea70c2135716f670582ee3e99e5ccce5471fbbe99633a56c7f262cc103df8"
+    "pdf": "769c4880f9d669899e4c806ece9a1315c36f39bdb5a4ed44f1b0e564ff884ba2",
+    "png": "5271794914255a8fb4c9949277d522f4ac309f3655c6f145277864fbe5eb5394"
   },
   "reference_figures": {
-    "figS1_full_network.pdf": "1f638c19fbfcb909fe6be6b135cf9c7accaad495aceebd7c35e65bed41a981d0",
-    "figS1_full_network.png": "1850aea6296288ca036ebdf621f831d3a8bb5fa5fcd1864423fd8f1e434e5da2",
-    "figS2_network.pdf": "44390deea90831a5023643efe550a03bd212fcddbc12f411481499307b97af13",
-    "figS2_network.png": "acbb8679c5fa14c92637165e988ff0ffcafae2e91d8436b8294ba6d8e4aa1577"
+    "figS1_full_network.pdf": "aa611463646d07e9f38d7d1f22590243bf6df6566f89cd3db5098ff80358bbb8",
+    "figS1_full_network.png": "78535195d95e08b04b33eacc598c545aff1880f46f18c192a3ac4b81f88fa5e2",
+    "figS2_network.pdf": "eba3ecdbf951841187f83b391b9aaf6edcdb8656b84b94a1f8873d14e6291631",
+    "figS2_network.png": "f27e0833d99c23384aa378c3c5885a969d242d25b3d23d6e3e1179ccc7ca541d"
   }
 }

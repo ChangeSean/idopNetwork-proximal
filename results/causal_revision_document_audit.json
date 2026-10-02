@@ -6,6 +6,6 @@
   "references": 37,
   "native_equations": 421,
   "word_page_rendering": "unverified: packaged renderer cannot find soffice.exe",
-  "source_sha256": "eb526aacd2d281c06b86d6449281b450fc8900ca8a39863a490b246a597d298e",
-  "word_sha256": "60594febda3f06e5fb06ba744de591ccc36339c9d30b594915ca3d8ddd9ff871"
+  "source_sha256": "dd8ae88b34dda8dc5b5df65538d9adf485796e0b6339b301776e8ccd7900df64",
+  "word_sha256": "5b8ccf7ece59f77cc8085582c788302772c70a0b8576df5ba7bfb93394dc1844"
 }

@@ -13,7 +13,7 @@ from matplotlib.lines import Line2D
 
 import figures as F
 import independent_design_bridge as ID
-from niche_ode import DEFAULT_RIDGE, solve_niche_ode, decomposition_edges
+from niche_ode import DEFAULT_DEGREE, DEFAULT_RIDGE, solve_niche_ode, decomposition_edges
 from multiscale_bridge import design_grid
 from proximal import adjacency_from_supports
 from run_discovery_estimation_application import prepare
@@ -29,7 +29,30 @@ def result_hashes():
             for p in (ROOT / 'results').rglob('*.csv')}
 
 
-def discovery_networks(degree=1, ridge=DEFAULT_RIDGE):
+def network_edges(selected, decomposition):
+    """At degree zero display regression supports without fitted ODE weights."""
+    if decomposition['settings']['degree']:
+        return decomposition_edges(decomposition)
+    source, target = np.nonzero(selected['A'])
+    names = selected['names']
+    return pd.DataFrame(dict(source=[names[i] for i in source],
+                             target=[names[j] for j in target], weight=np.ones(len(source))))
+
+
+def neutral_support_arrows(figure):
+    for ax in figure.axes:
+        for annotation in ax.texts:
+            arrow = getattr(annotation, 'arrow_patch', None)
+            if arrow is not None:
+                arrow.set_color(F.MUTED)
+                arrow.set_linewidth(.6)
+        for location in ('left', 'center', 'right'):
+            title = ax.get_title(loc=location)
+            if 'signed edges' in title:
+                ax.set_title(title.replace('signed edges', 'support edges'), loc=location, fontsize=8)
+
+
+def discovery_networks(degree=DEFAULT_DEGREE, ridge=DEFAULT_RIDGE):
     cohort, _, _, _, _, info = prepare('ov')
     manifest = json.loads((APP / 'ov_manifest.json').read_text(encoding='utf-8'))
     frozen = json.loads((APP / 'ov_discovery_designs.json').read_text(encoding='utf-8'))
@@ -63,7 +86,7 @@ def discovery_networks(degree=1, ridge=DEFAULT_RIDGE):
                 for j in range(len(names))])
             assert np.array_equal(adjacency_from_supports(supports, names), selected['A'])
             dec = solve_niche_ode(cohort['qd'], supports, degree=degree, ridge=ridge, n_grid=50)
-            edges = decomposition_edges(dec)
+            edges = network_edges(selected, dec)
             cache[design_key] = dict(supports=supports, decomposition=dec, edgelist=edges)
         res = dict(selected, qd=cohort['qd'], estimates=pd.DataFrame([row]),
                    ode_degree=degree, ode_ridge=ridge, **cache[design_key])
@@ -74,7 +97,8 @@ def discovery_networks(degree=1, ridge=DEFAULT_RIDGE):
                                conditional_root=row['conditional_root'],
                                window_fraction=row['window_fraction'], alpha=row['alpha'],
                                support_edges=int(np.triu(selected['Und'], 1).sum()),
-                               signed_ode_edges=len(res['edgelist']),
+                               displayed_support_edges=len(res['edgelist']),
+                               signed_ode_edges=len(decomposition_edges(res['decomposition'])),
                                decomposition_diagnostics=res['decomposition']['diagnostics'][exposure]))
     return mapped, provenance, info
 
@@ -89,10 +113,13 @@ def draw_decomposition(ax, res, exposure):
     ax.plot(s, predicted, color=F.INK, lw=1.35)
     self_part = dec['intercepts'][j] + dec['interaction_functions'].get(
         (exposure, exposure), np.zeros_like(s))
-    ax.plot(s, self_part, color=F.INK2, lw=1, ls='--')
+    if dec['settings']['degree']:
+        ax.plot(s, self_part, color=F.INK2, lw=1, ls='--')
     palette = (F.BLUE, F.AQUA, F.YELLOW, '#9b4567', '#7859a8')
     endpoints = []
     for i, source in enumerate(dec['support_sets'].get(exposure, [])):
+        if dec['settings']['degree'] == 0:
+            continue
         if source == exposure:
             continue
         contribution = np.asarray(dec['interaction_functions'][(exposure, source)])
@@ -115,10 +142,14 @@ def draw_decomposition(ax, res, exposure):
         ax.set_ylim(min(lo, min(labels)-.05*span), max(hi, max(labels)+.05*span))
     ax.set_xlim(s[0], s[-1] + .34 * dx)
     ax.axhline(0, color=F.GRID, lw=.7)
+    if dec['settings']['degree'] == 0:
+        ax.text(.98, .06, 'Source terms merged into baseline', transform=ax.transAxes,
+                ha='right', fontsize=7, color=F.INK2)
     ax.grid(axis='y', color=F.GRID, lw=.4)
     ax.set_xlabel('Niche index $s$', fontsize=8)
-    ax.set_ylabel('Cumulative niche contribution', fontsize=8)
-    ax.set_title(exposure + ' curve decomposition', fontsize=9, loc='left', pad=9)
+    ax.set_ylabel('Protein level' if dec['settings']['degree'] == 0 else 'Cumulative niche contribution', fontsize=8)
+    ax.set_title(exposure + (' zero-degree niche trend' if dec['settings']['degree'] == 0 else ' curve decomposition'),
+                 fontsize=9, loc='left', pad=9)
     ax.tick_params(labelsize=8)
 
 
@@ -129,23 +160,27 @@ def reference_network_figures():
     reference = ROOT / 'results/joint_readout_application_20261001'
     cohort = load_cohort('ov', 'OS', p_keep=140, survival=True)
     res = analyse_cohort(cohort, alpha=.15, k=5, estimate_legacy=False, solve_ode=False)
-    dec = solve_niche_ode(cohort['qd'], res['supports'], degree=1, ridge=DEFAULT_RIDGE)
-    res['edgelist'] = decomposition_edges(dec)
+    dec = solve_niche_ode(cohort['qd'], res['supports'], degree=DEFAULT_DEGREE, ridge=DEFAULT_RIDGE)
+    res['edgelist'] = network_edges(res, dec)
     figure = F.fig_full_network(res)
+    neutral_support_arrows(figure)
     for text in figure.texts:
         if 'signed edges' in text.get_text():
             text.set_text(f'Full ovarian reference: {len(res["names"])} proteins; '
-                          f'{len(res["edgelist"])} signed ODE edges; {res["ncomp"]} components\n'
-                          'Edge weights: mean cumulative niche contributions')
+                          f'{len(res["edgelist"])} directed support edges; {res["ncomp"]} components\n'
+                          'Node size and hubs: total support degree')
             text.set_position((.5, .99)); text.set_ha('center'); text.set_fontsize(9)
-    for legend in figure.legends:
-        for text in legend.get_texts():
-            text.set_text(text.get_text().replace('positive effect', 'positive contribution')
-                          .replace('negative effect', 'negative contribution'))
+    for legend in list(figure.legends):
+        legend.remove()
+    figure.legend(handles=[
+        Line2D([], [], marker='o', ls='', color=F.YELLOW, mec=F.INK, ms=6, label='Top 10 hubs by degree'),
+        Line2D([], [], marker='o', ls='', color='#e3d9b8', ms=4, label='Protein (size ~ degree)'),
+        Line2D([], [], color=F.MUTED, lw=.6, label='Directed LASSO support')],
+        loc='lower center', ncol=3, fontsize=8, bbox_to_anchor=(.5, -.01))
     F.save(figure, 'figS1_full_network')
     provenance = [dict(figure='figS1_full_network', n=len(cohort['qd']),
                        n_proteins=len(res['names']), support_edges=int(res['A'].sum()),
-                       ode_edges=len(res['edgelist']), components=res['ncomp'])]
+                       ode_edges=len(decomposition_edges(dec)), components=res['ncomp'])]
     cohort = load_cohort('ov', 'OS', survival=True)
     grid = design_grid(cohort)
     saved = pd.read_csv(reference/'figure_network_provenance.csv').set_index('exposure').loc['LCK']
@@ -159,22 +194,31 @@ def reference_network_figures():
     assert ';'.join(names[i] for i in w) == saved.W
     supports = pd.DataFrame([dict(target=names[j], source='{' + ','.join(
         names[i] for i in np.flatnonzero(res['A'][:, j])) + '}') for j in range(len(names))])
-    dec = solve_niche_ode(cohort['qd'], supports, degree=1, ridge=DEFAULT_RIDGE)
-    res.update(estimates=pd.DataFrame([row]), edgelist=decomposition_edges(dec))
+    dec = solve_niche_ode(cohort['qd'], supports, degree=DEFAULT_DEGREE, ridge=DEFAULT_RIDGE)
+    res.update(estimates=pd.DataFrame([row]), edgelist=network_edges(res, dec))
     figure = F.fig_network(res, 'LCK')
+    neutral_support_arrows(figure)
+    for text in figure.texts:
+        if 'signed edges' in text.get_text():
+            text.set_text(f'{len(res["edgelist"])} directed LASSO support edges; {res["ncomp"]} components in total')
     for label in figure.axes[0].texts:
         if label.get_text() == 'IGFBP2':
             label.set_position((-10, -12))
             label.set_ha('right')
             label.set_va('top')
-    for legend in figure.legends:
-        for text in legend.get_texts():
-            text.set_text(text.get_text().replace('positive effect', 'positive contribution')
-                          .replace('negative effect', 'negative contribution'))
+    for legend in list(figure.legends):
+        legend.remove()
+    figure.legend(handles=[
+        Line2D([], [], marker='o', ls='', color=F.ORANGE, mec=F.INK, ms=6, label='Exposure $A$ = LCK'),
+        Line2D([], [], marker='o', ls='', color=F.BLUE, mec=F.INK, ms=6, label='Treatment proxy $Z$'),
+        Line2D([], [], marker='o', ls='', color=F.AQUA, mec=F.INK, ms=6, label='Outcome proxy $W$'),
+        Line2D([], [], color=F.MUTED, lw=.6, label='Directed LASSO support')],
+        loc='lower center', ncol=4, fontsize=8, bbox_to_anchor=(.5, -.02))
     F.save(figure, 'figS2_network')
     provenance.append(dict(figure='figS2_network', n=len(cohort['qd']), n_proteins=len(names),
                            Z=saved.Z, W=saved.W, alpha=saved.alpha,
-                           window_fraction=saved.window_fraction, ode_edges=len(res['edgelist']),
+                           window_fraction=saved.window_fraction, support_edges=len(res['edgelist']),
+                           ode_edges=len(decomposition_edges(dec)),
                            components=res['ncomp'], selection='saved full-cohort reference roles'))
     return provenance
 
@@ -197,32 +241,27 @@ def trial(degree, ridge=DEFAULT_RIDGE):
         if design not in cache:
             cache[design] = solve_niche_ode(res['qd'], res['supports'], degree=degree, ridge=ridge)
         alternative = cache[design]
-        display = dict(alternative)
-        if degree == 0:
-            display['support_sets'] = {name: [] for name in alternative['features']}
-        for j, item in enumerate((res, dict(res, decomposition=display))):
+        for j, item in enumerate((res, dict(res, decomposition=alternative))):
             draw_decomposition(axes[i, j], item, exposure)
-            axes[i, j].set_title(exposure + f'   degree {1 if j == 0 else degree}, ridge {DEFAULT_RIDGE if j == 0 else ridge:g}',
+            axes[i, j].set_title(exposure + f'   degree {DEFAULT_DEGREE if j == 0 else degree}, ridge {DEFAULT_RIDGE if j == 0 else ridge:g}',
                                  fontsize=9, loc='left', pad=9)
-            if j == 1 and degree == 0:
-                axes[i, j].axhline(0, color=F.BLUE, lw=1)
-                axes[i, j].text(.98, .075, 'Source terms merged into baseline',
-                                transform=axes[i, j].transAxes, ha='right', fontsize=7, color=F.INK2)
-        comparisons.append(dict(exposure=exposure, degree_one=res['decomposition']['diagnostics'][exposure],
+        comparisons.append(dict(exposure=exposure, baseline=res['decomposition']['diagnostics'][exposure],
                                 trial=alternative['diagnostics'][exposure]))
-    comparison = f'Legendre degree 1 versus {degree}' if degree != 1 else f'Ridge {DEFAULT_RIDGE:g} versus {ridge:g}'
+    comparison = f'Legendre degree {DEFAULT_DEGREE} versus {degree}' if degree != DEFAULT_DEGREE else f'Ridge {DEFAULT_RIDGE:g} versus {ridge:g}'
     fig.suptitle(f'{comparison}: ovarian discovery curves', fontsize=10, y=.98)
-    subtitle = 'Degree 0: constant basis merged into the linear niche baseline' if degree == 0 else 'Same discovery support and first-degree basis'
+    subtitle = 'Degree 0: constant basis merged into the linear niche baseline' if 0 in (degree, DEFAULT_DEGREE) else 'Same discovery support'
     fig.text(.5, .944, subtitle, ha='center', fontsize=8, color=F.INK2)
     handles = [Line2D([], [], color=F.INK, lw=1.3, label='Reconstructed curve'),
                Line2D([], [], color=F.INK2, lw=1, ls='--', label='Intrinsic contribution with baseline'),
                Line2D([], [], color=F.MUTED, marker='o', ls='none', ms=3, label='Observed protein'),
                Line2D([], [], color=F.BLUE, lw=1, label='Source contributions labelled by protein')]
+    if degree == DEFAULT_DEGREE == 0:
+        handles = [handles[0], handles[2]]
     fig.legend(handles=handles, loc='lower center', ncol=2, fontsize=7.5,
                bbox_to_anchor=(.5, .025), columnspacing=1.2)
-    output = ROOT/('results/niche_ode_degree_trial' if degree != 1 else 'results/niche_ode_ridge_trial')
+    output = ROOT/('results/niche_ode_degree_trial' if degree != DEFAULT_DEGREE else 'results/niche_ode_ridge_trial')
     output.mkdir(parents=True, exist_ok=True)
-    filename = f'degree_1_vs_{degree}' if degree != 1 else f'ridge_{DEFAULT_RIDGE:g}_vs_{ridge:g}'
+    filename = f'degree_{DEFAULT_DEGREE}_vs_{degree}' if degree != DEFAULT_DEGREE else f'ridge_{DEFAULT_RIDGE:g}_vs_{ridge:g}'
     for suffix in ('pdf', 'png'):
         fig.savefig(output/f'{filename}.{suffix}', bbox_inches='tight', pad_inches=.02)
     plt.close(fig)
@@ -231,18 +270,18 @@ def trial(degree, ridge=DEFAULT_RIDGE):
     document = dict(baseline_settings=mapped[EXPOSURES[0]]['decomposition']['settings'],
                     settings=next(iter(cache.values()))['settings'], panels=comparisons,
                     analysis_csv_files_unchanged=len(before), publication_artifacts_unchanged=True,
-                    zero_degree_interpretation='Constant basis shared by all sources, represented once as baseline; zero source contributions are a parameterisation convention' if degree == 0 else None)
+                    zero_degree_interpretation='Constant basis shared by all sources, represented once as baseline; zero source contributions are a parameterisation convention' if 0 in (degree, DEFAULT_DEGREE) else None)
     (output/f'{filename}_diagnostics.json').write_text(json.dumps(document, indent=2), encoding='utf-8')
     print(json.dumps(dict(output=str(output), **document), indent=2))
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--trial-degree', type=int, help='Compare a nonnegative degree with the published degree 1')
+    parser.add_argument('--trial-degree', type=int, help='Compare a nonnegative degree with the published degree 0')
     parser.add_argument('--trial-ridge', type=float, help='Compare a ridge penalty with the published value')
     args = parser.parse_args()
     if args.trial_degree is not None or args.trial_ridge is not None:
-        degree = 1 if args.trial_degree is None else args.trial_degree
+        degree = DEFAULT_DEGREE if args.trial_degree is None else args.trial_degree
         ridge = DEFAULT_RIDGE if args.trial_ridge is None else args.trial_ridge
         if degree < 0:
             parser.error('Trial degree must be nonnegative')
@@ -282,19 +321,17 @@ def main():
         curve = fig.add_subplot(grid[i, 1])
         draw_decomposition(curve, res, exposure)
         F._panel_label(curve, 'bdf'[i], x=-.17, y=1.04)
-    fig.suptitle('Ovarian discovery networks and molecular curve contributions', fontsize=10, y=.982)
+    fig.suptitle('Ovarian discovery supports and zero-degree niche trends', fontsize=10, y=.982)
+    neutral_support_arrows(fig)
     fig.text(.5, .954, f'{info["n_discovery"]} discovery patients; graph width 0.4, LASSO 0.20; '
-             f'ODE degree 1, ridge {DEFAULT_RIDGE:g}', ha='center', fontsize=8, color=F.INK2)
+             f'ODE degree {DEFAULT_DEGREE}, ridge {DEFAULT_RIDGE:g}', ha='center', fontsize=8, color=F.INK2)
     handles = [
         Line2D([], [], ls='none', marker='o', color=F.ORANGE, mec=F.INK, ms=5, label='Exposure $A$'),
         Line2D([], [], ls='none', marker='o', color=F.BLUE, mec=F.INK, ms=5, label='Treatment proxy $Z$'),
         Line2D([], [], ls='none', marker='o', color=F.AQUA, mec=F.INK, ms=5, label='Outcome proxy $W$'),
-        Line2D([], [], color=F.BLUE, lw=1, label='Positive ODE contribution'),
-        Line2D([], [], color=F.ORANGE, lw=1, label='Negative ODE contribution'),
-        Line2D([], [], color=F.INK, lw=1.3, label='Reconstructed curve'),
-        Line2D([], [], color=F.MUTED, marker='o', ls='none', ms=3, label='Observed discovery protein'),
-        Line2D([], [], color=F.INK2, lw=1, ls='--', label='Intrinsic contribution with baseline'),
-        Line2D([], [], color='#7859a8', lw=1, label='Source contributions labelled by protein')]
+        Line2D([], [], color=F.MUTED, lw=.6, label='Directed LASSO support'),
+        Line2D([], [], color=F.INK, lw=1.3, label='Fitted intrinsic baseline'),
+        Line2D([], [], color=F.MUTED, marker='o', ls='none', ms=3, label='Observed discovery protein')]
     fig.legend(handles=handles, loc='lower center', ncol=3, fontsize=7.5,
                bbox_to_anchor=(.52, .019), columnspacing=1.1, handlelength=1.7)
     F.save(fig, 'fig3_causal')
@@ -307,7 +344,7 @@ def main():
                     analysis_csv_files_unchanged=len(before), all_frozen_designs_replayed=True,
                     panels=provenance, reference_panels=references,
                     ode_settings=mapped[EXPOSURES[0]]['decomposition']['settings'],
-                    edge_interpretation='Mean cumulative source contributions to molecular niche curves',
+                    edge_interpretation='Directed LASSO regression supports; degree-zero source terms merged into baseline',
                     figures={suffix: hashlib.sha256((ROOT/f'figures/fig3_causal.{suffix}').read_bytes()).hexdigest()
                              for suffix in ('pdf', 'png')},
                     reference_figures={f'{name}.{suffix}': hashlib.sha256(

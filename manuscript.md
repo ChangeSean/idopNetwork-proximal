@@ -138,7 +138,7 @@ Each exposure record contains its proxy sets, spectrum and bridge dimensions, se
 
 ### 3.10 Quasi-dynamic network interpretation
 
-The weak-form ODE decomposition of idopNetwork describes molecular variation along the niche index: $\dot x_j=Q_{jj}(x_j)+\sum_{k\in\operatorname{pa}(j)}Q_{jk}(x_k)$. On the fixed support graph, protein states are pre-smoothed by cubic smoothing splines with generalised cross-validation. A first-degree shifted Legendre term for each source is integrated by the trapezoidal rule along the niche coordinate normalised to the unit interval. Each target includes a linear niche baseline, its own state group and the supported source groups. Centred, standardised design columns receive ridge regression with penalty 0.1; coefficients are returned to the protein scale. Intrinsic contributions combine the intercept, linear baseline and own group; adding the cross-protein contributions reconstructs the fitted curve (Figure 3b,d,f). Edge weights are mean cumulative source contributions (Figures S1–S2). Bridge estimation uses the observed protein levels and reduced readouts defined in Section 3.5.
+The weak-form ODE decomposition of idopNetwork describes molecular variation along the niche index: $\dot x_j=Q_{jj}(x_j)+\sum_{k\in\operatorname{pa}(j)}Q_{jk}(x_k)$. The zero-degree Legendre basis is constant, so its integral along the normalised niche coordinate is the same linear column for every source. We represent this shared column once as the intrinsic baseline. Centred, standardised ridge regression with penalty 0.1 fits the observed protein levels to an intercept and this column. The fitted intrinsic baseline reconstructs the niche trend; separate source contributions are zero under this parameterisation (Figure 3b,d,f). Network panels display the directed LASSO supports used for proxy construction, with node degree describing connectivity (Figure 3a,c,e; Figures S1–S2). Bridge estimation uses the observed protein levels and reduced readouts defined in Section 3.5.
 
 ## 4 Identification and estimation
 
@@ -510,7 +510,7 @@ Weak system IV supplies 136/200 point fits, with linear bias 0.074, RMSE 0.353 a
 
 We use TCGA PanCancer Atlas ovarian-cancer (OV) RPPA and clinical tables from cBioPortal [25, 26, 27]. The cohort includes 411 patients and 245 deaths. The fixed split assigns 308 patients to discovery and 103 to estimation, with 67 deaths in estimation. Discovery selects the 60 most variable proteins after missingness and duplicate-antibody filtering. The bridge includes age. Clinical contrasts correspond to one discovery-cohort protein standard deviation at a 36-month horizon.
 
-Figure 2 illustrates LCK and CDH2 niche curves in the full-cohort reference. Figure 3 shows discovery-sample networks and curve contributions for PTEN, SERPINE1 and CCNE1; Figure 5 summarises their selected proxy designs. Table S1 and Figures S5–S6 report the supporting analyses in nine other tumour cohorts.
+Figure 2 illustrates LCK and CDH2 niche curves in the full-cohort reference. Figure 3 shows discovery-sample supports and zero-degree niche trends for PTEN, SERPINE1 and CCNE1; Figure 5 summarises their selected proxy designs. Table S1 and Figures S5–S6 report the supporting analyses in nine other tumour cohorts.
 
 ### 6.2 Point estimates of restricted survival contrasts
 
@@ -558,7 +558,7 @@ The manuscript, analysis code, study protocols, aggregate results and reproducti
 
 **Figure 2.** TCGA-OV niche-index power curves for LCK, CDH2, four local treatment proxies and two separated readouts. Points are patient measurements; curve exponents and network roles are annotated.
 
-**Figure 3.** Ovarian discovery networks and niche-curve decompositions for PTEN, SERPINE1 and CCNE1. Panels a,c,e show exposure, proxy and remaining-protein planes for the 60-protein panel learned from 308 discovery patients. Each uses its frozen selected design at window width 0.4 and penalty 0.20, with joint/conditional ranks 1/1, 2/2 and 2/2. Arrow colours give the signs of mean cumulative ODE contributions. Panels b,d,f show observed levels, reconstructed curves, intrinsic contributions including baseline, and cross-protein contributions labelled by source. Curves use smoothing splines, a first-degree time-integrated Legendre term per source and standardised ridge penalty 0.1; the components sum to the reconstructed curve.
+**Figure 3.** Ovarian discovery networks and zero-degree niche trends for PTEN, SERPINE1 and CCNE1. Panels a,c,e show exposure, proxy and remaining-protein planes for the 60-protein panel learned from 308 discovery patients. Each uses its frozen selected design at window width 0.4 and LASSO penalty 0.20, with joint/conditional ranks 1/1, 2/2 and 2/2. Arrows indicate directed LASSO supports. Panels b,d,f show observed levels and fitted intrinsic baselines using the zero-degree Legendre basis and standardised ridge penalty 0.1. Constant source terms share the linear niche column and are merged into the baseline; separate source contributions are zero by this parameterisation.
 
 **Figure 4.** Independent-sample validation across seven systems, each with 200 fresh datasets. Point error uses available estimates; coverage uses all 200 sets. Bars give 1.96 Monte Carlo standard errors.
 
@@ -568,7 +568,7 @@ The manuscript, analysis code, study protocols, aggregate results and reproducti
 
 **Figure 7.** Ovarian PTEN, SERPINE1 and CCNE1 contrasts on both clinical scales. Points are independent-estimation coefficients and lines are their 95% confidence sets. PTEN has bounded sets on both scales; arrows indicate the real-line sets for SERPINE1 and CCNE1.
 
-**Figure S1.** Full TCGA-OV network on 140 filtered proteins, with 261 signed ODE edges and 18 components. The ten largest hubs are emphasised.
+**Figure S1.** Full TCGA-OV network on 140 filtered proteins, with 261 directed LASSO support edges and 18 components. Node size reflects total support degree; the ten highest-degree proteins are emphasised.
 
 **Figure S2.** TCGA-OV graph by component, with LCK exposure neighbourhood on the left and the complete separated outcome-proxy pool on the right.
 

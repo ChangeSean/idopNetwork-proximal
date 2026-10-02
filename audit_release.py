@@ -87,8 +87,10 @@ def main():
           all(set(row['cases']) == {'PTEN', 'SERPINE1', 'CCNE1'} for row in ridge_trial['records']))
     check('ODE adopted ridge recorded', ridge_trial['degree'] == 1 and
           ridge_trial['adopted_ridge'] == settings['ridge'] == .1)
-    for key, expected in dict(smoothing='GCV cubic smoothing spline', basis='shifted Legendre',
-                             degree=1, ridge=.1, integration='normalised niche time',
+    check('Zero-degree source convention', all(p['signed_ode_edges'] == 0 and
+          p['decomposition_diagnostics']['max_cross_rms'] == 0 for p in figure['panels']))
+    for key, expected in dict(smoothing='not needed for constant basis', basis='shifted Legendre',
+                             degree=0, ridge=.1, integration='normalised niche time',
                              grid_points=50, selection='fixed molecular support').items():
         check('Figure 3 ODE ' + key, settings[key] == expected)
     for suffix, expected in figure['figures'].items():
@@ -102,8 +104,10 @@ def main():
     lck = next(x for x in read(reference) if x['exposure'] == 'LCK')
     check('S2 full-cohort reference roles retained', s2['n'] == 411 and s2['n_proteins'] == 60 and
           s2['Z'] == lck['Z'] and s2['W'] == lck['W'])
-    check('Molecular curve settings documented', 'first-degree time-integrated Legendre term' in text and
+    check('Molecular curve settings documented', 'zero-degree Legendre basis' in text and
           'standardised ridge penalty 0.1' in text)
+    check('Network captions match regression supports', '261 directed LASSO support edges' in text and
+          'Arrows indicate directed LASSO supports' in text and all(p['ode_edges'] == 0 for p in figure['reference_panels']))
     check('Figure 3 caption matches current panels', 'Panels a,c,e' in text and 'Panels b,d,f' in text)
     result = {'passed': True, 'checks': len(checks), 'canonical_source': 'manuscript.md',
               'manuscript_sha256': hashlib.sha256(before).hexdigest(), 'builder_idempotent': True,

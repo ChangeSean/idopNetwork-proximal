@@ -11,6 +11,7 @@ from scipy.interpolate import make_smoothing_spline
 from scipy.special import eval_legendre
 
 DEFAULT_RIDGE = .1
+DEFAULT_DEGREE = 0
 
 
 def integrated_state_basis(states, time, degree):
@@ -52,7 +53,7 @@ def ridge_refit(X, y, ridge):
     return intercept, beta
 
 
-def solve_niche_ode(data, supports, degree=1, ridge=DEFAULT_RIDGE, n_grid=50):
+def solve_niche_ode(data, supports, degree=DEFAULT_DEGREE, ridge=DEFAULT_RIDGE, n_grid=50):
     """Smooth raw states, fit fixed source groups, and return additive curves.
 
     Each target has a baseline time column plus its own and supported sources'
@@ -172,7 +173,8 @@ def solve_niche_ode(data, supports, degree=1, ridge=DEFAULT_RIDGE, n_grid=50):
                               basis='shifted Legendre',
                               degree=degree, ridge=ridge, integration='normalised niche time',
                               grid_points=n_grid, selection='fixed molecular support',
-                              intrinsic='intercept + linear time baseline + own state group'))
+                              intrinsic='intercept + linear time baseline + own state group' if degree else
+                                        'intercept + shared linear time baseline'))
 
 
 def decomposition_edges(decomposition):
