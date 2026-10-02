@@ -1,4 +1,5 @@
 """Figure 3 from the frozen ovarian discovery sample and selected designs."""
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -28,7 +29,7 @@ def result_hashes():
             for p in (ROOT / 'results').rglob('*.csv')}
 
 
-def discovery_networks():
+def discovery_networks(degree=1):
     cohort, _, _, _, _, info = prepare('ov')
     manifest = json.loads((APP / 'ov_manifest.json').read_text(encoding='utf-8'))
     frozen = json.loads((APP / 'ov_discovery_designs.json').read_text(encoding='utf-8'))
@@ -61,11 +62,11 @@ def discovery_networks():
                      np.flatnonzero(selected['A'][:, j])) + '}')
                 for j in range(len(names))])
             assert np.array_equal(adjacency_from_supports(supports, names), selected['A'])
-            dec = solve_niche_ode(cohort['qd'], supports, degree=1, ridge=1., n_grid=50)
+            dec = solve_niche_ode(cohort['qd'], supports, degree=degree, ridge=1., n_grid=50)
             edges = decomposition_edges(dec)
             cache[design_key] = dict(supports=supports, decomposition=dec, edgelist=edges)
         res = dict(selected, qd=cohort['qd'], estimates=pd.DataFrame([row]),
-                   ode_degree=1, ode_ridge=1., **cache[design_key])
+                   ode_degree=degree, ode_ridge=1., **cache[design_key])
         mapped[exposure] = res
         provenance.append(dict(exposure=exposure, n_discovery=info['n_discovery'],
                                n_proteins=len(info['names']), Z=row['Z'], W=row['W'],
@@ -178,7 +179,69 @@ def reference_network_figures():
     return provenance
 
 
+def trial(degree):
+    """Compare an alternative degree without replacing publication figures."""
+    canonical = [ROOT/'manuscript.md', ROOT/'manuscript_SiM.docx']
+    canonical += [p for p in (ROOT/'figures').iterdir() if p.is_file()]
+    before = result_hashes()
+    artifacts = {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in canonical}
+    mapped, _, _ = discovery_networks()
+    F.set_style()
+    fig, axes = plt.subplots(3, 2, figsize=(F.DOUBLE, 8.9))
+    fig.subplots_adjust(left=.10, right=.98, bottom=.12, top=.90, hspace=.52, wspace=.40)
+    comparisons = []
+    cache = {}
+    for i, exposure in enumerate(EXPOSURES):
+        res = mapped[exposure]
+        design = (res.get('window_fraction', .2), res['alpha'])
+        if design not in cache:
+            cache[design] = solve_niche_ode(res['qd'], res['supports'], degree=degree, ridge=1.)
+        alternative = cache[design]
+        display = dict(alternative)
+        if degree == 0:
+            display['support_sets'] = {name: [] for name in alternative['features']}
+        for j, item in enumerate((res, dict(res, decomposition=display))):
+            draw_decomposition(axes[i, j], item, exposure)
+            axes[i, j].set_title(exposure + f'   degree {1 if j == 0 else degree}',
+                                 fontsize=9, loc='left', pad=9)
+            if j == 1 and degree == 0:
+                axes[i, j].axhline(0, color=F.BLUE, lw=1)
+                axes[i, j].text(.98, .075, 'Source terms merged into baseline',
+                                transform=axes[i, j].transAxes, ha='right', fontsize=7, color=F.INK2)
+        comparisons.append(dict(exposure=exposure, degree_one=res['decomposition']['diagnostics'][exposure],
+                                trial=alternative['diagnostics'][exposure]))
+    fig.suptitle(f'Legendre degree 1 versus {degree}: ovarian discovery curves', fontsize=10, y=.98)
+    subtitle = 'Degree 0: constant basis merged into the linear niche baseline' if degree == 0 else 'Same discovery support; ridge penalty 1'
+    fig.text(.5, .944, subtitle, ha='center', fontsize=8, color=F.INK2)
+    handles = [Line2D([], [], color=F.INK, lw=1.3, label='Reconstructed curve'),
+               Line2D([], [], color=F.INK2, lw=1, ls='--', label='Intrinsic contribution with baseline'),
+               Line2D([], [], color=F.MUTED, marker='o', ls='none', ms=3, label='Observed protein'),
+               Line2D([], [], color=F.BLUE, lw=1, label='Source contributions labelled by protein')]
+    fig.legend(handles=handles, loc='lower center', ncol=2, fontsize=7.5,
+               bbox_to_anchor=(.5, .025), columnspacing=1.2)
+    output = ROOT/'results/niche_ode_degree_trial'
+    output.mkdir(parents=True, exist_ok=True)
+    for suffix in ('pdf', 'png'):
+        fig.savefig(output/f'degree_1_vs_{degree}.{suffix}', bbox_inches='tight', pad_inches=.02)
+    plt.close(fig)
+    assert before == result_hashes(), 'Trial changed an analysis CSV'
+    assert all(hashlib.sha256(p.read_bytes()).hexdigest() == sha for p, sha in artifacts.items())
+    document = dict(settings=next(iter(cache.values()))['settings'], panels=comparisons,
+                    analysis_csv_files_unchanged=len(before), publication_artifacts_unchanged=True,
+                    zero_degree_interpretation='Constant basis shared by all sources, represented once as baseline; zero source contributions are a parameterisation convention' if degree == 0 else None)
+    (output/f'degree_{degree}_diagnostics.json').write_text(json.dumps(document, indent=2), encoding='utf-8')
+    print(json.dumps(dict(output=str(output), **document), indent=2))
+
+
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--trial-degree', type=int, help='Compare a nonnegative degree with the published degree 1')
+    args = parser.parse_args()
+    if args.trial_degree is not None:
+        if args.trial_degree < 0:
+            parser.error('Trial degree must be nonnegative')
+        trial(args.trial_degree)
+        return
     before = result_hashes()
     mapped, provenance, info = discovery_networks()
     F.set_style()

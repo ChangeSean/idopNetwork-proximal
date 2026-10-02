@@ -17,6 +17,8 @@ def integrated_state_basis(states, time, degree):
     time = np.asarray(time, float)
     if states.ndim != 2 or len(states) != len(time) or np.any(np.diff(time) <= 0):
         raise ValueError('Basis requires a matrix on a strictly increasing time grid')
+    if degree == 0:
+        return [np.empty((len(time), 0)) for _ in states.T]
     blocks = []
     for values in states.T:
         span = np.ptp(values)
@@ -54,10 +56,13 @@ def solve_niche_ode(data, supports, degree=1, ridge=1., n_grid=50):
     Each target has a baseline time column plus its own and supported sources'
     degree-1,...,degree shifted Legendre bases. The constant basis is represented
     once by time. Intercept and time baseline belong to the intrinsic component.
+    Degree zero retains only that shared constant-derivative baseline; source
+    groups have no additional columns and their reported contributions are zero.
     The unnormalised sum-of-squares ridge convention matches MTODE's ridge=1.
     """
-    if degree < 1 or int(degree) != degree or ridge < 0 or not np.isfinite(ridge):
-        raise ValueError('Use positive integer degree and finite nonnegative ridge')
+    if degree < 0 or int(degree) != degree or ridge < 0 or not np.isfinite(ridge):
+        raise ValueError('Use nonnegative integer degree and finite nonnegative ridge')
+    degree = int(degree)
     if n_grid < 5 or not isinstance(data, pd.DataFrame):
         raise ValueError('Use a DataFrame and at least five output grid points')
     if not data.columns.is_unique:
@@ -80,14 +85,18 @@ def solve_niche_ode(data, supports, degree=1, ridge=1., n_grid=50):
     time_grid = np.linspace(0., 1., n_grid)
     # One integration grid ensures consistent training and plotting integrals.
     time_union = np.unique(np.r_[time_unique, time_grid])
-    smoothed = np.column_stack([
-        make_smoothing_spline(time_unique, averaged[:, j], w=counts.astype(float))(time_union)
-        for j in range(len(features))])
-    blocks = integrated_state_basis(smoothed, time_union, degree)
-    blocks_observed = [np.column_stack([np.interp(time_observed, time_union, b[:, k])
+    if degree:
+        smoothed = np.column_stack([
+            make_smoothing_spline(time_unique, averaged[:, j], w=counts.astype(float))(time_union)
+            for j in range(len(features))])
+        blocks = integrated_state_basis(smoothed, time_union, degree)
+        blocks_observed = [np.column_stack([np.interp(time_observed, time_union, b[:, k])
+                                          for k in range(degree)]) for b in blocks]
+        blocks_grid = [np.column_stack([np.interp(time_grid, time_union, b[:, k])
                                       for k in range(degree)]) for b in blocks]
-    blocks_grid = [np.column_stack([np.interp(time_grid, time_union, b[:, k])
-                                  for k in range(degree)]) for b in blocks]
+    else:
+        blocks_observed = [np.empty((len(s), 0)) for _ in features]
+        blocks_grid = [np.empty((n_grid, 0)) for _ in features]
     support_sets = {target: [] for target in features}
     for row in supports.itertuples():
         if row.target not in support_sets:
@@ -141,7 +150,8 @@ def solve_niche_ode(data, supports, degree=1, ridge=1., n_grid=50):
                 intercepts=intercepts, predicted_states=prediction,
                 interaction_functions=interaction_functions, support_sets=support_sets,
                 fitted_observed=fitted_observed, diagnostics=diagnostics,
-                settings=dict(smoothing='GCV cubic smoothing spline', basis='shifted Legendre',
+                settings=dict(smoothing='GCV cubic smoothing spline' if degree else 'not needed for constant basis',
+                              basis='shifted Legendre',
                               degree=degree, ridge=ridge, integration='normalised niche time',
                               grid_points=n_grid, selection='fixed molecular support',
                               intrinsic='intercept + linear time baseline + own state group'))

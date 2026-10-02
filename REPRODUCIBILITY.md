@@ -36,6 +36,8 @@ For PowerShell, use `0..6 | ForEach-Object { python validate_joint_readout_bridg
 
 `niche_ode.py` implements the descriptive molecular curves in Figure 3 and the edge weights in Figures S1–S2. It uses GCV cubic smoothing splines, first-degree shifted Legendre terms integrated along the normalised niche coordinate, and centred, standardised ridge regression with penalty 1 under the sum-of-squares convention. The intrinsic curve combines the intercept, linear niche baseline and own-state group; the supported source contributions sum with it to reconstruct the fitted curve. Network edge signs describe mean cumulative source contributions. Source groups come from the fixed molecular support. The supplied MTODE code guides smoothing, integration and ridge refitting; its separate ADSIHT screening is not used. S1–S2 retain their full-cohort reference supports and proxy roles. The provenance JSON records the ODE settings, reconstruction errors and fingerprints for all three figures. These curve fits do not enter clinical bridge estimation.
 
+`python make_discovery_network_figures.py --trial-degree 0` compares degree zero with the published degree-one curves, saving a PNG, PDF and diagnostics under `results/niche_ode_degree_trial/`. It preserves the manuscript, publication figures and analysis CSVs. With degree zero, the constant Legendre basis integrates to the same niche-time column for every source. This shared column is represented once as the baseline, so separate source contributions are zero by parameterisation. The zero-degree trial therefore fits a straight niche trend without distinguishing protein-specific contributions.
+
 ## Supporting studies
 
 | Study | Settings | Location under `results/` |

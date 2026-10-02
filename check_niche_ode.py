@@ -35,6 +35,12 @@ def main():
                              {'target': 'C', 'source': '{}'}])
     dec = solve_niche_ode(data, supports)
     assert dec['settings']['degree'] == 1
+    zero = solve_niche_ode(data, supports, degree=0)
+    base_zero, slope_zero = ridge_refit(time[:, None], data['A'].to_numpy(), 1.)
+    check('zero degree retains the common baseline', zero['predicted_states'][:, 0],
+          base_zero+slope_zero[0]*np.linspace(0., 1., 50), atol=1e-12)
+    check('zero degree source convention', zero['interaction_functions'][('A', 'B')], 0., atol=1e-12)
+    assert decomposition_edges(zero).empty
     transformed = data.copy()
     transformed.index = 17+400*time
     other = solve_niche_ode(transformed, supports)

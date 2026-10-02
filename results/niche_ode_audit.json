@@ -1,10 +1,12 @@
 {
   "passed": true,
-  "checks": 12,
+  "checks": 14,
   "invariants": [
     "time integral of linear Legendre basis",
     "unpenalised polynomial recovery",
     "ridge invariance to column units",
+    "zero degree retains the common baseline",
+    "zero degree source convention",
     "affine niche-coordinate invariance",
     "constant target",
     "additive closure A",
